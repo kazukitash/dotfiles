@@ -5,8 +5,6 @@ fi
 
 . "$DOTPATH"/etc/install
 
-cd "$DOTPATH"/etc/init/assets/brew
-
 install_homebrew() {
   e_newline && e_header "Installing HomeBrew..."
   if has "brew"; then
@@ -66,12 +64,11 @@ install_formulas() {
 
   brew install mas
 
-  # mas install 957734279  # TogglDesktop (7.3.319)
   mas install 539883307  # LINE (4.9.0)
   mas install 417375580  # BetterSnapTool (1.7)
   mas install 409183694  # Keynote (7.0)
-  # mas install 485812721  # TweetDeck (3.9.889)
-  # mas install 1030442215 #  Momentum (3.4)
+  mas install 557168941 # Tweetbot
+  mas install 1176895641 # Spark
   # mas install 411431426  # GIFQuickMaker (1.5.1)
   mas install 407963104  # Pixelmator (3.5.1)
   mas install 1289583905  # Pixelmator Pro (1.5.5)
@@ -85,7 +82,7 @@ install_formulas() {
   # mas install 420212497  # Byword (2.7)
   # mas install 919269455  # StuffIt Expander 16 (16.0.5)
   # mas install 406580224  # Blotter (2.2.3)
-  mas install 1225570693 # ulysses (18.6)
+  mas install 1225570693 # Ulysses (18.6)
   mas install 824183456 # Affinity Photo (1.8.2)
 
   e_done "Install"
