@@ -130,4 +130,4 @@ else
   fi
 fi
 
-export EDITOR="atom -w"
+export EDITOR="code"
