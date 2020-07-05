@@ -31,19 +31,19 @@ install_formulas() {
   brew install ffmpeg
   brew install git
   brew install diff-so-fancy
-  brew install ghostscript
+  # brew install ghostscript
   # brew install gnuplot --with-x11
-  brew install hub
+  # brew install hub
   brew install imagemagick
-  brew install nodebrew
+  # brew install nodebrew
   brew install openssl
-  brew install pandoc
+  # brew install pandoc
   # brew install povray
   brew install rbenv
   brew install ruby-build
   brew install sqlite
   # brew install terminal-notifier
-  brew install tmux
+  # brew install tmux
   brew install tree
   brew install unrar
   brew install wget
@@ -67,12 +67,12 @@ install_formulas() {
   mas install 539883307  # LINE (4.9.0)
   mas install 417375580  # BetterSnapTool (1.7)
   mas install 409183694  # Keynote (7.0)
-  mas install 557168941 # Tweetbot
+  # mas install 557168941 # Tweetbot
   mas install 1176895641 # Spark
   # mas install 411431426  # GIFQuickMaker (1.5.1)
-  mas install 407963104  # Pixelmator (3.5.1)
+  # mas install 407963104  # Pixelmator (3.5.1)
   mas install 1289583905  # Pixelmator Pro (1.5.5)
-  mas install 434290957  # Motion (5.2.3)
+  # mas install 434290957  # Motion (5.2.3)
   # mas install 992076693  # MindNode (2.3.5)
   mas install 409203825  # Numbers (4.0)
   mas install 497799835  # Xcode (8.0)
@@ -83,7 +83,7 @@ install_formulas() {
   # mas install 919269455  # StuffIt Expander 16 (16.0.5)
   # mas install 406580224  # Blotter (2.2.3)
   mas install 1225570693 # Ulysses (18.6)
-  mas install 824183456 # Affinity Photo (1.8.2)
+  # mas install 824183456 # Affinity Photo (1.8.2)
 
   e_done "Install"
 }
