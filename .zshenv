@@ -14,37 +14,22 @@ setopt brace_ccl          # 範囲指定できるようにする。例 : mkdir {
 setopt no_global_rcs      # macOSの/etc/zprofileに余計なことが書いてあるので読まない
 setopt hist_ignore_dups   # 重複した履歴を残さない
 
-alias _=sudo
-alias please=sudo
-alias brews='brew list -1'
-alias bubc='brew upgrade && brew cleanup'
-alias bubo='brew update && brew outdated'
-alias bubu='bubo && bubc'
+alias bubu='brew update && brew outdated && brew upgrade && brew cleanup'
 alias ga='git add'
 alias gcm='git commit -m'
-alias gpl='git pull'
-alias gph='git push'
-alias gpp='gpl && gph'
+alias gpp='git pull && git push'
 alias grhh='git reset --hard HEAD'
-alias gd="git diff"
-alias tf='tail -f'
 alias history='fc -l 1'
 alias l='ls -lahp'
-alias la='ls -lAhp'
-alias ll='ls -lhp'
 alias ls='ls -Gp'
-alias lsa='ls -lahp'
 alias mcm='make clean; make'
-alias md='mkdir -p'
-alias atom='atom -a'
 
 # Python(pyenv)
 export PYENV_ROOT="$HOME/.pyenv"
 (type pyenv >/dev/null 2>&1) && eval "$(pyenv init -)"
 alias python2='/usr/bin/python'
 
-# concat PDF
-alias pdfjoin='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+(type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
 
 export PATH=$PYENV_ROOT/shims:$HOME/.zplug/repos/b4b4r07/zplug/bin:$HOME/.zplug/bin:$HOME/.nodebrew/current/bin:/opt/X11/bin:/opt/ImageMagick/bin:$HOME/.rbenv/bin:$HOME/.nodebrew/current/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
