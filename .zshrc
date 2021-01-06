@@ -96,38 +96,4 @@ setopt auto_param_slash   # ディレクトリ名の補完で末尾の / を自�
 setopt noautoremoveslash  # パス末尾の / を勝手に取らないようにする
 setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
 
-# [b4b4r07/zplug: A next-generation plugin manager for zsh](https://github.com/b4b4r07/zplug)
-setup_zplug() {
-  source ~/.zplug/init.zsh
-
-  zplug "zsh-users/zsh-syntax-highlighting", defer: 2
-
-  # zplug "b4b4r07/easy-oneliner", on:"junegunn/fzf-bin"
-
-  # you must install terminal-notifier at HomeBrew before install marzocchi/zsh-notify
-  # 時間のかかるコマンドが終わったら、自動で通知する
-  # https://github.com/marzocchi/zsh-notify
-  if type terminal-notifier >/dev/null 2>&1; then
-    zplug "marzocchi/zsh-notify"
-    export SYS_NOTIFIER="$(which terminal-notifier)"
-    export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
-  fi
-
-  [ ! $(zplug check) ] && zplug install
-  zplug load
-
-  # [ -f ~/.oneliner ] && ln -fns ~/.oneliner ~/.zplug/repos/b4b4r07/easy-oneliner/easy-oneliner.txt
-}
-
-if [ -f ~/.zplug/init.zsh ]; then
-  setup_zplug
-else
-  printf "Could not find zplug. Would you install zplug? [y/N]: "
-  if read -q; then
-    echo
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
-    setup_zplug
-  fi
-fi
-
 export EDITOR="code"
