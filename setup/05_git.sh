@@ -3,7 +3,7 @@ if [ -z "$DOTPATH" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/etc/install
+. "$DOTPATH"/install
 
 setup_diff_so_fancy(){
   e_newline && e_header "Setting diff so fancy..."

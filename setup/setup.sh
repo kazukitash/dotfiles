@@ -5,13 +5,13 @@ if [ -z "$DOTPATH" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/etc/install
+. "$DOTPATH"/install
 
-init() {
-  for i in "$DOTPATH"/etc/init/"$(get_os)"/*.sh
+setup() {
+  for i in "$DOTPATH"/setup/*.sh
   do
     bash $i
   done
 }
 
-init
+setup

@@ -3,30 +3,6 @@
 DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
 TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/master.tar.gz
-RUBY_VERSION=2.7.0
-
-get_os() {
-  case "$(uname)" in
-    Linux)
-      if [ -e /etc/fedora-release ]; then
-        # Fedora
-        echo "fedora"
-      elif [ -e /etc/redhat-release ]; then
-        # CentOS
-        echo "redhat"
-      else
-        # Ubuntu etc.
-        echo "debian"
-      fi
-      ;;
-    Darwin)
-      echo "osx"
-      ;;
-    *)
-      echo "unkown"
-      ;;
-  esac
-}
 
 has() {
   type "$1" >/dev/null 2>&1
@@ -78,36 +54,37 @@ dotfiles_deploy() {
   e_done "Deploy"
 }
 
-dotfiles_init() {
-  e_newline && e_header "Initializing dotfiles..."
+dotfiles_setup() {
+  e_newline && e_header "Setting dotfiles..."
   cd "$DOTPATH"
-  make init
-  e_done "Initialize"
+  make setup
+  e_done "Set up"
 }
 
 dotfiles_logo='
-      _       _    __ _ _
-     | |     | |  / _(_) |
-   __| | ___ | |_| |_ _| | ___  ___
-  / _` |/ _ \| __|  _| | |/ _ \/ __|
-  | (_| | (_) | |_| | | | |  __/\__ \
-  \__,_|\___/ \__|_| |_|_|\___||___/
+██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
 '
 
-# [優れた dotfiles を設計する | TELLME.TOKYO](http://tellme.tokyo/post/2015/07/16/dotfiles/)
-# 対話的には実行しない
+
+# main
+# 対話的に実行する場合はMakefileを用いる
+# 対話的には実行しないための制御
 if ! echo "$-" | grep -q "i"; then
   if [ "$0" = "${BASH_SOURCE:-}" ]; then
-    # -> bash a.sh
+    # bash a.sh である場合は終了する
     exit 1
   else
-    # -> cat a.sh | bash
-    # -> bash -c "$(cat a.sh)"
+    # cat a.sh | bash もしくは bash -c "$(cat a.sh)" の場合実行する
     if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
       echo "$dotfiles_logo"
       dotfiles_download
       dotfiles_deploy
-      dotfiles_init
+      dotfiles_setup
       e_newline && e_header "Now continue with rebooting your shell"
     fi
   fi

@@ -1,0 +1,43 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+
+brew "anyenv"
+brew "openssl"
+brew "coreutils"
+brew "curl"
+brew "diff-so-fancy"
+brew "exiftool"
+brew "ffmpeg"
+brew "gh"
+brew "git"
+brew "imagemagick"
+brew "mas"
+brew "tree"
+brew "unrar"
+brew "wget"
+
+cask "appcleaner"
+cask "hyper"
+cask "unity-hub"
+cask "github-desktop"
+cask "google-chrome"
+
+mas "Affinity Photo", id: 824183456
+mas "BetterSnapTool", id: 417375580
+mas "Darkroom", id: 953286746
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Kindle", id: 405399194
+mas "LINE", id: 539883307
+mas "Motion", id: 434290957
+mas "Numbers", id: 409203825
+mas "Outlanders", id: 1468558187
+mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "Polarr Photo Editor", id: 1077124956
+mas "Slack", id: 803453959
+mas "Spark", id: 1176895641
+mas "Ulysses", id: 1225570693
+mas "Xcode", id: 497799835

@@ -3,12 +3,11 @@ if [ -z "$DOTPATH" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/etc/install
-
-cd "$DOTPATH"/etc/init/assets/ruby
+. "$DOTPATH"/install
 
 install_ruby() {
   e_newline && e_header "Installing Ruby..."
+  RUBY_VERSION=$(rbenv install -L | grep -v - | tail -1)
   if rbenv versions | grep -q "$RUBY_VERSION"; then
     e_header "Ruby is already installed"
   else

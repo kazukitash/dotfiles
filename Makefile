@@ -15,8 +15,8 @@ help:
 list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
-init:
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/init/init.sh
+setup:
+	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/setup.sh
 
 update:
 	git pull origin master
@@ -24,5 +24,5 @@ update:
 deploy:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
-install: update deploy init
+install: update deploy setup
 	@exec $$SHELL

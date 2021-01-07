@@ -24,14 +24,10 @@ alias l='ls -lahp'
 alias ls='ls -Gp'
 alias mcm='make clean; make'
 
-# Python(pyenv)
-export PYENV_ROOT="$HOME/.pyenv"
-(type pyenv >/dev/null 2>&1) && eval "$(pyenv init -)"
+# Python
 alias python2='/usr/bin/python'
 
 (type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
 
-export PATH=$PYENV_ROOT/shims:$HOME/.zplug/repos/b4b4r07/zplug/bin:$HOME/.zplug/bin:$HOME/.nodebrew/current/bin:/opt/X11/bin:/opt/ImageMagick/bin:$HOME/.rbenv/bin:$HOME/.nodebrew/current/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-
-# Ruby(rbenv)
-(type rbenv >/dev/null 2>&1) && eval "$(rbenv init -)"
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$HOME/.anyenv/bin:$PATH
