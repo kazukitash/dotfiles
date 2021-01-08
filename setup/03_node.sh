@@ -17,7 +17,6 @@ install_node() {
       exit 1
     fi
   fi
-  nodenv rehash
   nodenv global $NODE_VERSION
   e_done "Install"
 }
