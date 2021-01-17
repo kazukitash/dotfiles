@@ -85,6 +85,7 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad # lscolor generator: http://geoff.greer.f
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # 拡張設定
+unsetopt PROMPT_SP
 setopt correct            # 間違いを指摘
 setopt auto_menu          # 補完キー連打で順に補完候補を自動で補完
 setopt mark_dirs          # ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
