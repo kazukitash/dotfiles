@@ -17,6 +17,7 @@ brew "mas"
 brew "tree"
 brew "unrar"
 brew "wget"
+brew "zsh-syntax-highlighting"
 
 cask "appcleaner"
 cask "hyper"

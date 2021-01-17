@@ -81,6 +81,9 @@ bindkey '^R' history-incremental-pattern-search-backward # ^R で履歴検索を
 # lscolors
 export LSCOLORS=Gxfxcxdxbxegedabagacad # lscolor generator: http://geoff.greer.fm/lscolors/
 
+# zsh-syntax-highlighting homebrewでインストールする
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # 拡張設定
 setopt correct            # 間違いを指摘
 setopt auto_menu          # 補完キー連打で順に補完候補を自動で補完
