@@ -25,5 +25,8 @@ update:
 deploy:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
+clean:
+	@$(foreach val, $(DOTFILES), rm -rf $(HOME)/$(val);)
+
 install: update deploy setup
 	@exec $$SHELL
