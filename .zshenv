@@ -23,11 +23,12 @@ alias history='fc -l 1'
 alias l='ls -lahp'
 alias ls='ls -Gp'
 alias mcm='make clean; make'
+alias code='code -a'
 
 # Python
 alias python2='/usr/bin/python'
 
-(type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
-
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 export PATH=$HOME/.anyenv/bin:$PATH
+
+(type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
