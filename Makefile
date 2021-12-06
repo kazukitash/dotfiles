@@ -6,10 +6,11 @@ DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 all: install
 
 help:
-	@echo "make list           #=> Show dot files in this repo"
-	@echo "make deploy         #=> Create symlink to home directory"
-	@echo "make update         #=> Fetch changes for this repo"
-	@echo "make install        #=> Run make update, deploy, init"
+	@echo "make list           #=> このリポジトリのdotfilesを一覧表示"
+	@echo "make setup          #=> インストールスクリプトの実行"
+	@echo "make deploy         #=> ホームディレクトリにdotfilesのリンクを生成する"
+	@echo "make update         #=> このリポジトリの変更をFetchする"
+	@echo "make install        #=> make update, deploy, setupを実行する"
 	@echo "make clean          #=> Remove the dot files and this repo"
 
 list:
