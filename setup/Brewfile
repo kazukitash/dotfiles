@@ -2,43 +2,44 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-
-brew "anyenv"
-brew "openssl"
-brew "coreutils"
-brew "curl"
-brew "diff-so-fancy"
-brew "exiftool"
-brew "ffmpeg"
-brew "gh"
-brew "git"
-brew "imagemagick"
 brew "mas"
-brew "tree"
-brew "unrar"
-brew "wget"
-brew "zsh-syntax-highlighting"
 
-cask "appcleaner"
-cask "hyper"
-cask "unity-hub"
+# Code
+brew "anyenv"
 cask "github-desktop"
 cask "google-chrome"
+cask "unity-hub"
 
-mas "Affinity Photo", id: 824183456
-mas "BetterSnapTool", id: 417375580
-mas "Darkroom", id: 953286746
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Kindle", id: 405399194
-mas "LINE", id: 539883307
-mas "Motion", id: 434290957
-mas "Numbers", id: 409203825
-mas "Outlanders", id: 1468558187
-mas "Pages", id: 409201541
-mas "Pixelmator Pro", id: 1289583905
-mas "Polarr Photo Editor", id: 1077124956
-mas "Slack", id: 803453959
-mas "Spark", id: 1176895641
-mas "Ulysses", id: 1225570693
+# Image & Video
+brew "ffmpeg"
+brew "imagemagick"
+cask "adobe-creative-cloud"
+
+# Git
+brew "gh"
+brew "diff-so-fancy"
+
+# zsh syntax highlighting
+brew "zsh-syntax-highlighting"
+
+# IME
+cask "visual-studio-code"
 mas "Xcode", id: 497799835
+
+# Work
+mas "Keynote", id: 409183694
+mas "Pages", id: 409201541
+mas "Numbers", id: 409203825
+mas "Spark", id: 1176895641
+
+# Writer
+mas "Ulysses", id: 1225570693
+
+# SNS
+mas "LINE", id: 539883307
+mas "Slack", id: 803453959
+
+# Utility
+brew "unrar"
+mas "BetterSnapTool", id: 417375580
+cask "appcleaner"

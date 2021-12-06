@@ -1,10 +1,3 @@
 source "https://rubygems.org"
 
-# gem "rails"
-# gem "slim"
-
-# gem "nokogiri"
-
-# gem "t"
-# gem "pry"
-# gem "specific_install"
+gem "nokogiri"
