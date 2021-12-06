@@ -8,8 +8,7 @@ fi
 . "$DOTPATH"/install
 
 setup() {
-  for i in "$DOTPATH"/setup/*.sh
-  do
+  for i in "$DOTPATH"/setup/*.sh; do
     bash $i
   done
 }
