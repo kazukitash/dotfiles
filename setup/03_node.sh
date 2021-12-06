@@ -7,7 +7,7 @@ fi
 
 install_node() {
   e_newline && e_header "Installing Node..."
-  NODE_VERSION=$(nodenv install -L | grep -v - | tail -1)
+  NODE_VERSION=$(nodenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
   if nodenv versions | grep -q "$NODE_VERSION"; then
     e_header "Node is already installed"
   else

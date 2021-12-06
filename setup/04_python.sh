@@ -7,7 +7,7 @@ fi
 
 install_python() {
   e_newline && e_header "Installing Python..."
-  PYTHON_VERSION=$(pyenv install -L | grep -v - | tail -1)
+  PYTHON_VERSION=$(pyenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
   if pyenv versions | grep -q "$PYTHON_VERSION"; then
     e_header "Python is already installed"
   else
