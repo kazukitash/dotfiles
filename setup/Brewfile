@@ -6,7 +6,7 @@ brew "mas"
 
 # Code
 brew "anyenv"
-cask "github-desktop"
+cask "github"
 cask "google-chrome"
 cask "unity-hub"
 
