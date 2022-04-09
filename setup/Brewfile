@@ -39,6 +39,5 @@ mas "LINE", id: 539883307
 mas "Slack", id: 803453959
 
 # Utility
-brew "unrar"
 mas "BetterSnapTool", id: 417375580
 cask "appcleaner"
