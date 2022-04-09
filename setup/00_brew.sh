@@ -32,7 +32,7 @@ install_formulas() {
     e_error "failed to tap Homebrew/bundle"
     exit 1
   fi
-  brew bundle
+  brew bundle --file "$DOTPATH"/setup/Brewfile
   e_done "Install"
 }
 
