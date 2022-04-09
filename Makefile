@@ -7,7 +7,7 @@ all: install
 
 help:
 	@echo "make list           #=> このリポジトリのdotfilesを一覧表示"
-	@echo "make setup          #=> インストールスクリプトの実行"
+	@echo "make set.           #=> インストールスクリプトの実行"
 	@echo "make deploy         #=> ホームディレクトリにdotfilesのリンクを生成する"
 	@echo "make update         #=> このリポジトリの変更をFetchする"
 	@echo "make install        #=> make update, deploy, setupを実行する"
@@ -16,7 +16,7 @@ help:
 list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
-setup:
+set:
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/setup/setup.sh
 
 update:
@@ -28,5 +28,5 @@ deploy:
 clean:
 	@$(foreach val, $(DOTFILES), rm -rf $(HOME)/$(val);)
 
-install: update deploy setup
+install: update set deploy
 	@exec $$SHELL
