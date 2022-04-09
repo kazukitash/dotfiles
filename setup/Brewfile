@@ -13,7 +13,6 @@ cask "unity-hub"
 # Image & Video
 brew "ffmpeg"
 brew "imagemagick"
-cask "adobe-creative-cloud"
 
 # Git
 brew "gh"
