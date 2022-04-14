@@ -84,6 +84,12 @@ setup_remote_branch() {
   e_done "Set up"
 }
 
+setup_ignore() {
+  e_newline && e_header "Setting ignore files..."
+  git config --global core.excludesfile ~/.gitignore_global
+  e_done "Set up"
+} 
+
 e_newline && e_header "Configure git config"
 setup_user_id
 setup_not_ignore_case
@@ -96,3 +102,5 @@ setup_jp_encode
 setup_keychain
 setup_pull_fastforward
 setup_remote_branch
+setup_ignore
+
