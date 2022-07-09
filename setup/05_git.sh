@@ -70,10 +70,17 @@ setup_keychain() {
   e_done "Set up"
 }
 
-# fast-forward な場合のみ merge をし、それ以外の場合は merge はされずエラーとなる
+# pull時 fast-forward な場合のみ merge をし、それ以外の場合は merge はされずエラーとなる
 setup_pull_fastforward() {
   e_newline && e_header "Setting pull fast forward..."
   git config --global pull.ff only
+  e_done "Set up"
+}
+
+# mergeはfastforwardしない
+setup_merge_no_fastforward() {
+  e_newline && e_header "Setting merge no fast forward..."
+  git config --global --add merge.ff false
   e_done "Set up"
 }
 
