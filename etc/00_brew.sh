@@ -18,7 +18,7 @@ install_homebrew() {
   if has "brew"; then
     e_header "[Homebrew] Homebrew is already installed"
   else
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     if [ $? -ne 0 ]; then
       e_error "Install HomeBrew"
       exit 1
