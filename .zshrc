@@ -6,8 +6,8 @@ colors
 # Tabによる補完機能設定
 autoload -Uz compinit
 compinit
-zstyle ':completion:*' menu select                    # 補完候補を選択できるようにする
-zstyle ':completion:*:cd:*' ignore-parents parent pwd # cd時親フォルダで自フォルダを補完候補に出さないようにする
+zstyle ':completion:*' menu select                                                             # 補完候補を選択できるようにする
+zstyle ':completion:*:cd:*' ignore-parents parent pwd                                          # cd時親フォルダで自フォルダを補完候補に出さないようにする
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # 補完で小文字でも大文字にマッチさせる
 zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
 
@@ -31,7 +31,7 @@ git_info_stash() {
     echo "#"
   fi
 }
-zstyle ':vcs_info:*'     enable git             # gitのみ有効
+zstyle ':vcs_info:*' enable git                 # gitのみ有効
 zstyle ':vcs_info:git:*' check-for-changes true # commitしていない変更をチェックする
 zstyle ':vcs_info:git:*' formats "%b%c%u"       # 変更とリポジトリ情報を表示
 zstyle ':vcs_info:git:*' actionformats "%b|%a " # コンフリクト情報を表示
@@ -55,14 +55,16 @@ esac
 path_color="yellow"
 host_color="blue"
 PROMPT="%{%F{${host_color}}%}%n@%m%{%F{white}%}%{%F{${path_color}}%}:%~%1(v|%F{${git_color}}%1v|)
-%{%F{${prompt_color}}%}%#%{%F{white}%} "  # 通常入力
-PROMPT2="%{%F{${prompt_color}}%}%_ >%{%F{white}%} "  # 複数行入力（for, while）
+%{%F{${prompt_color}}%}%#%{%F{white}%} "                                                                             # 通常入力
+PROMPT2="%{%F{${prompt_color}}%}%_ >%{%F{white}%} "                                                                  # 複数行入力（for, while）
 SPROMPT="zsh: correct '%{%F{${prompt_color}}%}%R%{%F{white}%}' to '%{%F{${prompt_color}}%}%r%{%F{white}%}' [nyae]? " # 入力ミス時
 
 # タイトルバーの設定
 case "${TERM}" in
 xterm*)
-  precmd() { echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007" }
+  precmd() {
+    echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+  }
   ;;
 esac
 
@@ -82,7 +84,8 @@ bindkey '^R' history-incremental-pattern-search-backward # ^R で履歴検索を
 export LSCOLORS=Gxfxcxdxbxegedabagacad # lscolor generator: http://geoff.greer.fm/lscolors/
 
 # zsh-syntax-highlighting homebrewでインストールする
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+syntax_highlighting=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $syntax_highlighting ] && source $syntax_highlighting
 
 # 拡張設定
 unsetopt PROMPT_SP
