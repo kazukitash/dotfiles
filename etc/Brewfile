@@ -2,13 +2,13 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
-brew "mas"
 
-# Code
+# Programing
 brew "anyenv"
 cask "github"
+
+# Browser
 cask "google-chrome"
-cask "unity-hub"
 
 # Image & Video
 brew "ffmpeg"
@@ -23,21 +23,6 @@ brew "zsh-syntax-highlighting"
 
 # IME
 cask "visual-studio-code"
-mas "Xcode", id: 497799835
 
-# Work
-mas "Keynote", id: 409183694
-mas "Pages", id: 409201541
-mas "Numbers", id: 409203825
-mas "Spark", id: 1176895641
-
-# Writer
-mas "Ulysses", id: 1225570693
-
-# SNS
-mas "LINE", id: 539883307
-mas "Slack", id: 803453959
-
-# Utility
-mas "BetterSnapTool", id: 417375580
+# Cleaner
 cask "appcleaner"

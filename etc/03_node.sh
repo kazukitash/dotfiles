@@ -24,7 +24,6 @@ install_node() {
 install_modules() {
   e_newline && e_header "Installing node modules..."
   npm install -g typescript
-  npm install -g gatsby-cli
   e_done "Install"
 }
 
