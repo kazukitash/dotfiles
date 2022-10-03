@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -xeu
 
 DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
