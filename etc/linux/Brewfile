@@ -1,0 +1,18 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+
+# Programing
+brew "anyenv"
+
+# Image & Video
+brew "ffmpeg"
+brew "imagemagick"
+
+# Git
+brew "gh"
+brew "diff-so-fancy"
+
+# zsh syntax highlighting
+brew "zsh-syntax-highlighting"

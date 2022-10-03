@@ -34,7 +34,19 @@ install_formulas() {
     e_error "Tap Homebrew/bundle"
     exit 1
   fi
-  brew bundle --file "$DOTPATH"/setup/Brewfile
+  case "$(uname)" in
+  Darwin)
+    e_done "OS detected. Start installation for macOS"
+    brew bundle --file "$DOTPATH"/etc/macos/Brewfile
+    ;;
+  Linux)
+    e_done "OS detected. Start installation for Linux"
+    brew bundle --file "$DOTPATH"/etc/linux/Brewfile
+    ;;
+  *)
+    e_error "Unknown OS. Abort the install process"
+    ;;
+  esac
   e_done "Install"
 }
 

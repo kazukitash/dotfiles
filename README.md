@@ -28,37 +28,38 @@ $ make install
 
 インストールする Formula は以下の通り。
 
-- Code
-  - anyenv
-  - github-desktop
-  - google-chrome
-  - unity-hub
+**macOS**
+
+- Programing
+  - brew "anyenv"
+  - cask "github"
+- Browser
+  - cask "google-chrome"
 - Image & Video
-  - ffmpeg
-  - imagemagick
-  - adobe-creative-cloud
+  - brew "ffmpeg"
+  - brew "imagemagick"
 - Git
-  - gh
-  - diff-so-fancy
+  - brew "gh"
+  - brew "diff-so-fancy"
 - zsh syntax highlighting
-  - zsh-syntax-highlighting
+- brew "zsh-syntax-highlighting"
 - IME
-  - visual-studio-code
-  - Xcode
-- Work
-  - Keynote
-  - Pages
-  - Numbers
-  - Spark
-- Writer
-  - Ulysses
-- SNS
-  - LINE
-  - Slack
-- Utility
-  - unrar
-  - BetterSnapTool
-  - appcleaner
+  - cask "visual-studio-code"
+- Cleaner
+  - cask "appcleaner"
+
+**Linux**
+
+- Programing
+  - brew "anyenv"
+- Image & Video
+  - brew "ffmpeg"
+  - brew "imagemagick"
+- Git
+  - brew "gh"
+  - brew "diff-so-fancy"
+- zsh syntax highlighting
+  - brew "zsh-syntax-highlighting"
 
 ### Ruby
 
