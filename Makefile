@@ -17,7 +17,7 @@ list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
 setup:
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/setup.sh
+	@DOTPATH=$(DOTPATH) && /bin/bash $(DOTPATH)/etc/setup.sh
 
 update:
 	git pull origin master

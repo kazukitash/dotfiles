@@ -1,4 +1,4 @@
-#!/bin/sh -xeu
+#!/bin/bash -xeu
 
 if [ -n "${DOTPATH:-}" ]; then
   echo '$DOTPATH not set' >&2

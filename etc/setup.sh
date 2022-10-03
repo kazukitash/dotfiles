@@ -1,4 +1,4 @@
-#!/bin/sh -xeu
+#!/bin/bash -xeu
 
 if [ -n "${DOTPATH:-}" ]; then
   echo '$DOTPATH not set' >&2
@@ -6,8 +6,8 @@ if [ -n "${DOTPATH:-}" ]; then
 fi
 
 setup() {
-  for i in "$DOTPATH"/setup/*.sh; do
-    bash $i
+  for i in "$DOTPATH"/etc/*.sh; do
+    /bin/bash $i
   done
 }
 
