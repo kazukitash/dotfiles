@@ -2,7 +2,7 @@
 
 ## インストールの仕方
 
-スクリプトをGithubからcurlでダウンロードして実行する。
+スクリプトを Github から curl でダウンロードして実行する。
 
 ```
 $ sh -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/master/install)"
@@ -10,7 +10,7 @@ $ sh -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/master/install)
 
 ## アップデートの仕方
 
-Makefileのinstallコマンドを実行する。
+Makefile の install コマンドを実行する。
 
 ```
 $ make install
@@ -62,40 +62,39 @@ $ make install
 
 ### Ruby
 
-rbenvのみインストール。
+rbenv 上の最新の Ruby をインストールする。
+
+（参考）最新バージョンの取得方法
+
+```
+rbenv install -L | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1
+```
+
+以下の Gem をインストールする。
+
+なし
 
 ### Node
 
-nodenv上の最新のNodeをインストールします。
+nodenv 上の最新の Node をインストールする。
 
-（参考）実行されるインストールコマンド
-
-```
-nodenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1
-```
-
-以下のmoduleをインストールする。
+以下の module をインストールする。
 
 - typescript
-- gatsby-cli
 
 ### Python
 
-pyenv上の最新のPythonをインストールします。
+pyenv 上の最新の Python をインストールする。
 
-（参考）実行されるインストールコマンド
+以下の package をインストールする。
 
-```
-pyenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1
-```
-
-pythonのpackageはインストールしない。
+なし
 
 ### Git
 
 以下の設定をする。
 
-- ユーザーID（ユーザーネーム、メールアドレス）を設定する
+- ユーザー ID（ユーザーネーム、メールアドレス）を設定する
 - ファイル名の大文字と小文字を区別する
 - 改行コードの自動変換を無効にする
 - デフォルトブランチ名を main にする
@@ -105,6 +104,7 @@ pythonのpackageはインストールしない。
 - 日本語ファイルをエンコードしない
 - password の keychain 利用
 - fast-forward な場合のみ merge をし、それ以外の場合は merge はされずエラーとなる
+- merge は fast-forward しない
 - 現在のブランチをリモートに同じ名前で push する
 
 ## Makefile
