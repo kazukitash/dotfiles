@@ -8,14 +8,14 @@ fi
 . "$DOTPATH"/lib/utility.sh
 
 install_ruby() {
-  e_newline && e_header "Installing Ruby..."
+  e_newline && e_header "[Ruby] Installing Ruby..."
   RUBY_VERSION=$(rbenv install -L | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
   if rbenv versions | grep -q "$RUBY_VERSION"; then
-    e_header "Ruby is already installed"
+    e_header "[Ruby] Ruby is already installed"
   else
     rbenv install $RUBY_VERSION
     if [ $? -ne 0 ]; then
-      e_error "failed to install Ruby"
+      e_error "Install Ruby"
       exit 1
     fi
   fi
@@ -24,10 +24,10 @@ install_ruby() {
 }
 
 install_gems() {
-  e_newline && e_header "Installing Ruby gems..."
+  e_newline && e_header "[Ruby] Installing Ruby gems..."
   rbenv exec gem install bundler
   if [ $? -ne 0 ]; then
-    e_error "failed to install gem bundler"
+    e_error "Install gem bundler"
     exit 1
   fi
   bundle install

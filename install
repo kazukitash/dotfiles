@@ -52,20 +52,26 @@ dotfiles_logo='
 '
 
 # main
-# 対話的に実行する場合はMakefileを用いる
-# 対話的には実行しないための制御
-if ! echo "$-" | grep -q "i"; then
+# shell の option を確認してインタラクティブである場合は終了する
+if echo "$-" | grep -q "i"; then
+  e_newline && e_error "Can not continue with interactive shell. Abort the process."
+  exit 1
+else
+  # 実行ソースを確認して、ファイルから実行している場合（bash a.sh）は終了する
   if [ "$0" = "${BASH_SOURCE:-}" ]; then
-    # bash a.sh である場合は終了する
+    e_newline && e_error "Can not continue with BASH_SOURCE. Abort the process."
     exit 1
   else
-    # cat a.sh | bash もしくは bash -c "$(cat a.sh)" の場合実行する
+    # bash -c "$(cat a.sh)" もしくは cat a.sh | bash の場合実行する
+    # BASH_EXECUTION_STRING で -c オプションで渡された文字列を出力する。nullなら:-で空文字列に置換し-nで空文字列判定する
+    # パイプで渡されていたら/dev/stdinがFIFOになりパイプとして判定される
     if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
       echo "$dotfiles_logo"
       dotfiles_download
       dotfiles_deploy
       dotfiles_setup
-      e_newline && e_header "Now continue with rebooting your shell"
+      e_done "All processing"
+      e_newline && e_header "Now continue with rebooting your shell."
     fi
   fi
 fi

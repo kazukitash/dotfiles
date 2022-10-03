@@ -8,14 +8,14 @@ fi
 . "$DOTPATH"/lib/utility.sh
 
 install_node() {
-  e_newline && e_header "Installing Node..."
+  e_newline && e_header "[Node] Installing Node..."
   NODE_VERSION=$(nodenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
   if nodenv versions | grep -q "$NODE_VERSION"; then
-    e_header "Node is already installed"
+    e_header "[Node] Node is already installed"
   else
     nodenv install $NODE_VERSION
     if [ $? -ne 0 ]; then
-      e_error "failed to install Node"
+      e_error "Install Node"
       exit 1
     fi
   fi
@@ -24,7 +24,7 @@ install_node() {
 }
 
 install_modules() {
-  e_newline && e_header "Installing node modules..."
+  e_newline && e_header "[Node] Installing node modules..."
   npm install -g typescript
   e_done "Install"
 }

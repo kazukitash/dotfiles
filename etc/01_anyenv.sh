@@ -7,8 +7,8 @@ fi
 
 . "$DOTPATH"/lib/utility.sh
 
-setup_anyenv(){
-  e_newline && e_header "Setting anyenv..."
+setup_anyenv() {
+  e_newline && e_header "[Anyenv] Setting anyenv..."
   export PATH=$HOME/.anyenv/bin:$PATH
   anyenv init
   anyenv install --init
