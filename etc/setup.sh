@@ -5,8 +5,6 @@ if [ -n "${DOTPATH:-}" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/install
-
 setup() {
   for i in "$DOTPATH"/setup/*.sh; do
     bash $i
