@@ -1,4 +1,4 @@
-#!/bin/sh -xeu
+#!/bin/bash -xeu
 
 DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
@@ -54,18 +54,27 @@ dotfiles_logo='
 # main
 # shell の option を確認してインタラクティブである場合は終了する
 if echo "$-" | grep -q "i"; then
-  e_newline && e_error "Can not continue with interactive shell. Abort the process."
+  e_newline && e_error "Can not continue with interactive shell. Abort the process"
   exit 1
 else
   # 実行ソースを確認して、ファイルから実行している場合（bash a.sh）は終了する
   if [ "$0" = "${BASH_SOURCE:-}" ]; then
-    e_newline && e_error "Can not continue with BASH_SOURCE. Abort the process."
+    e_newline && e_error "Can not continue with BASH_SOURCE. Abort the process"
     exit 1
   else
     # bash -c "$(cat a.sh)" もしくは cat a.sh | bash の場合実行する
     # BASH_EXECUTION_STRING で -c オプションで渡された文字列を出力する。nullなら:-で空文字列に置換し-nで空文字列判定する
     # パイプで渡されていたら/dev/stdinがFIFOになりパイプとして判定される
     if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
+      case "$(uname)" in
+      "Darwin" | "Linux")
+        e_newline && e_header "Start installation for macOS/Linux..."
+        ;;
+      *)
+        e_newline && e_error "Unknown OS. Abort the process"
+        exit 1
+        ;;
+      esac
       echo "$dotfiles_logo"
       dotfiles_download
       dotfiles_deploy

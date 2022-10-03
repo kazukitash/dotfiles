@@ -5,7 +5,7 @@
 スクリプトを Github から curl でダウンロードして実行する。
 
 ```
-$ sh -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/master/install)"
+$ /bin/bash -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/master/install.sh)"
 ```
 
 ## アップデートの仕方
