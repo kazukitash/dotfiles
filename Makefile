@@ -28,5 +28,5 @@ deploy:
 clean:
 	@$(foreach val, $(DOTFILES), rm -rf $(HOME)/$(val);)
 
-install: update setup deploy
+install: update deploy setup
 	@exec $$SHELL
