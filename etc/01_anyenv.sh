@@ -24,6 +24,8 @@ setup_anyenv() {
   anyenv install nodenv
   e_header "[Anyenv] Installing pyenv..."
   anyenv install pyenv
+  e_header "[Anyenv] Reloading shell..."
+  exec $SHELL -l
   e_done "Set up"
 }
 
