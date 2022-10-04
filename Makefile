@@ -1,4 +1,4 @@
-DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+export DOTPATH    := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 CANDIDATES := $(wildcard .??*)
 EXCLUSIONS := .DS_Store .git .gitignore
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
@@ -17,7 +17,7 @@ list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
 setup:
-	@DOTPATH=$(DOTPATH) && /bin/bash $(DOTPATH)/etc/setup.sh
+	@/bin/bash $(DOTPATH)/etc/setup.sh
 
 update:
 	git pull origin master
