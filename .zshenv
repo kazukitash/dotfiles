@@ -29,6 +29,10 @@ alias code='code -a'
 alias python2='/usr/bin/python'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-export PATH=$HOME/.anyenv/bin:$PATH
 
-(type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
+if type anyenv >/dev/null 2>&1; then
+  eval "$(anyenv init -)"
+  export PATH=$HOME/.anyenv/envs/rbenv/bin:$PATH
+  export PATH=$HOME/.anyenv/envs/nodenv/bin:$PATH
+  export PATH=$HOME/.anyenv/envs/pyenv/bin:$PATH
+fi

@@ -9,7 +9,6 @@ fi
 
 setup_anyenv() {
   e_newline && e_header "[Anyenv] Setting anyenv..."
-  export PATH=$HOME/.anyenv/bin:$PATH
   e_header "[Anyenv] Initializing..."
   anyenv init
   anyenv install --force-init
