@@ -60,6 +60,6 @@ install_formulas() {
   e_done "Install"
 }
 
-[$uname = "Darwin"] && install_xcodecli
+[ $(uname) = "Darwin" ] && install_xcodecli
 install_homebrew
 install_formulas
