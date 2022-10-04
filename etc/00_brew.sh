@@ -8,9 +8,19 @@ fi
 . "$DOTPATH"/lib/utility.sh
 
 install_xcodecli() {
-  e_newline && e_header "[Homebrew] Installing XCode CLI..."
-  xcode-select --install
-  e_done "Install"
+  xcode-select -p &>/dev/null
+  if [ $? -ne 0 ]; then
+    e_newline && e_header "[Homebrew] Installing XCode CLI..."
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    PROD=$(softwareupdate -l |
+      grep "\*.*Command Line" |
+      tail -n 1 | sed 's/^[^C]* //')
+    echo "Prod: ${PROD}"
+    softwareupdate -i "$PROD" --verbose
+    e_done "Install"
+  else
+    e_newline && e_done "Xcode CLI tools"
+  fi
 }
 
 install_homebrew() {
@@ -50,6 +60,6 @@ install_formulas() {
   e_done "Install"
 }
 
-install_xcodecli
+[$uname = "Darwin"] && install_xcodecli
 install_homebrew
 install_formulas
