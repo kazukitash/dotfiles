@@ -3,7 +3,7 @@
 DOTPATH=~/.dotfiles
 
 setup() {
-  for i in "$DOTPATH"/etc/*.sh; do
+  for i in $(ls "$DOTPATH"/etc/ | grep .sh$ | grep -v setup); do
     /bin/bash $i
   done
 }
