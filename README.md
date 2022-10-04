@@ -1,5 +1,7 @@
 # dotfiles
 
+[![macos](https://github.com/kazukitash/dotfiles/actions/workflows/macos.yml/badge.svg?branch=main)](https://github.com/kazukitash/dotfiles/actions/workflows/macos.yml)
+
 ## インストールの仕方
 
 スクリプトを Github から curl でダウンロードして実行する。
