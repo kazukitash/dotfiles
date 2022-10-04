@@ -1,5 +1,7 @@
 #!/bin/bash -xeu
 
+[ -z "${DOTPATH:-}" ] && DOTPATH=~/.dotfiles
+
 DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
 TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/master.tar.gz
