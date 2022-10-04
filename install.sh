@@ -4,7 +4,7 @@
 
 DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
-TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/master.tar.gz
+TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/main.tar.gz
 
 . "$DOTPATH"/lib/utility.sh
 
@@ -18,11 +18,11 @@ dotfiles_download() {
     elif has "wget"; then
       wget -O - "$TARBALL_URL"
     fi | tar xvz
-    if [ ! -d dotfiles-master ]; then
-      e_error "dotfiles-master: not found"
+    if [ ! -d dotfiles-main ]; then
+      e_error "dotfiles-main: not found"
       exit 1
     fi
-    mv -f dotfiles-master "$DOTPATH"
+    mv -f dotfiles-main "$DOTPATH"
   else
     e_error "curl or wget required"
     exit 1

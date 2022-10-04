@@ -20,7 +20,7 @@ setup:
 	@/bin/bash $(DOTPATH)/etc/setup.sh
 
 update:
-	git pull origin master
+	git pull origin main
 
 deploy:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
