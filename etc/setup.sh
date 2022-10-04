@@ -7,7 +7,7 @@ fi
 
 setup() {
   for i in $(ls "$DOTPATH"/etc | grep .sh$ | grep -v setup); do
-    /bin/bash $i
+    /bin/bash ${DOTPATH}/etc/$i
   done
 }
 
