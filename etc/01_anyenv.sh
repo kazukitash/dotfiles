@@ -12,7 +12,7 @@ setup_anyenv() {
   export PATH=$HOME/.anyenv/bin:$PATH
   e_header "[Anyenv] Initializing..."
   anyenv init
-  anyenv install --init
+  anyenv install --force-init
   e_header "[Anyenv] Installing plugins..."
   mkdir -p $(anyenv root)/plugins
   git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
