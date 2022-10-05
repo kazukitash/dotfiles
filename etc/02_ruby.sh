@@ -32,7 +32,7 @@ install_gems() {
     e_error "Install gem bundler"
     exit 1
   fi
-  bundle install
+  bundle install --gemfile=${DOTPATH}/etc/Gemfile
   e_done "Install"
 }
 
