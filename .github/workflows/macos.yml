@@ -13,5 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Run uninstall default Homebrew
+        run: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
       - name: Run install
         run: make deploy && make setup
