@@ -8,8 +8,8 @@ Linux の場合は make と gcc を入れておく
 
 ```
 sudo -s
-apt-get update
-apt install build-essential
+apt-get update -y
+apt install -y build-essential libssl-dev zlib1g-dev
 ```
 
 スクリプトを Github から curl でダウンロードして実行する。
