@@ -4,6 +4,14 @@
 
 ## インストールの仕方
 
+Linux の場合は make と gcc を入れておく
+
+```
+sudo -s
+apt-get update
+apt install build-essential
+```
+
 スクリプトを Github から curl でダウンロードして実行する。
 
 ```
