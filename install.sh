@@ -2,10 +2,7 @@
 
 [ -z "${DOTPATH:-}" ] && DOTPATH=~/.dotfiles
 
-DOTPATH=~/.dotfiles
-GITHUB_URL=https://github.com/kazukitash/dotfiles.git
-TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/main.tar.gz
-
+. "$DOTPATH"/lib/path.sh
 . "$DOTPATH"/lib/utility.sh
 
 dotfiles_download() {
