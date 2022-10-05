@@ -4,7 +4,7 @@
 
 ## インストールの仕方
 
-Linux の場合は make と gcc を入れておく
+Linux の場合は make と gcc と ruby のビルドに必要なパッケージを入れておく
 
 ```
 sudo -s
