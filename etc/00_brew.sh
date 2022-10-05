@@ -34,11 +34,12 @@ install_homebrew() {
       exit 1
     fi
   fi
+  [ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   e_done "Install"
 }
 
 install_formulas() {
-  e_newline && e_header "[Homebrew] Installing HomeBrew formulas..."
+  e_newline && e_header "[Homebrew] Installing formulas..."
   brew tap Homebrew/bundle
   if [ $? -ne 0 ]; then
     e_error "Tap Homebrew/bundle"
@@ -54,7 +55,7 @@ install_formulas() {
     brew bundle --file "$DOTPATH"/etc/linux/Brewfile
     ;;
   *)
-    e_error "Unknown OS. Abort the install process"
+    e_error "Unknown OS. Abort the process"
     ;;
   esac
   e_done "Install"

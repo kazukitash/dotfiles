@@ -29,5 +29,6 @@ alias code='code -a'
 alias python2='/usr/bin/python'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+[ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
 (type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
