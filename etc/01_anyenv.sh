@@ -18,11 +18,11 @@ setup_anyenv() {
   e_header "[Anyenv] Updating..."
   anyenv update
   e_header "[Anyenv] Installing rbenv..."
-  anyenv install rbenv
+  anyenv install -f rbenv
   e_header "[Anyenv] Installing nodenv..."
-  anyenv install nodenv
+  anyenv install -f nodenv
   e_header "[Anyenv] Installing pyenv..."
-  anyenv install pyenv
+  anyenv install -f pyenv
   e_done "Set up"
 }
 
