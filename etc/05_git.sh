@@ -109,7 +109,7 @@ setup_pull_rebase
 setup_diff_so_fancy
 setup_color_ui
 setup_jp_encode
-setup_keychain
+[ $(uname) = "Darwin" ] && setup_keychain
 setup_pull_fastforward
 setup_remote_branch
 setup_ignore
