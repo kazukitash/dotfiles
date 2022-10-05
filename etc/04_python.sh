@@ -12,7 +12,7 @@ install_python() {
   e_header "[Python] Loading anyenv..."
   eval "$(anyenv init -)"
   PYTHON_VERSION=$(pyenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
-  if pyenv versions | grep -q "$PYTHON_VERSION"; then
+  if pyenv versions | grep -q $(echo $PYTHON_VERSION); then
     e_header "[Python] Python is already installed"
   else
     pyenv install $PYTHON_VERSION

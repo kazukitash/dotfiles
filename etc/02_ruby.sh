@@ -12,7 +12,7 @@ install_ruby() {
   e_header "[Ruby] Loading anyenv..."
   eval "$(anyenv init -)"
   RUBY_VERSION=$(rbenv install -L | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
-  if rbenv versions | grep -q "$RUBY_VERSION"; then
+  if rbenv versions | grep -q $(echo $RUBY_VERSION); then
     e_header "[Ruby] Ruby is already installed"
   else
     rbenv install $RUBY_VERSION
