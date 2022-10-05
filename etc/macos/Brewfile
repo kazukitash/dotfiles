@@ -18,8 +18,9 @@ brew "imagemagick"
 brew "gh"
 brew "diff-so-fancy"
 
-# zsh syntax highlighting
+# zsh
 brew "zsh-syntax-highlighting"
+brew "zsh-completions"
 
 # IME
 cask "visual-studio-code"

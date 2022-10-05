@@ -3,13 +3,18 @@
 autoload -Uz colors
 colors
 
-# Tabによる補完機能設定
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' menu select                                                             # 補完候補を選択できるようにする
-zstyle ':completion:*:cd:*' ignore-parents parent pwd                                          # cd時親フォルダで自フォルダを補完候補に出さないようにする
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # 補完で小文字でも大文字にマッチさせる
-zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
+if type brew &>/dev/null; then
+  # Tabによる補完機能設定
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  autoload -Uz compinit
+  compinit
+  zstyle ':completion:*' menu select                                                             # 補完候補を選択できるようにする
+  zstyle ':completion:*:cd:*' ignore-parents parent pwd                                          # cd時親フォルダで自フォルダを補完候補に出さないようにする
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # 補完で小文字でも大文字にマッチさせる
+  zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
+
+  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # プロンプトの設定
 autoload -Uz vcs_info
@@ -82,10 +87,6 @@ bindkey '^R' history-incremental-pattern-search-backward # ^R で履歴検索を
 
 # lscolors
 export LSCOLORS=Gxfxcxdxbxegedabagacad # lscolor generator: http://geoff.greer.fm/lscolors/
-
-# zsh-syntax-highlighting homebrewでインストールする
-syntax_highlighting=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f $syntax_highlighting ] && source $syntax_highlighting
 
 # 拡張設定
 unsetopt PROMPT_SP

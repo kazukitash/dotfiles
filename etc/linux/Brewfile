@@ -4,7 +4,6 @@ tap "homebrew/services"
 
 # Programing
 brew "anyenv"
-brew "zsh"
 
 # Image & Video
 brew "ffmpeg"
@@ -14,5 +13,7 @@ brew "imagemagick"
 brew "gh"
 brew "diff-so-fancy"
 
-# zsh syntax highlighting
+# zsh
+brew "zsh"
 brew "zsh-syntax-highlighting"
+brew "zsh-completions"
