@@ -53,6 +53,8 @@ install_formulas() {
   Linux)
     e_done "OS detected. Start installation for Linux"
     brew bundle --file "$DOTPATH"/etc/linux/Brewfile
+    /bin/bash -c "echo $(which zsh) >>/etc/shells"
+    chsh -s $(which zsh)
     ;;
   *)
     e_error "Unknown OS. Abort the process"
