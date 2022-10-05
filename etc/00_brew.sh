@@ -8,9 +8,9 @@ fi
 . "$DOTPATH"/install.sh
 
 install_xcodecli() {
+  e_newline && e_header "[Homebrew] Installing XCode CLI..."
   xcode-select -p &>/dev/null
   if [ $? -ne 0 ]; then
-    e_newline && e_header "[Homebrew] Installing XCode CLI..."
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
     PROD=$(softwareupdate -l |
       grep "\*.*Command Line" |
