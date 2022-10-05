@@ -5,8 +5,7 @@ if [ -z "${DOTPATH:-}" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/lib/path.sh
-. "$DOTPATH"/lib/utility.sh
+. "$DOTPATH"/install.sh
 
 install_ruby() {
   e_newline && e_header "[Ruby] Installing Ruby..."

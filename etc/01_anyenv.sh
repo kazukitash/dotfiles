@@ -5,8 +5,7 @@ if [ -z "${DOTPATH:-}" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/lib/path.sh
-. "$DOTPATH"/lib/utility.sh
+. "$DOTPATH"/install.sh
 
 setup_anyenv() {
   e_newline && e_header "[Anyenv] Setting anyenv..."

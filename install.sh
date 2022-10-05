@@ -1,9 +1,32 @@
 #!/bin/bash -xeu
 
-[ -z "${DOTPATH:-}" ] && DOTPATH=~/.dotfiles
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+[ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 
-. "$DOTPATH"/lib/path.sh
-. "$DOTPATH"/lib/utility.sh
+[ -z "${DOTPATH:-}" ] && DOTPATH=~/.dotfiles
+GITHUB_URL=https://github.com/kazukitash/dotfiles.git
+TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/main.tar.gz
+
+has() {
+  type "$1" >/dev/null 2>&1
+  return $?
+}
+
+e_newline() {
+  printf "\n"
+}
+
+e_header() {
+  printf "\033[37;1m%s\033[m\n" "$*"
+}
+
+e_done() {
+  printf "\033[32m✔\033[m  \033[37m%s\033[m - \033[32mOK\033[m\n" "$*"
+}
+
+e_error() {
+  printf "\033[31m✖\033[m  \033[37m%s\033[m - \033[31mFailed\033[m\n" "$*" 1>&2
+}
 
 dotfiles_download() {
   e_newline && e_header "Downloading dotfiles..."

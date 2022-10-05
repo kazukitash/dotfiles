@@ -5,8 +5,7 @@ if [ -z "${DOTPATH:-}" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/lib/path.sh
-. "$DOTPATH"/lib/utility.sh
+. "$DOTPATH"/install.sh
 
 # ユーザーID（ユーザーネーム、メールアドレス）を設定する
 setup_user_id() {
