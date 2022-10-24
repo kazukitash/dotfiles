@@ -23,7 +23,6 @@ alias history='fc -l 1'
 alias l='ls -lahp'
 alias ls='ls -Gp'
 alias mcm='make clean; make'
-alias code='code -a'
 
 # Python
 alias python2='/usr/bin/python'
