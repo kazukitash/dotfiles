@@ -28,7 +28,12 @@ alias mcm='make clean; make'
 alias python2='/usr/bin/python'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+# Linux用のPATH設定
 [ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-[ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]] && PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
+# WSL用の設定
+if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+  PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
+  alias open='/mnt/c/Windows/explorer.exe'
+fi
 
 (type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
