@@ -65,7 +65,7 @@
     "command": "cursorColumnSelectUp",
     "when": "textInputFocus"
   },
-  { "key": "f13+n", "command": "cursorDown", "when": "textInputFocus" },
+  { "key": "down", "command": "cursorDown", "when": "textInputFocus" },
   { "key": "down", "command": "cursorDown", "when": "textInputFocus" },
   {
     "key": "shift+down",
@@ -152,7 +152,7 @@
     "command": "cursorTopSelect",
     "when": "textInputFocus"
   },
-  { "key": "f13+p", "command": "cursorUp", "when": "textInputFocus" },
+  { "key": "up", "command": "cursorUp", "when": "textInputFocus" },
   { "key": "up", "command": "cursorUp", "when": "textInputFocus" },
   { "key": "shift+up", "command": "cursorUpSelect", "when": "textInputFocus" },
   {
@@ -191,11 +191,11 @@
   },
   { "key": "shift+ctrl+z", "command": "redo" },
   {
-    "key": "f13+pagedown",
+    "key": "upagedown",
     "command": "scrollLineDown",
     "when": "textInputFocus"
   },
-  { "key": "f13+pageup", "command": "scrollLineUp", "when": "textInputFocus" },
+  { "key": "upageup", "command": "scrollLineUp", "when": "textInputFocus" },
   {
     "key": "ctrl+pagedown",
     "command": "scrollPageDown",
@@ -1235,7 +1235,7 @@
     "when": "editorFocus && parameterHintsVisible"
   },
   {
-    "key": "f13+n",
+    "key": "down",
     "command": "showNextParameterHint",
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
   },
@@ -1250,7 +1250,7 @@
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
   },
   {
-    "key": "f13+p",
+    "key": "up",
     "command": "showPrevParameterHint",
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
   },
@@ -1330,7 +1330,7 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "f13+n",
+    "key": "down",
     "command": "selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
@@ -1355,7 +1355,7 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "f13+p",
+    "key": "up",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
@@ -1767,7 +1767,7 @@
     "when": "listFocus && listSupportsFind"
   },
   {
-    "key": "f13+n",
+    "key": "down",
     "command": "list.focusDown",
     "when": "listFocus && !inputFocus"
   },
@@ -1797,7 +1797,7 @@
     "when": "listFocus && !inputFocus"
   },
   {
-    "key": "f13+p",
+    "key": "up",
     "command": "list.focusUp",
     "when": "listFocus && !inputFocus"
   },
@@ -2617,7 +2617,6 @@
     "key": "ctrl+k ctrl+s",
     "command": "workbench.action.openGlobalKeybindings"
   },
-  { "key": "f13+r", "command": "workbench.action.openRecent" },
   { "key": "ctrl+,", "command": "workbench.action.openSettings" },
   {
     "key": "shift+ctrl+u",
@@ -3402,7 +3401,7 @@
     "when": "inFilesPicker && inQuickOpen"
   },
   {
-    "key": "f13+r",
+    "key": "f15",
     "command": "workbench.action.quickOpenNavigateNextInRecentFilesPicker",
     "when": "inQuickOpen && inRecentFilesPicker"
   },
@@ -3432,12 +3431,12 @@
     "when": "inQuickOpen && inViewsPicker"
   },
   {
-    "key": "f13+n",
+    "key": "down",
     "command": "workbench.action.quickOpenSelectNext",
     "when": "inQuickOpen"
   },
   {
-    "key": "f13+p",
+    "key": "up",
     "command": "workbench.action.quickOpenSelectPrevious",
     "when": "inQuickOpen"
   },
@@ -3575,7 +3574,7 @@
   },
   { "key": "f13+shift+alt+b", "command": "xmlTools.formatAsXml" },
   {
-    "key": "f13+enter",
+    "key": "f14",
     "command": "jupyter.runcurrentcell",
     "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !editorHasSelection && !jupyter.havenativecells && !notebookEditorFocused"
   },
@@ -3795,12 +3794,12 @@
     "when": "editorTextFocus && !editorReadonly && !suggestWidgetVisible && editorLangId == 'markdown'"
   },
   {
-    "key": "f13+enter",
+    "key": "f14",
     "command": "notebook.cell.executeAndFocusContainer",
     "when": "notebookCellListFocused || editorTextFocus && inputFocus && notebookEditorFocused"
   },
   {
-    "key": "f13+alt+]",
+    "key": "shift+down",
     "command": "jupyter.gotoNextCellInFile",
     "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
   },
@@ -3815,7 +3814,7 @@
     "when": "notebookCellListFocused && notebookCellType == 'code' || editorTextFocus && inputFocus && notebookEditorFocused"
   },
   {
-    "key": "f13+alt+[",
+    "key": "shift+up",
     "command": "jupyter.gotoPrevCellInFile",
     "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
   },
@@ -3850,7 +3849,7 @@
     "when": "markdownPreviewFocus"
   },
   {
-    "key": "f13+shift+enter",
+    "key": "shift+f14",
     "command": "jupyter.runAndDebugCell",
     "when": "isWorkspaceTrusted && jupyter.ispythonnotebook && !notebookKernel && notebookCellType == 'code' || isWorkspaceTrusted && jupyter.ispythonnotebook && notebookCellType == 'code' && notebookKernel =~ /^ms-toolsai.jupyter\\// && resource not in 'jupyter.notebookeditor.debugDocuments'"
   },
@@ -3860,17 +3859,17 @@
     "when": "editorHasSelection && editorTextFocus && editorLangId == 'markdown'"
   },
   {
-    "key": "f10",
+    "key": "f14",
     "command": "jupyter.runByLine",
     "when": "isWorkspaceTrusted && jupyter.ispythonnotebook && !notebookKernel && notebookCellType == 'code' || isWorkspaceTrusted && jupyter.ispythonnotebook && notebookCellType == 'code' && notebookKernel =~ /^ms-toolsai.jupyter\\// && resource not in 'jupyter.notebookeditor.debugDocuments'"
   },
   {
-    "key": "f10",
+    "key": "f14",
     "command": "jupyter.runByLineNext",
     "when": "notebookCellResource in 'jupyter.notebookeditor.runByLineCells'"
   },
   {
-    "key": "f13+enter",
+    "key": "f10",
     "command": "jupyter.runByLineStop",
     "when": "notebookCellResource in 'jupyter.notebookeditor.runByLineCells'"
   },
@@ -3890,7 +3889,7 @@
     "when": "codeActionMenuVisible"
   },
   {
-    "key": "f13+n",
+    "key": "down",
     "command": "selectNextCodeAction",
     "when": "codeActionMenuVisible"
   },
@@ -3905,7 +3904,7 @@
     "when": "codeActionMenuVisible"
   },
   {
-    "key": "f13+p",
+    "key": "up",
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
   },
@@ -3918,5 +3917,29 @@
     "key": "up",
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "home",
+    "command": "workbench.action.terminal.sendSequence",
+    "when": "terminalFocus",
+    "args": { "text": "\u0001" }
+  },
+  {
+    "key": "end",
+    "command": "workbench.action.terminal.sendSequence",
+    "when": "terminalFocus",
+    "args": { "text": "\u0005" }
+  },
+  {
+    "key": "delete",
+    "command": "workbench.action.terminal.sendSequence",
+    "when": "terminalFocus",
+    "args": { "text": "\u0004" }
+  },
+  {
+    "key": "shift+end ctrl+x",
+    "command": "workbench.action.terminal.sendSequence",
+    "when": "terminalFocus",
+    "args": { "text": "\u000b" }
   }
 ]

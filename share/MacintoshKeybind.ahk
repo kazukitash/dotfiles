@@ -25,11 +25,16 @@ F13 & T::Send,{ShiftDown}{Left}{ShiftUp}^x{Right}^v{Left} ; カーソル前後�
 ; ターミナルなどで使えるキーバインド
 F13 & L::Send,^l ; ターミナルの画面をclearする
 F13 & C::Send,^c ; 中断: Ctrl-C
+F13 & R::Send,^r
 F13 & [::Send,{Esc} ; vimでコマンドモードに戻る用
 F13 & J::Send,{End}{Enter}
+F13 & Enter::Send,{F14}
 
 ; アプリケーションを終了させる（Cmd-Q)
 Ctrl & Q::Send,!{F4}
+
+; WinをMacのspotlight風に
+Ctrl & Space::Send,{CtrlUp}{RWinDown}{RWinUp}
 
 ; ファイル削除: Delete
 RWin & BS::Send,{Delete}
