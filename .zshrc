@@ -105,3 +105,11 @@ setopt noautoremoveslash  # パス末尾の / を勝手に取らないように�
 setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
 
 export EDITOR="code"
+
+# WSL用の設定
+if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+  service docker status >/dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    sudo service docker start >/dev/null 2>&1
+  fi
+fi
