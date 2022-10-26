@@ -79,9 +79,9 @@ if echo "$-" | grep -q "i"; then
   e_newline && e_error "Can not continue with interactive shell. Abort the process"
   exit 1
 else
-  # 実行ソースを確認して、ファイルから実行している場合（bash a.sh）は終了する
+  # 実行ソースを確認して、ファイルから実行している場合（bash a.sh）はライブラリのみ読み込んで続ける。
   if [ "$0" = "${BASH_SOURCE:-}" ] || [ "${DOTPATH}/install.sh" = "${BASH_SOURCE:-}" ]; then
-    e_newline && e_error "Can not continue with BASH_SOURCE"
+    e_done "Libraries are load"
   else
     # bash -c "$(cat a.sh)" もしくは cat a.sh | bash の場合実行する
     # BASH_EXECUTION_STRING で -c オプションで渡された文字列を出力する。nullなら:-で空文字列に置換し-nで空文字列判定する
