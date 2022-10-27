@@ -11,7 +11,7 @@ install_node() {
   e_newline && e_header "[Node] Installing Node..."
   e_header "[Node] Loading anyenv..."
   eval "$(anyenv init -)"
-  NODE_VERSION=$(nodenv install -l | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1)
+  NODE_VERSION=$(nodenv install -l | grep -v - | grep -e "^[ ]*[0-9]\+.[0-9]\+.[0-9]\+$" | tail -1 )
   if nodenv versions | grep -q $(echo $NODE_VERSION); then
     e_header "[Node] Node is already installed"
   else
