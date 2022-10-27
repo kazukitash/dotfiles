@@ -8,10 +8,22 @@ on:
 
 jobs:
   linux-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
 
+      - name: Run apt install
+        run: sudo apt-get update && sudo apt-get install -y tzdata && \
+          ENV TZ=Asia/Tokyo && \
+          sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y \
+          git curl build-essential openssl \
+          libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+          autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+
       - name: Run install
         run: make deploy && make setup
+
+      - name: Change default shell
+        run: sudo echo /home/linuxbrew/.linuxbrew/bin/zsh >>/etc/shells && \
+          sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
