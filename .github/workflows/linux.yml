@@ -15,7 +15,3 @@ jobs:
 
       - name: Run install
         run: make deploy && make setup
-
-      - name: Change default shell
-        run: sudo echo /home/linuxbrew/.linuxbrew/bin/zsh >>/etc/shells && \
-          sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
