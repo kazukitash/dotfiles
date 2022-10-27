@@ -27,6 +27,8 @@ install_python() {
 
 install_package() {
   e_newline && e_header "[Python] Installing Python packages..."
+  pip install --upgrade pip
+  pip install -r ${DOTPATH}/etc/requirements.txt
   e_done "Install"
 }
 

@@ -1,0 +1,13 @@
+numpy
+scipy
+scikit-learn
+matplotlib
+japanize_matplotlib
+seaborn
+pandas
+jupyter
+pillow
+tensorflow
+pytorch
+torchvision
+torchaudio
