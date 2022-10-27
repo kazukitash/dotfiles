@@ -6,24 +6,34 @@
 
 Linux の場合は make と gcc と ruby のビルドに必要なパッケージを入れておく
 
-```
-sudo -s
-apt-get update -y
-apt install -y build-essential libssl-dev zlib1g-dev
+```bash
+sudo apt-get update && sudo apt-get install -y tzdata
+ENV TZ=Asia/Tokyo
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y \
+  git curl build-essential openssl \
+  libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+  autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
 ```
 
 スクリプトを Github から curl でダウンロードして実行する。
 
+```bash
+/bin/bash -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/main/install.sh)"
 ```
-$ /bin/bash -c "$(curl -L raw.githubusercontent.com/kazukitash/dotfiles/main/install.sh)"
+
+Linux の場合は default shell を zsh に変える
+
+```bash
+sudo echo /home/linuxbrew/.linuxbrew/bin/zsh >>/etc/shells
+sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
 ```
 
 ## アップデートの仕方
 
 Makefile の install コマンドを実行する。
 
-```
-$ make install
+```bash
+make install
 ```
 
 ## インストール内容
@@ -77,7 +87,7 @@ rbenv 上の最新の Ruby をインストールする。
 
 （参考）最新バージョンの取得方法
 
-```
+```bash
 rbenv install -L | grep -v - | grep -e "^[ ]*[0-9].*" | tail -1
 ```
 
@@ -122,6 +132,6 @@ pyenv 上の最新の Python をインストールする。
 
 使い方は以下のコマンドで確認する。
 
-```
+```bash
 make help
 ```
