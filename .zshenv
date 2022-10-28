@@ -1,6 +1,7 @@
 # インンタラクティブシェルでもSSHでつないだシェルでも常に実行される
 # 言語環境設定
 export LANG=ja_JP.UTF-8
+[ "$(uname)" = "Linux" ] && export LC_ALL=C
 
 # 履歴設定
 HISTFILE=~/.zsh_history
