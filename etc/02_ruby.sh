@@ -33,6 +33,7 @@ install_gems() {
     exit 1
   fi
   bundle install --gemfile=${DOTPATH}/etc/Gemfile
+  gem cleanup
   e_done "Install"
 }
 

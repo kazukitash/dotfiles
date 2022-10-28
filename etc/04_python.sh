@@ -29,6 +29,7 @@ install_package() {
   e_newline && e_header "[Python] Installing Python packages..."
   pip install --upgrade pip
   pip install -r ${DOTPATH}/etc/requirements.txt
+  pip cache purge
   e_done "Install"
 }
 
