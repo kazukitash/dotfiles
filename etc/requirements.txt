@@ -8,6 +8,7 @@ pandas
 jupyter
 pillow
 tensorflow
+--extra-index-url https://download.pytorch.org/whl/cu116
 pytorch
 torchvision
 torchaudio
