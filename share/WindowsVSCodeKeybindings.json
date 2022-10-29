@@ -3669,8 +3669,8 @@
     "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
   },
   {
-    "key": "ctrl+enter",
-    "command": "markdown.extension.onf13EnterKey",
+    "key": "f14",
+    "command": "markdown.extension.onCtrlEnterKey",
     "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadonly && !suggestWidgetVisible && editorLangId == 'markdown'"
   },
   {
