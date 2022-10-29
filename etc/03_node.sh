@@ -13,8 +13,9 @@ install_node() {
   eval "$(anyenv init -)"
   NODE_VERSION=$(nodenv install -l | grep -v - | grep -e "^[ ]*[0-9]\+.[0-9]\+.[0-9]\+$" | tail -1)
   if nodenv versions | grep -q $(echo $NODE_VERSION); then
-    e_header "[Node] Node is already installed"
+    e_header "[Node] Node ver.$NODE_VERSION is already installed"
   else
+    e_header "[Node] Installing Node ver.$NODE_VERSION..."
     nodenv install $NODE_VERSION
     if [ $? -ne 0 ]; then
       e_error "Install Node"
