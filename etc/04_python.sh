@@ -11,7 +11,7 @@ install_python() {
   e_newline && e_header "[Python] Installing Python..."
   e_header "[Python] Loading anyenv..."
   eval "$(anyenv init -)"
-  PYTHON_VERSION=3.10.7
+  PYTHON_VERSION=3.9.14
   if pyenv versions | grep -q $(echo $PYTHON_VERSION); then
     e_header "[Python] Python ver.$PYTHON_VERSION is already installed"
   else
