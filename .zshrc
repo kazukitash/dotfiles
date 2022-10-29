@@ -79,6 +79,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 # キーバインド man zshzle https://news.mynavi.jp/techplus/article/techp5581/
+# showkey -a で確認できる
 bindkey -e
 bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
 bindkey "^P" history-beginning-search-backward-end
@@ -108,6 +109,10 @@ export EDITOR="code"
 
 # WSL用の設定
 if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+  bindkey "^[[H" beginning-of-line # Home key
+  bindkey "^[[F" end-of-line       # End key
+  bindkey -s "^[[3~" "\u0004"      # Delete key
+  bindkey "^[[1;2F^X" kill-line    # Ctrl K key
   service docker status >/dev/null 2>&1
   if [ $? -ne 0 ]; then
     sudo service docker start >/dev/null 2>&1
