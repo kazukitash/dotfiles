@@ -1,0 +1,14 @@
+pip-search
+numpy
+scipy
+scikit-learn
+matplotlib
+japanize_matplotlib
+seaborn
+pandas
+jupyter
+pillow
+tensorflow==2.10.0
+torch==1.13.0
+torchaudio==0.13.0
+torchvision==0.14.0

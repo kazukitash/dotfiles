@@ -33,7 +33,19 @@ install_gems() {
     e_error "Install gem bundler"
     exit 1
   fi
-  bundle install --gemfile=${DOTPATH}/etc/Gemfile
+  case "$(uname)" in
+  Darwin)
+    e_done "OS detected. Start installation for macOS"
+    bundle install --gemfile=${DOTPATH}/etc/macos/Gemfile
+    ;;
+  Linux)
+    e_done "OS detected. Start installation for Linux"
+    bundle install --gemfile=${DOTPATH}/etc/linux/Gemfile
+    ;;
+  *)
+    e_error "Unknown OS. Abort the process"
+    ;;
+  esac
   gem cleanup
   e_done "Install"
 }

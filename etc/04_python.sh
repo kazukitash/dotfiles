@@ -29,7 +29,20 @@ install_python() {
 install_package() {
   e_newline && e_header "[Python] Installing Python packages..."
   pip install --upgrade pip
-  pip install -r ${DOTPATH}/etc/requirements.txt
+
+  case "$(uname)" in
+  Darwin)
+    e_done "OS detected. Start installation for macOS"
+    pip install -r ${DOTPATH}/etc/macos/requirements.lock.txt
+    ;;
+  Linux)
+    e_done "OS detected. Start installation for Linux"
+    pip install -r ${DOTPATH}/etc/linux/requirements.lock.txt
+    ;;
+  *)
+    e_error "Unknown OS. Abort the process"
+    ;;
+  esac
   pip cache purge
   e_done "Install"
 }
