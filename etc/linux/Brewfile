@@ -7,7 +7,6 @@ brew "anyenv"
 
 # Image & Video
 brew "ffmpeg"
-brew "imagemagick"
 
 # Git
 brew "gh"
