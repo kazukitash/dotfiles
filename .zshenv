@@ -1,7 +1,9 @@
 # インンタラクティブシェルでもSSHでつないだシェルでも常に実行される
 # 言語環境設定
 export LANG=ja_JP.UTF-8
-[ "$(uname)" = "Linux" ] && export LC_ALL=C
+if [ "$(uname)" = "Linux" ]; then
+  export LC_ALL=C
+fi
 
 # 履歴設定
 HISTFILE=~/.zsh_history
@@ -24,17 +26,20 @@ alias history='fc -l 1'
 alias l='ls -lahp'
 alias ls='ls -Gp'
 alias mcm='make clean; make'
+if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+  alias open='/mnt/c/Windows/explorer.exe'
+fi
 
 # Python
 alias python2='/usr/bin/python'
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 # Linux用のPATH設定
-[ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-# WSL用の設定
-if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
-  PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
-  alias open='/mnt/c/Windows/explorer.exe'
+if [ "$(uname)" = "Linux" ]; then
+  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  if [[ $(uname -r) = *microsoft* ]]; then
+    PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
+  fi
 fi
 
 (type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
