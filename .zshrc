@@ -113,10 +113,19 @@ setopt always_last_prompt # カーソル位置は保持したままファイル�
 
 export EDITOR="code"
 
-# WSL用の設定
-if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
-  service docker status >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    sudo service docker start >/dev/null 2>&1
+# Docker設定
+case "$(uname)" in
+Darwin)
+  if [[ $(limactl list | grep default) =~ Stopped ]]; then
+    limactl start >/dev/null 2>&1
   fi
-fi
+  ;;
+Linux)
+  if [[ $(uname -r) = *microsoft* ]]; then
+    service docker status >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+      sudo service docker start >/dev/null 2>&1
+    fi
+  fi
+  ;;
+esac
