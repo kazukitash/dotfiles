@@ -16,9 +16,6 @@ help:
 list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
-setup:
-	@/bin/bash $(DOTPATH)/etc/setup.sh
-
 update:
 	git pull origin main
 
@@ -28,5 +25,5 @@ deploy:
 clean:
 	@$(foreach val, $(DOTFILES), rm -rf $(HOME)/$(val);)
 
-install: update deploy setup
+install: update deploy
 	@exec $$SHELL

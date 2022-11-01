@@ -1,8 +1,5 @@
 #!/bin/bash -xeu
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-[ "$(uname)" = "Linux" ] && export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-
 [ -z "${DOTPATH:-}" ] && DOTPATH=~/.dotfiles
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
 TARBALL_URL=https://github.com/kazukitash/dotfiles/archive/main.tar.gz
@@ -57,13 +54,6 @@ dotfiles_deploy() {
   e_done "Deploy"
 }
 
-dotfiles_setup() {
-  e_newline && e_header "Setting dotfiles..."
-  cd "$DOTPATH"
-  make setup
-  e_done "Set up"
-}
-
 dotfiles_logo='
 ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
 ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
@@ -99,7 +89,6 @@ else
       echo "$dotfiles_logo"
       dotfiles_download
       dotfiles_deploy
-      dotfiles_setup
       e_done "All processing"
       e_newline && e_header "Now continue with rebooting your shell."
     fi
