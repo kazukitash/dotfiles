@@ -33,12 +33,14 @@ fi
 # Python
 alias python2='/usr/bin/python'
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 # Linux用のPATH設定
 if [ "$(uname)" = "Linux" ]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   if [[ $(uname -r) = *microsoft* ]]; then
     PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
+    LD_LIBRARY_PATH=/usr/local/cuda-11/lib64:$LD_LIBRARY_PATH
+    PATH=/usr/local/cuda/bin:$PATH
   fi
 fi
 
