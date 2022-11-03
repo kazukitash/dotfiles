@@ -9,24 +9,25 @@ has() {
   return $?
 }
 
-e_newline() {
-  printf "\n"
+e_header() {
+  printf "\n\033[37;1mDOTFILES: %s\033[m\n" "$*"
 }
 
-e_header() {
-  printf "\033[37;1m%s\033[m\n" "$*"
+e_log() {
+  printf "\033[37mDOTFILES: %s\033[m\n" "$*"
 }
 
 e_done() {
-  printf "\033[32m✔\033[m  \033[37m%s\033[m - \033[32mOK\033[m\n" "$*"
+  printf "\033[32mDOTFILES: ✔\033[m  \033[37m%s\033[m - \033[32mOK\033[m\n" "$*"
 }
 
 e_error() {
-  printf "\033[31m✖\033[m  \033[37m%s\033[m - \033[31mFailed\033[m\n" "$*" 1>&2
+  printf "\033[31mDOTFILES: ✖\033[m  \033[37m%s\033[m - \033[31mFailed\033[m\n" "$*" 1>&2
 }
 
 dotfiles_download() {
-  e_newline && e_header "Downloading dotfiles..."
+  e_header "Download dotfiles"
+  e_log "Preparing for download..."
   if has "git"; then
     git clone --recursive "$GITHUB_URL" "$DOTPATH"
   elif has "curl" || has "wget"; then
@@ -48,7 +49,7 @@ dotfiles_download() {
 }
 
 dotfiles_deploy() {
-  e_newline && e_header "Deploying dotfiles..."
+  e_header "Deploy dotfiles"
   cd "$DOTPATH"
   make deploy
   e_done "Deploy"
@@ -66,7 +67,7 @@ dotfiles_logo='
 # main
 # shell の option を確認してインタラクティブである場合は終了する
 if echo "$-" | grep -q "i"; then
-  e_newline && e_error "Can not continue with interactive shell. Abort the process"
+  e_error "Can not continue with interactive shell. Abort the process"
   exit 1
 else
   # 実行ソースを確認して、ファイルから実行している場合（bash a.sh）はライブラリのみ読み込んで続ける。
@@ -78,11 +79,14 @@ else
     # パイプで渡されていたら/dev/stdinがFIFOになりパイプとして判定される
     if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
       case "$(uname)" in
-      "Darwin" | "Linux")
-        e_newline && e_header "Start installation for macOS/Linux..."
+      "Darwin")
+        e_log "Start installation for macOS"
+        ;;
+      "Linux")
+        e_log "Start installation for Linux"
         ;;
       *)
-        e_newline && e_error "Unknown OS. Abort the process"
+        e_error "Unknown OS. Abort the process"
         exit 1
         ;;
       esac
@@ -90,7 +94,7 @@ else
       dotfiles_download
       dotfiles_deploy
       e_done "All processing"
-      e_newline && e_header "Now continue with rebooting your shell."
+      e_log "Now continue with rebooting your shell."
     fi
   fi
 fi
