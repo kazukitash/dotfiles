@@ -3,6 +3,7 @@
 export LANG=ja_JP.UTF-8
 if [ "$(uname)" = "Linux" ]; then
   export LC_ALL=C
+  export LESSCHARSET=utf-8
 fi
 
 # 履歴設定
