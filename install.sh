@@ -157,6 +157,12 @@ deploy_dotfiles() {
   check_result $? "Dotfiles" "Deploy"
 }
 
+install_formulas() {
+  e_log "Homebrew" "Installing formulas..."
+  brew bundle --global
+  check_result $? "Homebrew" "Install formulas"
+}
+
 # main
 check_interactive_shell
 if check_execution_by_file; then
@@ -165,4 +171,5 @@ if check_execution_by_file; then
   echo "$dotfiles_logo"
   download_dotfiles
   deploy_dotfiles
+  install_formulas
 fi
