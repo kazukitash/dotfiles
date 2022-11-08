@@ -3,17 +3,25 @@
 autoload -Uz colors
 colors
 
-if type brew &>/dev/null; then
-  # Tabによる補完機能設定
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  autoload -Uz compinit
-  compinit
-  zstyle ':completion:*' menu select                                                             # 補完候補を選択できるようにする
-  zstyle ':completion:*:cd:*' ignore-parents parent pwd                                          # cd時親フォルダで自フォルダを補完候補に出さないようにする
-  zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # 補完で小文字でも大文字にマッチさせる
-  zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
+if type brew >/dev/null 2>&1; then
+  if brew list | grep zsh-completions >/dev/null 2>&1; then
+    # Tabによる補完機能設定
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    autoload -Uz compinit
+    compinit
+    zstyle ':completion:*' menu select                                                             # 補完候補を選択できるようにする
+    zstyle ':completion:*:cd:*' ignore-parents parent pwd                                          # cd時親フォルダで自フォルダを補完候補に出さないようにする
+    zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # 補完で小文字でも大文字にマッチさせる
+    zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
+  else
+    printf "\033[31mZSHRC: [zsh-completions] ✖\033[m  \033[37mNot installed\033[m - \033[31mFailed\033[m\n" 1>&2
+  fi
 
-  source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  if brew list | grep zsh-syntax-highlighting >/dev/null 2>&1; then
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  else
+    printf "\033[31mZSHRC: [zsh-syntax-highlighting] ✖\033[m  \033[37mNot installed\033[m - \033[31mFailed\033[m\n" 1>&2
+  fi
 fi
 
 # プロンプトの設定
