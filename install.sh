@@ -84,34 +84,6 @@ install_git() {
   fi
 }
 
-# shell の option を確認してインタラクティブである場合は終了する
-check_interactive_shell() {
-  if echo "$-" | grep -q "i"; then
-    e_error "Check execution" "Can not continue with interactive shell. Abort the process"
-    exit 1
-  fi
-}
-
-# 実行ソースを確認して、ファイルから実行している場合（bash a.sh）はライブラリのみ読み込んで続ける。
-check_execution_by_file() {
-  if [ "$0" = "${BASH_SOURCE:-}" ] || [ "${DOTPATH}/install.sh" = "${BASH_SOURCE:-}" ]; then
-    e_done "Check execution" "Libraries are load"
-    return 1
-  else
-    return 0
-  fi
-}
-
-# bash -c "$(cat a.sh)" もしくは cat a.sh | bash の場合実行する
-# BASH_EXECUTION_STRING で -c オプションで渡された文字列を出力する。nullなら:-で空文字列に置換し-nで空文字列判定する
-# パイプで渡されていたら/dev/stdinがFIFOになりパイプとして判定される
-check_execution_by_string() {
-  if !([ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]); then
-    e_error "Check exection" "Can not continue with the execution type. Abort the process"
-    exit 1
-  fi
-}
-
 # macOSとLinuxのみ実行
 check_os() {
   case "$(uname)" in
@@ -169,12 +141,8 @@ install_formulas() {
 }
 
 # main
-check_interactive_shell
-if check_execution_by_file; then
-  check_execution_by_string
-  check_os
-  echo "$dotfiles_logo"
-  download_dotfiles
-  deploy_dotfiles
-  install_formulas
-fi
+check_os
+echo "$dotfiles_logo"
+download_dotfiles
+deploy_dotfiles
+install_formulas
