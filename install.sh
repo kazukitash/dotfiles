@@ -143,7 +143,6 @@ download_dotfiles() {
 
   e_log "Dotfiles" "Downloading..."
   git clone --recursive "$GITHUB_URL" "$DOTPATH"
-
   check_result $? "Dotfiles" "Download"
 }
 
@@ -155,7 +154,6 @@ deploy_dotfiles() {
 
   e_log "Dotfiles" "Deploying..."
   make deploy
-
   check_result $? "Dotfiles" "Deploy"
 }
 
