@@ -113,12 +113,12 @@ download_dotfiles() {
   e_header "Dotfiles" "Download"
 
   e_log "Dotfiles" "Preparing for download..."
-  install_xcodecli_if_macos
-  install_homebrew
   install_git
 
   e_log "Dotfiles" "Downloading..."
-  git clone --recursive "$GITHUB_URL" "$DOTPATH"
+  if !([ -e ~/.dotfiles ]); then
+    git clone --recursive "$GITHUB_URL" "$DOTPATH"
+  fi
   check_result $? "Dotfiles" "Download"
 }
 
@@ -143,6 +143,8 @@ install_formulas() {
 # main
 check_os
 echo "$dotfiles_logo"
+install_xcodecli_if_macos
+install_homebrew
 download_dotfiles
 deploy_dotfiles
 install_formulas
