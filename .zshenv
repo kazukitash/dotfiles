@@ -1,5 +1,5 @@
 # インンタラクティブシェルでもSSHでつないだシェルでも常に実行される
-# 言語環境設定
+# 言語・ロケーションの設定
 export LANG=ja_JP.UTF-8
 if [ "$(uname)" = "Linux" ]; then
   export LC_ALL=C
@@ -18,24 +18,22 @@ setopt brace_ccl        # 範囲指定できるようにする。例 : mkdir {1-
 setopt no_global_rcs    # macOSの/etc/zprofileに余計なことが書いてあるので読まない
 setopt hist_ignore_dups # 重複した履歴を残さない
 
+# エイリアスの設定
 alias bubu='brew update && brew outdated && brew upgrade && brew cleanup'
 alias ga='git add'
 alias gcm='git commit -m'
-alias gpp='git pull && git push'
 alias grhh='git reset --hard HEAD'
-alias history='fc -l 1'
 alias l='ls -lahp'
 alias ls='ls -Gp'
-alias mcm='make clean; make'
 if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
   alias open='/mnt/c/Windows/explorer.exe'
 fi
 
-# Python
+# Pythonの設定
 alias python2='/usr/bin/python'
 
+# PATHの設定
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
-# Linux用のPATH設定
 if [ "$(uname)" = "Linux" ]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   if [[ $(uname -r) = *microsoft* ]]; then
@@ -45,4 +43,7 @@ if [ "$(uname)" = "Linux" ]; then
   fi
 fi
 
-(type anyenv >/dev/null 2>&1) && eval "$(anyenv init -)"
+# anyenvの設定
+if type anyenv >/dev/null 2>&1; then
+  eval "$(anyenv init -)"
+fi
