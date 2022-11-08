@@ -93,7 +93,7 @@ bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^R" history-incremental-pattern-search-backward # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
-if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+if [ "$(uname)" = "Linux" ] && [[ $(uname -r) =~ microsoft ]]; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
   bindkey -s "^[[3~" "\u0004"      # Delete key
@@ -129,7 +129,7 @@ Darwin)
   fi
   ;;
 Linux)
-  if [[ $(uname -r) = *microsoft* ]]; then
+  if [[ $(uname -r) =~ microsoft ]]; then
     service docker status >/dev/null 2>&1
     if [ $? -ne 0 ]; then
       sudo service docker start >/dev/null 2>&1
