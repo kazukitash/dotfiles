@@ -88,13 +88,13 @@ install_git() {
 check_os() {
   case "$(uname)" in
   "Darwin")
-    e_log "Start installation for macOS"
+    e_log "Dotfiles" "Start installation for macOS"
     ;;
   "Linux")
-    e_log "Start installation for Linux"
+    e_log "Dotfiles" "Start installation for Linux"
     ;;
   *)
-    e_error "Unknown OS. Abort the process"
+    e_error "Dotfiles" "Unknown OS. Abort the process"
     exit 1
     ;;
   esac
