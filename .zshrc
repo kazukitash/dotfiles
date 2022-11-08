@@ -52,7 +52,7 @@ zstyle ':vcs_info:git:*' stagedstr "*"          # コミットしていない
 zstyle ':vcs_info:git:*' unstagedstr "+"        # addしていない
 set_vcs_info() {
   psvar=()
-  LANG=en_US.UTF-8 vcs_info
+  LANG=ja_JP.UTF-8 vcs_info
   [ -n "$vcs_info_msg_0_" ] && psvar[1]=" $vcs_info_msg_0_$(git_info_push)$(git_info_stash)"
 }
 add-zsh-hook precmd set_vcs_info
