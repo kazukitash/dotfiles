@@ -61,7 +61,7 @@ install_homebrew() {
 
   e_log "Homebrew" "Checking existance..."
   if has "brew"; then
-    e_header "Homebrew" "Already installed"
+    e_done "Homebrew" "Already installed"
   else
     e_log "Homebrew" "Installing..."
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -73,9 +73,15 @@ install_homebrew() {
 }
 
 install_git() {
-  e_log "Git" "Install"
-  brew install git
-  check_result $? "Git" "Install"
+  e_header "Git" "Install"
+
+  if has "git"; then
+    e_done "Git" "Already installed"
+  else
+    e_log "Git" "Installing..."
+    brew install git
+    check_result $? "Git" "Install"
+  fi
 }
 
 # shell の option を確認してインタラクティブである場合は終了する
@@ -135,11 +141,9 @@ download_dotfiles() {
   e_header "Dotfiles" "Download"
 
   e_log "Dotfiles" "Preparing for download..."
-  if !(has "git"); then
-    install_xcodecli_if_macos
-    install_homebrew
-    install_git
-  fi
+  install_xcodecli_if_macos
+  install_homebrew
+  install_git
 
   e_log "Dotfiles" "Downloading..."
   git clone --recursive "$GITHUB_URL" "$DOTPATH"
@@ -158,7 +162,8 @@ deploy_dotfiles() {
 }
 
 install_formulas() {
-  e_log "Homebrew" "Installing formulas..."
+  e_header "Homebrew" "Install formulas"
+
   brew bundle --global
   check_result $? "Homebrew" "Install formulas"
 }
