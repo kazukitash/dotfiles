@@ -164,5 +164,5 @@ if check_execution_by_file; then
   check_os
   echo "$dotfiles_logo"
   download_dotfiles
-  deploy_dotfiless
+  deploy_dotfiles
 fi
