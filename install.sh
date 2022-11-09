@@ -64,7 +64,7 @@ install_homebrew() {
     e_done "Homebrew" "Already installed"
   else
     e_log "Homebrew" "Installing..."
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    HOMEBREW_INSTALL_FROM_API=1 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     check_result $? "Homebrew" "Install"
     if [ "$(uname)" = "Linux" ]; then
       export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
