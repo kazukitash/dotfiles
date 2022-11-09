@@ -79,7 +79,7 @@ install_git() {
     e_done "Git" "Already installed"
   else
     e_log "Git" "Installing..."
-    brew install git
+    HOMEBREW_INSTALL_FROM_API=1 brew install git
     check_result $? "Git" "Install"
   fi
 }
