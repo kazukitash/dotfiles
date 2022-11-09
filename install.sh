@@ -140,6 +140,18 @@ install_formulas() {
   check_result $? "Homebrew" "Install formulas"
 }
 
+setup_compinit() {
+  case "$(uname)" in
+  "Darwin")
+    chmod 755 /usr/local/share/zsh/site-functions
+    chmod 755 /usr/local/share/zsh
+    ;;
+  "Linux")
+    chmod 755 /home/linuxbrew/.linuxbrew/share
+    ;;
+  esac
+}
+
 # main
 check_os
 echo "$dotfiles_logo"
@@ -148,3 +160,4 @@ install_homebrew
 download_dotfiles
 deploy_dotfiles
 install_formulas
+setup_compinit
