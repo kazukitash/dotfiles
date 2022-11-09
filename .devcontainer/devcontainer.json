@@ -3,5 +3,16 @@
   "remoteUser": "vscode",
   "dockerComposeFile": ["docker-compose.yml"],
   "service": "vscode",
-  "workspaceFolder": "/workspace"
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+		"foxundermoon.shell-format",
+		"codezombiech.gitignore",
+		"esbenp.prettier-vscode",
+		"dunstontc.viml",
+		"dotiful.dotfiles-syntax-highlighting"
+	]
+    }
+  }
 }
