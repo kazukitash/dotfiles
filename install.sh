@@ -70,6 +70,9 @@ install_homebrew() {
       export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
     fi
   fi
+  brew install diff-so-fancy
+  brew install zsh-completions
+  brew install zsh-syntax-highlighting
 }
 
 install_git() {
@@ -133,13 +136,6 @@ deploy_dotfiles() {
   check_result $? "Dotfiles" "Deploy"
 }
 
-install_formulas() {
-  e_header "Homebrew" "Install formulas"
-
-  brew bundle --global
-  check_result $? "Homebrew" "Install formulas"
-}
-
 setup_compinit() {
   case "$(uname)" in
   "Darwin")
@@ -159,5 +155,4 @@ install_xcodecli_if_macos
 install_homebrew
 download_dotfiles
 deploy_dotfiles
-install_formulas
 setup_compinit
