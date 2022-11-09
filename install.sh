@@ -64,7 +64,7 @@ install_homebrew() {
     e_done "Homebrew" "Already installed"
   else
     e_log "Homebrew" "Installing..."
-    HOMEBREW_INSTALL_FROM_API=1 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     check_result $? "Homebrew" "Install"
     if [ "$(uname)" = "Linux" ]; then
       export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
@@ -79,7 +79,7 @@ install_git() {
     e_done "Git" "Already installed"
   else
     e_log "Git" "Installing..."
-    HOMEBREW_INSTALL_FROM_API=1 brew install git
+    brew install git
     check_result $? "Git" "Install"
   fi
 }
@@ -136,7 +136,7 @@ deploy_dotfiles() {
 install_formulas() {
   e_header "Homebrew" "Install formulas"
 
-  HOMEBREW_INSTALL_FROM_API=1 brew bundle --global
+  brew bundle --global
   check_result $? "Homebrew" "Install formulas"
 }
 
