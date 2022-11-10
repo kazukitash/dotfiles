@@ -84,20 +84,6 @@ install_git() {
   fi
 }
 
-setup_git() {
-  e_header "Git" "Setup"
-
-  if [ -n "${REMOTE_CONTAINERS:-}" ]; then
-    e_log "Git" "Setting safe directory..."
-    git config --global --add safe.directory '*'
-  fi
-
-  if [ "$(uname)" = "Darwin" ]; then
-    e_log "Git" "Setting credential helper..."
-    git config --global credential.helper osxkeychain
-  fi
-}
-
 # macOSとLinuxのみ実行
 check_os() {
   case "$(uname)" in
@@ -167,14 +153,28 @@ setup_zsh_completion() {
   esac
 }
 
+setup_git() {
+  e_header "Git" "Setup"
+
+  if [ -n "${REMOTE_CONTAINERS:-}" ]; then
+    e_log "Git" "Setting safe directory..."
+    git config --global --add safe.directory '*'
+  fi
+
+  if [ "$(uname)" = "Darwin" ]; then
+    e_log "Git" "Setting credential helper..."
+    git config --global credential.helper osxkeychain
+  fi
+}
+
 # main
 check_os
 echo "$dotfiles_logo"
 install_xcodecli_if_macos
 install_homebrew
 install_git
-setup_git
 download_dotfiles
 deploy_dotfiles
 install_formulas
 setup_zsh_completion
+setup_git
