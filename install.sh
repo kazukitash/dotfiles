@@ -89,7 +89,7 @@ setup_git() {
 
   if [ -n "${REMOTE_CONTAINERS:-}" ]; then
     e_log "Git" "Setting safe directory..."
-    git config --global --add safe.directory *
+    git config --global --add safe.directory '*'
   fi
 
   if [ "$(uname)" = "Darwin" ]; then
