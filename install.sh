@@ -152,6 +152,53 @@ setup_compinit() {
   esac
 }
 
+setup_gitconfig() {
+  e_header "Git" "Setup config"
+
+  e_log "Git" "Setting user id..."
+  git config --global user.name 'kazukitash'
+  git config --global user.email 'kazukitash@gmail.com'
+
+  e_log "Git" "Setting not ignore case..."
+  git config --global core.ignorecase false
+
+  e_log "Git" "Setting auto crlf..."
+  git config --global core.autocrlf input
+
+  e_log "Git" "Setting default branch..."
+  git config --global init.defaultBranch main
+
+  e_log "Git" "Setting pull behaviour..."
+  git config --global pull.rebase true
+
+  e_log "Git" "Setting diff so fancy..."
+  git config --global pager.diff "diff-so-fancy | less --tabs=1,5 -RFX"
+  git config --global pager.show "diff-so-fancy | less --tabs=1,5 -RFX"
+
+  e_log "Git" "Setting color ui..."
+  git config --global color.ui true
+
+  e_log "Git" "Setting japanese encode..."
+  git config --global core.quotepath false
+
+  if [ "$(uname)" = "Darwin" ]; then
+    e_log "Git" "Setting keychain..."
+    git config --global credential.helper osxkeychain
+  fi
+
+  e_log "Git" "Setting pull fast forward..."
+  git config --global pull.ff only
+
+  e_log "Git" "Setting merge no fast forward..."
+  git config --global --add merge.ff false
+
+  e_log "Git" "Setting remote branch..."
+  git config --global push.default current
+
+  e_log "Git" "Setting ignore files..."
+  git config --global core.excludesfile ~/.gitignore_global
+}
+
 # main
 check_os
 echo "$dotfiles_logo"
@@ -161,3 +208,4 @@ download_dotfiles
 deploy_dotfiles
 install_formulas
 setup_compinit
+setup_git_config
