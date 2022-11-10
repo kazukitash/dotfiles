@@ -5,7 +5,6 @@
   "dockerComposeFile": ["docker-compose.yml"],
   "service": "vscode",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "git config --global --add safe.directory /workspace",
   "customizations": {
     "vscode": {
       "extensions": [

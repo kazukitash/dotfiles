@@ -1,0 +1,22 @@
+[user]
+  name = kazukitash
+  email = kazukitash@gmail.com
+[core]
+  ignorecase = false
+  autocrlf = input
+  quotepath = false
+  excludesfile = /home/vscode/.gitignore_global
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true
+  ff = only
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[color]
+  ui = true
+[merge]
+  ff = false
+[push]
+  default = current

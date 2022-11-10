@@ -84,6 +84,20 @@ install_git() {
   fi
 }
 
+setup_git() {
+  e_header "Git" "Setup"
+
+  if [ -n "${REMOTE_CONTAINERS:-}" ]; then
+    e_log "Git" "Setting safe directory..."
+    git config --global --add safe.directory *
+  fi
+
+  if [ "$(uname)" = "Darwin" ]; then
+    e_log "Git" "Setting credential helper..."
+    git config --global credential.helper osxkeychain
+  fi
+}
+
 # macOSとLinuxのみ実行
 check_os() {
   case "$(uname)" in
@@ -112,9 +126,6 @@ dotfiles_logo='
 download_dotfiles() {
   e_header "Dotfiles" "Download"
 
-  e_log "Dotfiles" "Preparing for download..."
-  install_git
-
   e_log "Dotfiles" "Downloading..."
   if !([ -e ~/.dotfiles ]); then
     git clone --recursive "$GITHUB_URL" "$DOTPATH"
@@ -140,7 +151,7 @@ install_formulas() {
   check_result $? "Homebrew" "Install formulas"
 }
 
-setup_compinit() {
+setup_zsh_completion() {
   case "$(uname)" in
   "Darwin")
     chmod 755 /usr/local/share/zsh/site-functions
@@ -152,60 +163,14 @@ setup_compinit() {
   esac
 }
 
-setup_git_config() {
-  e_header "Git" "Setup config"
-
-  e_log "Git" "Setting user id..."
-  git config --global user.name 'kazukitash'
-  git config --global user.email 'kazukitash@gmail.com'
-
-  e_log "Git" "Setting not ignore case..."
-  git config --global core.ignorecase false
-
-  e_log "Git" "Setting auto crlf..."
-  git config --global core.autocrlf input
-
-  e_log "Git" "Setting default branch..."
-  git config --global init.defaultBranch main
-
-  e_log "Git" "Setting pull behaviour..."
-  git config --global pull.rebase true
-
-  e_log "Git" "Setting diff so fancy..."
-  git config --global pager.diff "diff-so-fancy | less --tabs=1,5 -RFX"
-  git config --global pager.show "diff-so-fancy | less --tabs=1,5 -RFX"
-
-  e_log "Git" "Setting color ui..."
-  git config --global color.ui true
-
-  e_log "Git" "Setting japanese encode..."
-  git config --global core.quotepath false
-
-  if [ "$(uname)" = "Darwin" ]; then
-    e_log "Git" "Setting keychain..."
-    git config --global credential.helper osxkeychain
-  fi
-
-  e_log "Git" "Setting pull fast forward..."
-  git config --global pull.ff only
-
-  e_log "Git" "Setting merge no fast forward..."
-  git config --global --add merge.ff false
-
-  e_log "Git" "Setting remote branch..."
-  git config --global push.default current
-
-  e_log "Git" "Setting ignore files..."
-  git config --global core.excludesfile ~/.gitignore_global
-}
-
 # main
 check_os
 echo "$dotfiles_logo"
 install_xcodecli_if_macos
 install_homebrew
+install_git
+setup_git
 download_dotfiles
 deploy_dotfiles
 install_formulas
-setup_compinit
-setup_git_config
+setup_zsh_completion
