@@ -1,5 +1,6 @@
 {
   "name": "dotfiles",
+  "containerUser": "vscode",
   "remoteUser": "vscode",
   "dockerComposeFile": ["docker-compose.yml"],
   "service": "vscode",
