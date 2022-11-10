@@ -7,12 +7,14 @@
   "customizations": {
     "vscode": {
       "extensions": [
-		"foxundermoon.shell-format",
-		"codezombiech.gitignore",
-		"esbenp.prettier-vscode",
-		"dunstontc.viml",
-		"dotiful.dotfiles-syntax-highlighting"
-	]
+        "dotiful.dotfiles-syntax-highlighting",
+        "dunstontc.viml",
+        "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
+        "ms-vscode.makefile-tools",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid"
+      ]
     }
   }
 }
