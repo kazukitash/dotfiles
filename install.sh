@@ -139,6 +139,10 @@ deploy_dotfiles() {
   e_log "Dotfiles" "Changing directory..."
   cd "$DOTPATH"
 
+  e_log "Dotfiles" "Updating..."
+  make update
+  check_result $? "Dotfiles" "Update"
+
   e_log "Dotfiles" "Deploying..."
   make deploy
   check_result $? "Dotfiles" "Deploy"
