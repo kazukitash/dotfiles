@@ -1,7 +1,11 @@
 version: "3.8"
 services:
   vscode:
-    image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/Dockerfile
     volumes:
-      - ../:/workspace
+      - type: bind
+        source: ../
+        target: /workspace
     command: sleep infinity
