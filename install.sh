@@ -152,7 +152,7 @@ setup_compinit() {
   esac
 }
 
-setup_gitconfig() {
+setup_git_config() {
   e_header "Git" "Setup config"
 
   e_log "Git" "Setting user id..."
