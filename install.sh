@@ -72,6 +72,18 @@ install_homebrew() {
   fi
 }
 
+install_make() {
+  e_header "Make" "Install"
+
+  if has "make"; then
+    e_done "Make" "Already installed"
+  else
+    e_log "Make" "Installing..."
+    brew install make
+    check_result $? "Make" "Install"
+  fi
+}
+
 install_git() {
   e_header "Git" "Install"
 
@@ -172,6 +184,7 @@ check_os
 echo "$dotfiles_logo"
 install_xcodecli_if_macos
 install_homebrew
+install_make
 install_git
 download_dotfiles
 deploy_dotfiles
