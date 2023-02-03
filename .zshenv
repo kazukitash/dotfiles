@@ -48,3 +48,7 @@ fi
 if type anyenv >/dev/null 2>&1; then
   eval "$(anyenv init -)"
 fi
+
+# openjdkの設定
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+export PATH=/usr/local/opt/openjdk/bin:$PATH
