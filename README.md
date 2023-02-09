@@ -2,6 +2,14 @@
 
 [![macos](https://github.com/kazukitash/dotfiles/actions/workflows/macos.yml/badge.svg?branch=main)](https://github.com/kazukitash/dotfiles/actions/workflows/macos.yml) [![linux](https://github.com/kazukitash/dotfiles/actions/workflows/linux.yml/badge.svg?branch=main)](https://github.com/kazukitash/dotfiles/actions/workflows/linux.yml)
 
+## 事前
+
+WSLの場合はmakeを事前に入れておく
+
+```bash
+apt install build-essential
+```
+
 ## インストールの仕方
 
 スクリプトを Github から curl でダウンロードして実行する。
