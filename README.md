@@ -4,10 +4,13 @@
 
 ## 事前
 
-WSLの場合はmakeを事前に入れておく
+WSLの場合はmakeと日本語パックを事前に入れておく
 
 ```bash
+apt update
+apt upgrade
 apt install build-essential
+apt install language-pack-ja
 ```
 
 ## インストールの仕方
