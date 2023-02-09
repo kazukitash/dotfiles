@@ -2,8 +2,9 @@
 # 言語・ロケーションの設定
 export LANG=ja_JP.UTF-8
 if [ "$(uname)" = "Linux" ]; then
-  export LC_ALL=C
   export LESSCHARSET=utf-8
+  export LANGUAGE=ja_JP.UTF-8
+  export LC_ALL=ja_JP.UTF-8
 fi
 
 # 履歴設定
