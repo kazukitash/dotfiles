@@ -5,7 +5,7 @@
   ignorecase = false
   autocrlf = input
   quotepath = false
-  excludesfile = /home/vscode/.gitignore_global
+  excludesfile = ~/.gitignore_global
 [init]
   defaultBranch = main
 [pull]
@@ -20,3 +20,8 @@
   ff = false
 [push]
   default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
