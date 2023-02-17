@@ -68,6 +68,8 @@ install_homebrew() {
     check_result $? "Homebrew" "Install"
     if [ "$(uname)" = "Linux" ]; then
       export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+    else
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
   fi
 }
