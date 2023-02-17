@@ -152,8 +152,6 @@ install_formulas() {
   e_header "Homebrew" "Install formulas"
 
   brew bundle --global
-  brew install zsh-completions
-  brew install zsh-syntax-highlighting
   check_result $? "Homebrew" "Install formulas"
 }
 
