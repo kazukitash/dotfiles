@@ -46,6 +46,11 @@ if [ "$(uname)" = "Linux" ]; then
   fi
 fi
 
+# homebrewの設定
+if [ "$(uname)" = "Darwin" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # anyenvの設定
 if type anyenv >/dev/null 2>&1; then
   eval "$(anyenv init -)"
