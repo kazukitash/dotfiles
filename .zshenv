@@ -35,6 +35,7 @@ alias python2='/usr/bin/python'
 
 # PATHの設定
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=~/.anyenv/envs/pyenv/shims:$PATH
 if [ "$(uname)" = "Linux" ]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   if [[ $(uname -r) = *microsoft* ]]; then
