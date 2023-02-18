@@ -33,7 +33,8 @@ set ruler
 set title
 
 "テーマカラー（主に文字色）
-colorscheme peachpuff
+set background=dark
+colorscheme slate
 
 "文字をカラーに
 syntax on
