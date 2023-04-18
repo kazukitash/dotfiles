@@ -24,8 +24,11 @@ alias bubu='brew update && brew outdated && brew upgrade && brew cleanup'
 alias ga='git add'
 alias gcm='git commit -m'
 alias grhh='git reset --hard HEAD'
+alias grsh='git reset --soft HEAD^'
 alias l='ls -lahp'
 alias ls='ls -Gp'
+alias pyinit='python -m venv .env && . ./.env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
+alias activate='. ./.env/bin/activate'
 if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
   alias open='/mnt/c/Windows/explorer.exe'
 fi
@@ -34,7 +37,10 @@ fi
 alias python2='/usr/bin/python'
 
 # PATHの設定
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+if [ -x /usr/libexec/path_helper ]; then
+  eval $(/usr/libexec/path_helper -s)
+fi
+export PATH=~/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 export PATH=~/.anyenv/envs/pyenv/shims:$PATH
 if [ "$(uname)" = "Linux" ]; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH

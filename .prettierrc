@@ -3,7 +3,10 @@
     {
       "files": "*.md",
       "options": {
-        "parser": "markdown-nocjsp"
+        "parser": "markdown-nocjsp",
+        "plugins": [
+          "/Users/kazuki/.anyenv/envs/nodenv/versions/19.6.0/lib/node_modules/prettier-plugin-md-nocjsp"
+        ]
       }
     }
   ]
