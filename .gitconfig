@@ -6,6 +6,7 @@
   autocrlf = input
   quotepath = false
   excludesfile = ~/.gitignore_global
+	editor = vim
 [init]
   defaultBranch = main
 [pull]
