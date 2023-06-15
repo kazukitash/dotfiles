@@ -66,9 +66,9 @@ install_homebrew() {
     if ["$(uname)" = "Linux" && "$(arch)" = "aarch64"]; then
       e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
       sudo apt-get update
-      check_result $? "apt-get" "update"
-      sudo apt-get install -y build-essential curl file git make
-      check_result $? "apt-get" "install essential packages"
+      check_result $? "apt-get" "Update"
+      sudo apt-get install -y build-essential curl file git make vim
+      check_result $? "apt-get" "Install essential packages"
     else
       e_log "Homebrew" "Installing..."
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -103,6 +103,22 @@ install_git() {
     e_log "Git" "Installing..."
     brew install git
     check_result $? "Git" "Install"
+  fi
+}
+
+install_vim() {
+  e_header "Vim" "Install"
+
+  if has "vim"; then
+    e_done "Vim" "Already installed"
+  else
+    e_log "Vim" "Installing..."
+    if [ "$(uname)" = "Linux" ] && [ "$(arch)" = "aarch64" ]; then
+      sudo apt-get install -y vim
+    else
+      brew install vim
+    fi
+    check_result $? "Vim" "Install"
   fi
 }
 
@@ -159,8 +175,10 @@ deploy_dotfiles() {
 install_formulas() {
   e_header "Homebrew" "Install formulas"
 
-  brew bundle --global
-  check_result $? "Homebrew" "Install formulas"
+  if ! ([ "$(uname)" = "Linux" ] && [ "$(arch)" = "aarch64" ]); then
+    brew bundle --global
+    check_result $? "Homebrew" "Install formulas"
+  fi
 }
 
 setup_zsh_completion() {
@@ -170,7 +188,9 @@ setup_zsh_completion() {
     chmod 755 /usr/local/share/zsh
     ;;
   "Linux")
-    chmod 755 /home/linuxbrew/.linuxbrew/share
+    if ! [ "$(arch)" = "aarch64" ]; then
+      chmod 755 /home/linuxbrew/.linuxbrew/share
+    fi
     ;;
   esac
 }
@@ -196,6 +216,7 @@ install_xcodecli_if_macos
 install_homebrew
 install_make
 install_git
+install_vim
 download_dotfiles
 deploy_dotfiles
 install_formulas
