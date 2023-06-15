@@ -63,7 +63,7 @@ install_homebrew() {
   if has "brew"; then
     e_done "Homebrew" "Already installed"
   else
-    if ["$(uname)" = "Linux" && "$(arch)" = "aarch64"]; then
+    if [ "$(uname)" = "Linux" && "$(arch)" = "aarch64" ]; then
       e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
       sudo apt-get update
       check_result $? "apt-get" "Update"
