@@ -19,23 +19,6 @@ setopt brace_ccl        # 範囲指定できるようにする。例 : mkdir {1-
 setopt no_global_rcs    # macOSの/etc/zprofileに余計なことが書いてあるので読まない
 setopt hist_ignore_dups # 重複した履歴を残さない
 
-# エイリアスの設定
-alias bubu='brew update && brew outdated && brew upgrade && brew cleanup'
-alias ga='git add'
-alias gcm='git commit -m'
-alias grhh='git reset --hard HEAD'
-alias grsh='git reset --soft HEAD^'
-alias l='ls -lahp'
-alias ls='ls -Gp'
-alias pyinit='python -m venv .env && . ./.env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
-alias activate='. ./.env/bin/activate'
-if ! (type code) >/dev/null 2>&1 && (type code-insiders) >/dev/null 2>&1; then
-  alias code='code-insiders'
-fi
-if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
-  alias open='/mnt/c/Windows/explorer.exe'
-fi
-
 # Pythonの設定
 alias python2='/usr/bin/python'
 
@@ -70,3 +53,20 @@ fi
 # openjdkの設定
 export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 export PATH=/usr/local/opt/openjdk/bin:$PATH
+
+# エイリアスの設定
+alias bubu='brew update && brew outdated && brew upgrade && brew cleanup'
+alias ga='git add'
+alias gcm='git commit -m'
+alias grhh='git reset --hard HEAD'
+alias grsh='git reset --soft HEAD^'
+alias l='ls -lahp'
+alias ls='ls -Gp'
+alias pyinit='python -m venv .env && . ./.env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
+alias activate='. ./.env/bin/activate'
+if ! (type code) >/dev/null 2>&1 && (type code-insiders) >/dev/null 2>&1; then
+  alias code='code-insiders'
+fi
+if [ "$(uname)" = "Linux" ] && [[ $(uname -r) = *microsoft* ]]; then
+  alias open='/mnt/c/Windows/explorer.exe'
+fi
