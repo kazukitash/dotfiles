@@ -29,7 +29,7 @@ fi
 export PATH=~/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 export PATH=~/.anyenv/envs/pyenv/shims:$PATH
 if [ "$(uname)" = "Linux" ]; then
-  if ! [ "$(arch)" = "aarch64"]; then
+  if ! [ "$(arch)" = "aarch64" ]; then
     export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
   fi
   if [[ $(uname -r) = *microsoft* ]]; then
