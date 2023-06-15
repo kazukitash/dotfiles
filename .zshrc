@@ -1,9 +1,10 @@
-# インタラクティブシェルで起動した時に何度でも実行される
+# zshrcはインタラクティブシェルで起動した時に何度でも実行される
+
 # 色の設定
 autoload -Uz colors
 colors
 
-if type brew >/dev/null 2>&1; then
+if has brew; then
   if brew list | grep zsh-completions >/dev/null 2>&1; then
     # Tabによる補完機能設定
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
@@ -93,7 +94,7 @@ bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 bindkey "^R" history-incremental-pattern-search-backward # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
-if [ "$(uname)" = "Linux" ] && [[ $(uname -r) =~ microsoft ]]; then
+if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
   bindkey -s "^[[3~" "\u0004"      # Delete key
@@ -122,18 +123,13 @@ setopt always_last_prompt # カーソル位置は保持したままファイル�
 export EDITOR="code"
 
 # Docker設定
-case "$(uname)" in
-Darwin)
+if isArch macOS; then
   if [[ $(limactl list | grep default) =~ Stopped ]]; then
     limactl start >/dev/null 2>&1
   fi
-  ;;
-Linux)
-  if [[ $(uname -r) =~ microsoft ]]; then
-    service docker status >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-      sudo service docker start >/dev/null 2>&1
-    fi
+elif isArch WSL; then
+  service docker status >/dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    sudo service docker start >/dev/null 2>&1
   fi
-  ;;
-esac
+fi

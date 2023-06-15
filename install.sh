@@ -5,6 +5,29 @@ if [ -z "${DOTPATH:-}" ]; then
 fi
 GITHUB_URL=https://github.com/kazukitash/dotfiles.git
 
+# OS/Arch.のチェック
+isArch() {
+  local os=$(uname -s)
+  local arch=$(uname -m)
+  if [[ "$os" == "Darwin" && "$arch" == "arm64" && "$1" == "AppleSilicon" ]]; then
+    return 0 # true
+  elif [[ "$os" == "Darwin" && "$arch" == "x86_64" && "$1" == "IntelMac" ]]; then
+    return 0 # true
+  elif [[ "$os" == "Linux" && "$arch" == "aarch64" && "$1" == "ArmLinux" ]]; then
+    return 0 # true
+  elif [[ "$os" == "Linux" && "$arch" == "x86_64" && "$1" == "IntelLinux" ]]; then
+    return 0 # true
+  elif [[ "$os" == "Linux" && $(uname -r) =~ microsoft && "$1" == "WSL" ]]; then
+    return 0 # true
+  elif [[ "$os" == "Darwin" && "$1" == "macOS" ]]; then
+    return 0 # true
+  elif [[ "$os" == "$1" ]]; then
+    return 0 # true
+  else
+    return 1 # false
+  fi
+}
+
 has() {
   type "$1" >/dev/null 2>&1
   return $?
@@ -36,7 +59,7 @@ check_result() {
 }
 
 install_xcodecli_if_macos() {
-  if [ "$(uname)" = "Darwin" ]; then
+  if isArch macOS; then
     e_header "XCode CLI tools" "Install"
 
     e_log "XCode CLI tools" "Checking existance..."
@@ -60,22 +83,22 @@ install_homebrew() {
   e_header "Homebrew" "Install"
 
   e_log "Homebrew" "Checking existance..."
-  if has "brew"; then
+  if has brew; then
     e_done "Homebrew" "Already installed"
   else
-    if [ "$(uname)" = "Linux" ] && [ "$(arch)" = "aarch64" ]; then
+    if isArch ArmLinux; then
       e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
       sudo apt-get update
       check_result $? "apt-get" "Update"
-      sudo apt-get install -y build-essential curl file git make vim
+      sudo apt-get install -y build-essential curl file
       check_result $? "apt-get" "Install essential packages"
     else
       e_log "Homebrew" "Installing..."
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       check_result $? "Homebrew" "Install"
-      if [ "$(uname)" = "Linux" ]; then
+      if isArch Linux; then
         export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-      else
+      elif isArch AppleSilicon; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
       fi
     fi
@@ -85,11 +108,15 @@ install_homebrew() {
 install_make() {
   e_header "Make" "Install"
 
-  if has "make"; then
+  if has make; then
     e_done "Make" "Already installed"
   else
     e_log "Make" "Installing..."
-    brew install make
+    if isArch ArmLinux; then
+      sudo apt-get install -y make
+    else
+      brew install make
+    fi
     check_result $? "Make" "Install"
   fi
 }
@@ -97,11 +124,15 @@ install_make() {
 install_git() {
   e_header "Git" "Install"
 
-  if has "git"; then
+  if has git; then
     e_done "Git" "Already installed"
   else
     e_log "Git" "Installing..."
-    brew install git
+    if isArch ArmLinux; then
+      sudo apt-get install -y git
+    else
+      brew install git
+    fi
     check_result $? "Git" "Install"
   fi
 }
@@ -109,11 +140,11 @@ install_git() {
 install_vim() {
   e_header "Vim" "Install"
 
-  if has "vim"; then
+  if has vim; then
     e_done "Vim" "Already installed"
   else
     e_log "Vim" "Installing..."
-    if [ "$(uname)" = "Linux" ] && [ "$(arch)" = "aarch64" ]; then
+    if isArch ArmLinux; then
       sudo apt-get install -y vim
     else
       brew install vim
@@ -124,18 +155,14 @@ install_vim() {
 
 # macOSとLinuxのみ実行
 check_os() {
-  case "$(uname)" in
-  "Darwin")
+  if isArch macOS; then
     e_log "Dotfiles" "Start installation for macOS"
-    ;;
-  "Linux")
+  elif isArch Linux; then
     e_log "Dotfiles" "Start installation for Linux"
-    ;;
-  *)
+  else
     e_error "Dotfiles" "Unknown OS. Abort the process"
     exit 1
-    ;;
-  esac
+  fi
 }
 
 dotfiles_logo='
@@ -182,17 +209,12 @@ install_formulas() {
 }
 
 setup_zsh_completion() {
-  case "$(uname)" in
-  "Darwin")
+  if isArch macOS; then
     chmod 755 /usr/local/share/zsh/site-functions
     chmod 755 /usr/local/share/zsh
-    ;;
-  "Linux")
-    if ! [ "$(arch)" = "aarch64" ]; then
-      chmod 755 /home/linuxbrew/.linuxbrew/share
-    fi
-    ;;
-  esac
+  elif isArch IntelLinux; then
+    chmod 755 /home/linuxbrew/.linuxbrew/share
+  fi
 }
 
 setup_git() {
@@ -203,7 +225,7 @@ setup_git() {
     git config --global --add safe.directory '*'
   fi
 
-  if [ "$(uname)" = "Darwin" ]; then
+  if isArch macOS; then
     e_log "Git" "Setting credential helper..."
     git config --global credential.helper osxkeychain
   fi
