@@ -67,7 +67,7 @@ install_homebrew() {
       e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
       sudo apt-get update
       check_result $? "apt-get" "Update"
-      sudo apt-get install -y build-essential curl file git make vim language-pack-ja
+      sudo apt-get install -y build-essential curl file git make vim
       check_result $? "apt-get" "Install essential packages"
     else
       e_log "Homebrew" "Installing..."
