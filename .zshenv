@@ -43,7 +43,9 @@ fi
 export PATH=~/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 export PATH=~/.anyenv/envs/pyenv/shims:$PATH
 if [ "$(uname)" = "Linux" ]; then
-  export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  if [ "$(arch)" = "x86_64"]; then
+    export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  fi
   if [[ $(uname -r) = *microsoft* ]]; then
     PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
     LD_LIBRARY_PATH=/usr/local/cuda-11/lib64:$LD_LIBRARY_PATH

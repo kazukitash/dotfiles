@@ -63,13 +63,21 @@ install_homebrew() {
   if has "brew"; then
     e_done "Homebrew" "Already installed"
   else
-    e_log "Homebrew" "Installing..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    check_result $? "Homebrew" "Install"
-    if [ "$(uname)" = "Linux" ]; then
-      export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+    if ["$(uname)" = "Linux" && "$(arch)" = "aarch64"]; then
+      e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
+      sudo apt-get update
+      check_result $? "apt-get" "update"
+      sudo apt-get install -y build-essential curl file git make
+      check_result $? "apt-get" "install essential packages"
     else
-      eval "$(/opt/homebrew/bin/brew shellenv)"
+      e_log "Homebrew" "Installing..."
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      check_result $? "Homebrew" "Install"
+      if [ "$(uname)" = "Linux" ]; then
+        export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+      else
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
     fi
   fi
 }
