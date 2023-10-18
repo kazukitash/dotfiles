@@ -33,7 +33,7 @@ export LANG=ja_JP.UTF-8
 if isArch Linux; then
   export LESSCHARSET=utf-8
   export LANGUAGE=ja_JP.UTF-8
-  export LC_ALL=ja_JP.UTF-8
+  # export LC_ALL=ja_JP.UTF-8
 fi
 
 # 履歴設定
