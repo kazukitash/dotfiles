@@ -57,7 +57,9 @@ elif isArch ArmLinux; then
   export PATH=$HOME/.anyenv/bin:$PATH
 elif isArch IntelLinux; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-elif isArch WSL; then
+fi
+
+if isArch WSL; then
   PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
   LD_LIBRARY_PATH=/usr/local/cuda-11/lib64:/usr/lib/wsl/lib:$LD_LIBRARY_PATH
   PATH=/usr/local/cuda/bin:$PATH
