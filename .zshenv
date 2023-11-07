@@ -68,16 +68,21 @@ fi
 
 # 個人用のPATH
 export PATH=~/.local/bin:$PATH
-# AnyenvのPATH
-export PATH=~/.anyenv/envs/pyenv/shims:$PATH
 
 # homebrewの設定
 if isArch AppleSilicon; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # anyenvの設定
-if isArch macOS || isArch IntelLinux; then
+if isArch IntelMac; then
+  export ANYENV_ROOT=~/.anyenv-i386
+  export PYENV_ROOT=~/.anyenv-i386/envs/pyenv
+  export PATH=~/.anyenv-i386/envs/pyenv/shims:$PATH
+elif isArch AppleSilicon || isArch IntelLinux; then
+  export PATH=~/.anyenv/envs/pyenv/shims:$PATH
   if type anyenv >/dev/null 2>&1; then
     eval "$(anyenv init -)"
   fi
