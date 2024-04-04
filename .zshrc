@@ -124,8 +124,8 @@ export EDITOR="code"
 
 # Docker設定
 if isArch macOS; then
-  if [[ $(limactl list | grep default) =~ Stopped ]]; then
-    limactl start >/dev/null 2>&1
+  if [[ $(limactl list | grep aarch64) =~ Stopped ]]; then
+    limactl start aarch64 >/dev/null 2>&1
   fi
 elif isArch WSL; then
   service docker status >/dev/null 2>&1
