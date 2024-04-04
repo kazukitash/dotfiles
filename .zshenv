@@ -53,6 +53,7 @@ if isArch macOS; then
   if [ -x /usr/libexec/path_helper ]; then
     eval $(/usr/libexec/path_helper -s)
   fi
+  export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
 elif isArch ArmLinux; then
   export PATH=$HOME/.anyenv/bin:$PATH
 elif isArch IntelLinux; then
