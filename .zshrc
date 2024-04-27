@@ -19,6 +19,7 @@ if has brew; then
   fi
 
   if brew list | grep zsh-syntax-highlighting >/dev/null 2>&1; then
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   else
     printf "\033[31mZSHRC: [zsh-syntax-highlighting] ✖\033[m  \033[37mNot installed\033[m - \033[31mFailed\033[m\n" 1>&2
