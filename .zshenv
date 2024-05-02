@@ -79,13 +79,13 @@ fi
 # anyenvの設定
 if isArch IntelMac; then
   export ANYENV_ROOT=~/.anyenv-i386
-  export PYENV_ROOT=~/.anyenv-i386/envs/pyenv
-  export PATH=~/.anyenv-i386/envs/pyenv/shims:$PATH
 elif isArch AppleSilicon || isArch IntelLinux; then
+  export ANYENV_ROOT=~/.anyenv
   export PATH=~/.anyenv/envs/pyenv/shims:$PATH
-  if type anyenv >/dev/null 2>&1; then
-    eval "$(anyenv init -)"
-  fi
+fi
+export PATH=$ANYENV_ROOT/bin:$PATH
+if type anyenv >/dev/null 2>&1; then
+  eval "$(anyenv init -)"
 fi
 
 # openjdkの設定
