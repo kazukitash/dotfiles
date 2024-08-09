@@ -122,15 +122,3 @@ setopt noautoremoveslash  # パス末尾の / を勝手に取らないように�
 setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
 
 export EDITOR="code"
-
-# Docker設定
-if isArch macOS; then
-  if [[ $(limactl list | grep aarch64) =~ Stopped ]]; then
-    limactl start aarch64 >/dev/null 2>&1
-  fi
-elif isArch WSL; then
-  service docker status >/dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    sudo service docker start >/dev/null 2>&1
-  fi
-fi
