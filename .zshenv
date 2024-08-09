@@ -94,6 +94,9 @@ if isArch macOS; then
   export PATH=/usr/local/opt/openjdk/bin:$PATH
 fi
 
+# GCPの設定
+export GOOGLE_APPLICATION_CREDENTIALS="~/.config/gcloud/legacy_credentials/kazuki.takahashi@legalscape.co.jp/adc.json"
+
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 alias ga="git add"
