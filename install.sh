@@ -212,6 +212,7 @@ setup_zsh_completion() {
   if isArch macOS; then
     chmod 755 /usr/local/share/zsh/site-functions
     chmod 755 /usr/local/share/zsh
+    chmod -R go-w '/opt/homebrew/share/'
   elif isArch IntelLinux; then
     chmod 755 /home/linuxbrew/.linuxbrew/share
   fi
