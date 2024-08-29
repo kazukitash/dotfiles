@@ -96,6 +96,15 @@ fi
 
 # GCPの設定
 export GOOGLE_APPLICATION_CREDENTIALS="~/.config/gcloud/legacy_credentials/kazuki.takahashi@legalscape.co.jp/adc.json"
+# Google Cloud SDK
+gcspath="/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+if [ -f gcspath ]; then
+  source "${gcspath}/path.zsh.inc"
+  source "${gcspath}/completion.zsh.inc"
+fi
+
+# ryeの設定
+source "$HOME/.rye/env"
 
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
