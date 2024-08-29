@@ -122,9 +122,3 @@ setopt noautoremoveslash  # パス末尾の / を勝手に取らないように�
 setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
 
 export EDITOR="code"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kazukitash/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazukitash/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kazukitash/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazukitash/google-cloud-sdk/completion.zsh.inc'; fi
