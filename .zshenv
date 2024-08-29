@@ -114,8 +114,6 @@ alias grhh="git reset --hard HEAD"
 alias grsh="git reset --soft HEAD^"
 alias l="ls -lahp"
 alias ls="ls -Gp"
-alias pyinit="python -m venv .env && . ./.env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt"
-alias activate=". ./.venv/bin/activate"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
 fi
