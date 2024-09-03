@@ -36,40 +36,42 @@ git_info_push() {
     for remote in $(git rev-parse --remotes); do
       if [ "$head" = "$remote" ]; then return 0; fi
     done
-    echo "~"
+    echo "📡"
   fi
 }
 
 git_info_stash() {
-  [ "$(git stash list /dev/null 2>&1)" != "" ] && echo "#"
+  [ "$(git stash list /dev/null 2>&1)" != "" ] && echo "🔖"
 }
 
 zstyle ':vcs_info:*' enable git                 # gitのみ有効
 zstyle ':vcs_info:git:*' check-for-changes true # commitしていない変更をチェックする
 zstyle ':vcs_info:git:*' formats "%b%c%u"       # 変更とリポジトリ情報を表示
 zstyle ':vcs_info:git:*' actionformats "%b|%a " # コンフリクト情報を表示
-zstyle ':vcs_info:git:*' stagedstr "*"          # コミットしていない
-zstyle ':vcs_info:git:*' unstagedstr "+"        # addしていない
+zstyle ':vcs_info:git:*' stagedstr " ✨"         # コミットしていない
+zstyle ':vcs_info:git:*' unstagedstr " 🫧"       # addしていない
+zstyle ':vcs_info:git:*' okstr " 🎊"             # 問題なし
 set_vcs_info() {
   psvar=()
   LANG=ja_JP.UTF-8 vcs_info
-  [ -n "$vcs_info_msg_0_" ] && psvar[1]=" $vcs_info_msg_0_$(git_info_push)$(git_info_stash)"
+  [ -n "$vcs_info_msg_0_" ] && psvar[1]="$vcs_info_msg_0_ $(git_info_push)$(git_info_stash)"
 }
 
 add-zsh-hook precmd set_vcs_info
 
 # 色の設定とプロンプトの設定
-git_color="magenta"
-prompt_color="green"
-path_color="yellow"
-host_color="blue"
+c_normal="%{%F{white}%}"
+c_git="%{%F{magenta}%}"
+c_path="%{%F{yellow}%}"
+c_host="%{%F{blue}%}"
+c_prompt="%{%F{green}%}"
 
 [[ ${UID} -eq 0 ]] && prompt_color="red"
 
-PROMPT="%{%F{${host_color}}%}%n@%m%{%F{white}%}%{%F{${path_color}}%}:%~%1(v|%F{${git_color}}%1v|)
-%{%F{${prompt_color}}%}%#%{%F{white}%} "                                                                             # 通常入力
-PROMPT2="%{%F{${prompt_color}}%}%_ >%{%F{white}%} "                                                                  # 複数行入力（for, while）
-SPROMPT="zsh: correct '%{%F{${prompt_color}}%}%R%{%F{white}%}' to '%{%F{${prompt_color}}%}%r%{%F{white}%}' [nyae]? " # 入力ミス時
+PROMPT="$c_host%n@%m $c_path%~ $c_git%1(v|%1v|)
+$c_prompt⌘ $c_nomal "                                                            # 通常入力
+PROMPT2="$c_prompt%_ >$c_nomal "                                                 # 複数行入力（for, while）
+SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_nomal ' [nyae]? " # 入力ミス時
 
 # タイトルバーの設定
 [[ "${TERM}" == xterm* ]] && precmd() { echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"; }
