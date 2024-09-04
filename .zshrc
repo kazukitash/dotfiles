@@ -50,7 +50,6 @@ zstyle ':vcs_info:git:*' formats "%b%c%u"       # 変更とリポジトリ情報
 zstyle ':vcs_info:git:*' actionformats "%b|%a " # コンフリクト情報を表示
 zstyle ':vcs_info:git:*' stagedstr " ✨"         # コミットしていない
 zstyle ':vcs_info:git:*' unstagedstr " 🫧"       # addしていない
-zstyle ':vcs_info:git:*' okstr " 🎊"             # 問題なし
 set_vcs_info() {
   psvar=()
   LANG=ja_JP.UTF-8 vcs_info
