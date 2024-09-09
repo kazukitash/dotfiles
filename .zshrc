@@ -113,7 +113,7 @@ c_runtime="%{%F{cyan}%}"
 [[ ${UID} -eq 0 ]] && prompt_color="red"
 
 PROMPT="$c_host%n@%m $c_path%~ $c_runtime%2(v|%2v|)$c_git%1(v|%1v|)
-$c_prompt⌘ $c_nomal "                                                            # 通常入力
+$c_prompt%#$c_nomal "                                                            # 通常入力
 PROMPT2="$c_prompt%_ >$c_nomal "                                                 # 複数行入力（for, while）
 SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_nomal ' [nyae]? " # 入力ミス時
 
@@ -125,18 +125,14 @@ function add_line {
   fi
 }
 
-precmd() {
-  add_line
-}
-
 # タイトルバーの設定
 [[ "${TERM}" == xterm* ]] && precmd() {
   echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-  add_line
 }
 
 add-zsh-hook precmd set_vcs_info
 add-zsh-hook precmd set_ver_info
+add-zsh-hook precmd add_line
 
 # 履歴から補完
 autoload -Uz history-search-end
