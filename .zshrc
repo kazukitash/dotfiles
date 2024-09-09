@@ -173,4 +173,9 @@ setopt auto_param_slash   # ディレクトリ名の補完で末尾の / を自�
 setopt noautoremoveslash  # パス末尾の / を勝手に取らないようにする
 setopt always_last_prompt # カーソル位置は保持したままファイル名一覧を順次その場で表示
 
+# もしnpmがインストールされていればnpmの補完を有効にする
+if command -v npm >/dev/null 2>&1; then
+  source <(npm completion)
+fi
+
 export EDITOR="code"
