@@ -108,7 +108,7 @@ source "$HOME/.rye/env"
 
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
-alias ga="git add"
+alias ga="git add ."
 alias gs="git stash -u"
 alias gsp="git stash pop"
 alias gcm="git commit -m"
@@ -121,6 +121,8 @@ alias gpr="git stash && git pull --rebase origin main && git stash pop"
 alias l="ls -lahp"
 alias ls="ls -Gp"
 alias dcd="docker compose down"
+alias dpa="docker system prune -a && docker volume prune && docker network prune"
+alias drma="docker compose down --rmi all --volumes --remove-orphans"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
 fi
