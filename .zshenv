@@ -95,7 +95,7 @@ if isArch macOS; then
 fi
 
 # GCPの設定
-export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/legacy_credentials/kazuki.takahashi@legalscape.co.jp/adc.json"
+export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
 # Google Cloud SDK
 gcspath="/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 if [ -f gcspath ]; then
