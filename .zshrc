@@ -110,7 +110,7 @@ c_host="%{%F{blue}%}"
 c_prompt="%{%F{green}%}"
 c_runtime="%{%F{cyan}%}"
 
-[[ ${UID} -eq 0 ]] && prompt_color="red"
+[[ ${UID} -eq 0 ]] && c_prompt="%{%F{red}%}"
 
 PROMPT="$c_host%n@%m $c_path%~ $c_runtime%2(v|%2v|)$c_git%1(v|%1v|)
 $c_prompt%#$c_nomal "                                                            # 通常入力
