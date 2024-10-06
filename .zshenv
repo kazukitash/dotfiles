@@ -121,8 +121,9 @@ alias gpr="git stash && git pull --rebase origin main && git stash pop"
 alias l="ls -lahp"
 alias ls="ls -Gp"
 alias dcd="docker compose down"
-alias dpa="docker system prune -a && docker volume prune && docker network prune"
+alias dspa="docker system prune -a && docker volume prune && docker network prune"
 alias drma="docker compose down --rmi all --volumes --remove-orphans"
+alias pn="pnpm"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
 fi
