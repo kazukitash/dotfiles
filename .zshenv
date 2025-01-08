@@ -103,6 +103,9 @@ if [ -f gcspath ]; then
   source "${gcspath}/completion.zsh.inc"
 fi
 
+# ryeの設定
+source "$HOME/.rye/env"
+
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 alias ga="git add ."
