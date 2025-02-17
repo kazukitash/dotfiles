@@ -97,6 +97,8 @@ fi
 
 # GCPの設定
 export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.config/gcloud/application_default_credentials.json"
+export ADMINSDK_PROD="$HOME/.config/firebase/adminsdk_prod.json"
+export ADMINSDK_DEV="$HOME/.config/firebase/adminsdk_dev.json"
 # Google Cloud SDK
 gcspath="/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 if [ -f gcspath ]; then
