@@ -107,6 +107,7 @@ fi
 source "$HOME/.rye/env"
 
 # uvの設定
+autoload -Uz compinit && compinit # (eval):4373: command not found: compdef の対策
 eval "$(uv generate-shell-completion zsh)"
 
 # エイリアスの設定
