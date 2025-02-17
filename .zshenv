@@ -113,6 +113,10 @@ source "$HOME/.rye/env"
 autoload -Uz compinit && compinit # (eval):4373: command not found: compdef の対策
 eval "$(uv generate-shell-completion zsh)"
 
+# kibanaの設定
+export KBN_PATH_CONF="$HOME/.config/kibana"
+# brew services start elastic/tap/kibana-full で起動できる
+
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 alias ga="git add ."
