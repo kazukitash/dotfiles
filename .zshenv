@@ -132,8 +132,6 @@ alias gpr="git stash && git pull --rebase origin main && git stash pop"
 alias l="ls -lahp"
 alias ls="ls -Gp"
 alias dcd="docker compose down"
-alias dspa="docker system prune -a && docker volume prune && docker network prune"
-alias drma="docker compose down --rmi all --volumes --remove-orphans"
 alias pn="pnpm"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
@@ -141,3 +139,22 @@ fi
 if isArch WSL; then
   alias open=/mnt/c/Windows/explorer.exe
 fi
+
+# dcln (Docker CLeaN)
+# 1) docker compose down --rmi all --volumes --remove-orphans
+#    - docker compose で起動中のコンテナを停止＆削除
+#    - 使用イメージやボリューム、オーファンコンテナも削除
+# 2) docker system prune -a -f
+#    - 未使用のコンテナやネットワーク、イメージを一括削除
+#    - -a: 参照されていないイメージも削除
+#    - -f: 確認プロンプトをスキップ
+# 3) docker volume prune -f
+#    - 未使用のボリュームを削除
+# 4) docker network prune -f
+#    - 未使用のネットワークを削除
+alias dcln="\
+  docker compose down --rmi all --volumes --remove-orphans && \
+  docker system prune -a -f && \
+  docker volume prune -f && \
+  docker network prune -f \
+"
