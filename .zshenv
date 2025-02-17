@@ -106,6 +106,9 @@ fi
 # ryeの設定
 source "$HOME/.rye/env"
 
+# uvの設定
+eval "$(uv generate-shell-completion zsh)"
+
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 alias ga="git add ."
