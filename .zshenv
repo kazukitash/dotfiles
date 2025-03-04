@@ -145,16 +145,19 @@ fi
 #    - docker compose で起動中のコンテナを停止＆削除
 #    - 使用イメージやボリューム、オーファンコンテナも削除
 # 2) docker system prune -a -f
-#    - 未使用のコンテナやネットワーク、イメージを一括削除
+#    - 未使用のコンテナやネットワーク、イメージ、ボリュームを一括削除
 #    - -a: 参照されていないイメージも削除
 #    - -f: 確認プロンプトをスキップ
-# 3) docker volume prune -f
-#    - 未使用のボリュームを削除
 # 4) docker network prune -f
 #    - 未使用のネットワークを削除
 alias dcln="\
   docker compose down --rmi all --volumes --remove-orphans && \
-  docker system prune -a -f && \
-  docker volume prune -f && \
+  docker system prune -a -f --volume && \
+  docker network prune -f \
+"
+alias dclna="\
+  docker kill \$(docker ps -q) && \
+  docker rm \$(docker ps -aq) && \
+  docker system prune -a -f --volumes && \
   docker network prune -f \
 "
