@@ -102,6 +102,7 @@ set_ver_info() {
 
   psvar[2]="$ver_str"
 }
+
 # 色の設定とプロンプトの設定
 c_normal="%{%F{white}%}"
 c_git="%{%F{magenta}%}"
@@ -109,11 +110,13 @@ c_path="%{%F{yellow}%}"
 c_host="%{%F{blue}%}"
 c_prompt="%{%F{green}%}"
 c_runtime="%{%F{cyan}%}"
+c_time="%{%F{white}%}"
 
 [[ ${UID} -eq 0 ]] && c_prompt="%{%F{red}%}"
 
 PROMPT="$c_host%n@%m $c_path%~ $c_runtime%2(v|%2v|)$c_git%1(v|%1v|)
 $c_prompt%#$c_nomal "                                                            # 通常入力
+RPROMPT="$c_time⏱ %D{%Y/%m/%d %H:%M:%S}"                                         # 右側に時刻表示を修正
 PROMPT2="$c_prompt%_ >$c_nomal "                                                 # 複数行入力（for, while）
 SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_nomal ' [nyae]? " # 入力ミス時
 
@@ -183,7 +186,7 @@ export EDITOR="code"
 # pnpm
 export PNPM_HOME="/Users/kazukitash/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
