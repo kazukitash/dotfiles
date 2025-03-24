@@ -103,6 +103,28 @@ set_ver_info() {
   psvar[2]="$ver_str"
 }
 
+# 時間に応じて時計の絵文字を返す関数 - シンプルに直接マッピング
+get_clock_emoji() {
+  local hour=$(date +%-I) # 12時間制 (1-12)
+  local minute=$(date +%-M)
+
+  # 時計の絵文字をマッピング
+  case $hour in
+  1) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕜" || echo "🕐" ;;
+  2) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕝" || echo "🕑" ;;
+  3) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕞" || echo "🕒" ;;
+  4) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕟" || echo "🕓" ;;
+  5) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕠" || echo "🕔" ;;
+  6) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕡" || echo "🕕" ;;
+  7) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕢" || echo "🕖" ;;
+  8) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕣" || echo "🕗" ;;
+  9) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕤" || echo "🕘" ;;
+  10) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕥" || echo "🕙" ;;
+  11) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕦" || echo "🕚" ;;
+  12) [[ $minute -ge 15 && $minute -lt 45 ]] && echo "🕧" || echo "🕛" ;;
+  esac
+}
+
 # 色の設定とプロンプトの設定
 c_normal="%{%F{white}%}"
 c_git="%{%F{magenta}%}"
@@ -115,10 +137,10 @@ c_time="%{%F{white}%}"
 [[ ${UID} -eq 0 ]] && c_prompt="%{%F{red}%}"
 
 PROMPT="$c_host%n@%m $c_path%~ $c_runtime%2(v|%2v|)$c_git%1(v|%1v|)
-$c_prompt%#$c_nomal "                                                            # 通常入力
-RPROMPT="$c_time⏱ %D{%Y/%m/%d %H:%M:%S}"                                         # 右側に時刻表示を修正
-PROMPT2="$c_prompt%_ >$c_nomal "                                                 # 複数行入力（for, while）
-SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_nomal ' [nyae]? " # 入力ミス時
+$c_prompt❯$c_normal "                                                             # 通常入力
+RPROMPT="$c_time%D{%y.%m.%d %H:%M:%S} $(get_clock_emoji)"                         # 右側に時計の絵文字が時間によって変わる表示
+PROMPT2="$c_prompt%_ >$c_normal "                                                 # 複数行入力（for, while）
+SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_normal ' [nyae]? " # 入力ミス時
 
 function add_line {
   if [[ -z $PS1_NEWLINE_LOGIN ]]; then
