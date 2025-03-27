@@ -141,23 +141,20 @@ if isArch WSL; then
 fi
 
 # dcln (Docker CLeaN)
-# 1) docker compose down --rmi all --volumes --remove-orphans
-#    - docker compose で起動中のコンテナを停止＆削除
-#    - 使用イメージやボリューム、オーファンコンテナも削除
-# 2) docker system prune -a -f
-#    - 未使用のコンテナやネットワーク、イメージ、ボリュームを一括削除
-#    - -a: 参照されていないイメージも削除
+# 1) docker ps -q | xargs -r docker kill
+#    - 実行中のコンテナをすべて停止
+# 2) docker ps -aq | xargs -r docker rm
+#    - 全コンテナを削除（停止中のものも含む）
+# 3) docker system prune -a -f --volumes
+#    - 未使用のコンテナ、ネットワーク、イメージ、ビルドキャッシュ、ボリュームを一括削除
+#    - -a: 使用していないイメージも削除
 #    - -f: 確認プロンプトをスキップ
+#    - --volumes: 未使用のボリュームも削除
 # 4) docker network prune -f
 #    - 未使用のネットワークを削除
 alias dcln="\
-  docker compose down --rmi all --volumes --remove-orphans && \
-  docker system prune -a -f --volume && \
-  docker network prune -f \
-"
-alias dclna="\
-  docker kill \$(docker ps -q) && \
-  docker rm \$(docker ps -aq) && \
+  docker ps -q | xargs -r docker kill && \
+  docker ps -aq | xargs -r docker rm && \
   docker system prune -a -f --volumes && \
   docker network prune -f \
 "
