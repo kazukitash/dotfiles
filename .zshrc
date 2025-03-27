@@ -125,6 +125,11 @@ get_clock_emoji() {
   esac
 }
 
+# RPROMPTを動的に設定する関数
+set_rprompt() {
+  RPROMPT="$c_time%D{%y.%m.%d %H:%M:%S} $(get_clock_emoji)"
+}
+
 # 色の設定とプロンプトの設定
 c_normal="%{%F{white}%}"
 c_git="%{%F{magenta}%}"
@@ -138,7 +143,6 @@ c_time="%{%F{white}%}"
 
 PROMPT="$c_host%n@%m $c_path%~ $c_runtime%2(v|%2v|)$c_git%1(v|%1v|)
 $c_prompt❯$c_normal "                                                             # 通常入力
-RPROMPT="$c_time%D{%y.%m.%d %H:%M:%S} $(get_clock_emoji)"                         # 右側に時計の絵文字が時間によって変わる表示
 PROMPT2="$c_prompt%_ >$c_normal "                                                 # 複数行入力（for, while）
 SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_normal ' [nyae]? " # 入力ミス時
 
@@ -158,6 +162,7 @@ function add_line {
 add-zsh-hook precmd set_vcs_info
 add-zsh-hook precmd set_ver_info
 add-zsh-hook precmd add_line
+add-zsh-hook precmd set_rprompt
 
 # 履歴から補完
 autoload -Uz history-search-end
