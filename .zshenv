@@ -139,6 +139,8 @@ fi
 if isArch WSL; then
   alias open=/mnt/c/Windows/explorer.exe
 fi
+alias iris-check="pn -F iris fix && pn -F iris check"
+alias wandh-check="poetry run format && poetry run lint && poetry run typecheck"
 
 # dcln (Docker CLeaN)
 # 1) docker ps -q | xargs -r docker kill
