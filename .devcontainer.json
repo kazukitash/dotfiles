@@ -3,7 +3,11 @@
   "features": {},
   "customizations": {
     "vscode": {
-      "extensions": ["GitHub.copilot", "GitHub.copilot-chat"]
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "biomejs.biome"
+      ]
     }
   }
 }
