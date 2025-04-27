@@ -60,32 +60,22 @@ elif isArch IntelLinux; then
   export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 fi
 
-if isArch WSL; then
-  PATH=/mnt/c/Users/kazuki/AppData/Local/Programs/Microsoft\ VS\ Code/bin:$PATH
-  LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH
-  PATH=/usr/local/cuda/bin:$PATH
-  export TF_CPP_MIN_LOG_LEVEL=3
-fi
-
 # 個人用のPATH
 export PATH=~/.local/bin:$PATH
 
 # homebrewの設定
 if isArch AppleSilicon; then
+  # macOS
   eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-  eval "$(/usr/local/bin/brew shellenv)"
+  # linux
+  eval "$(/home/.linuxbrew/bin/brew shellenv)"
 fi
 
 # anyenvの設定
-if isArch IntelMac; then
-  export ANYENV_ROOT=~/.anyenv-i386
-elif isArch AppleSilicon || isArch IntelLinux; then
-  export ANYENV_ROOT=~/.anyenv
-  export PATH=~/.anyenv/envs/pyenv/shims:$PATH
-fi
-export PATH=$ANYENV_ROOT/bin:$PATH
-if type anyenv >/dev/null 2>&1; then
+export ANYENV_ROOT=~/.anyenv
+export PATH=$ANYENV_ROOT/bin:$ANYENV_ROOT/envs/pyenv/shims:$PATH
+if has anyenv; then
   eval "$(anyenv init -)"
 fi
 
@@ -107,15 +97,21 @@ if [ -f gcspath ]; then
 fi
 
 # ryeの設定
-source "$HOME/.rye/env"
+if has rye; then
+  source "$HOME/.rye/env"
+fi
 
 # uvの設定
-autoload -Uz compinit && compinit # (eval):4373: command not found: compdef の対策
-eval "$(uv generate-shell-completion zsh)"
+if has uv; then
+  autoload -Uz compinit && compinit # (eval):4373: command not found: compdef の対策
+  eval "$(uv generate-shell-completion zsh)"
+fi
 
 # kibanaの設定
-export KBN_PATH_CONF="$HOME/.config/kibana"
-# brew services start elastic/tap/kibana-full で起動できる
+if has kibana; then
+  export KBN_PATH_CONF="$HOME/.config/kibana"
+  # brew services start elastic/tap/kibana-full で起動できる
+fi
 
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
@@ -135,9 +131,6 @@ alias dcd="docker compose down"
 alias pn="pnpm"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
-fi
-if isArch WSL; then
-  alias open=/mnt/c/Windows/explorer.exe
 fi
 alias iris-check="pn -F iris fix && pn -F iris check"
 alias wandh-check="poetry run openapi && poetry run format && poetry run lint && poetry run typecheck"
