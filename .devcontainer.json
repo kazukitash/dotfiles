@@ -1,0 +1,9 @@
+{
+  "name": "kazukitash/dotfiles",
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": ["GitHub.copilot", "GitHub.copilot-chat"]
+    }
+  }
+}
