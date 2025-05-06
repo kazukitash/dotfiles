@@ -164,19 +164,26 @@ add-zsh-hook precmd set_ver_info
 add-zsh-hook precmd add_line
 add-zsh-hook precmd set_rprompt
 
+fzf-history-widget() {
+  local selected
+  # fc -l 1 で全履歴を取得し、fzf --tac で逆順に
+  selected=$(fc -l 1 | fzf --tac --height 40% --reverse --query="$LBUFFER")
+  if [[ -n $selected ]]; then
+    BUFFER=${selected#* } # 行番号とスペースを削る
+    CURSOR=${#BUFFER}     # カーソルを行末へ
+  fi
+  zle reset-prompt
+}
+
 # 履歴から補完
-autoload -Uz history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
+zle -N fzf-history-widget
 
 # キーバインド man zshzle https://news.mynavi.jp/techplus/article/techp5581/
 # showkey -a で確認できる
 # キーバインド設定
 bindkey -e
 bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
-bindkey "^R" history-incremental-pattern-search-backward # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
+bindkey '^R' fzf-history-widget
 if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
