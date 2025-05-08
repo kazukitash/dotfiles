@@ -169,8 +169,8 @@ fzf-history-widget() {
   # fc -l 1 で全履歴を取得し、fzf --tac で逆順に
   selected=$(fc -l 1 | fzf --tac --height 40% --reverse --query="$LBUFFER")
   if [[ -n $selected ]]; then
-    BUFFER=${selected#* } # 行番号とスペースを削る
-    CURSOR=${#BUFFER}     # カーソルを行末へ
+    BUFFER=${selected##*  } # 行番号とスペースを削る
+    CURSOR=${#BUFFER}       # カーソルを行末へ
   fi
   zle reset-prompt
 }
