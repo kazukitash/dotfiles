@@ -146,14 +146,6 @@ $c_prompt❯$c_normal "                                                         
 PROMPT2="$c_prompt%_ >$c_normal "                                                 # 複数行入力（for, while）
 SPROMPT="zsh: correct '$c_prompt%R$c_normal' to '$c_prompt%r$c_normal ' [nyae]? " # 入力ミス時
 
-function add_line {
-  if [[ -z $PS1_NEWLINE_LOGIN ]]; then
-    PS1_NEWLINE_LOGIN=true
-  else
-    printf '\n'
-  fi
-}
-
 # タイトルバーの設定
 [[ "${TERM}" == xterm* ]] && precmd() {
   echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
@@ -161,7 +153,6 @@ function add_line {
 
 add-zsh-hook precmd set_vcs_info
 add-zsh-hook precmd set_ver_info
-add-zsh-hook precmd add_line
 add-zsh-hook precmd set_rprompt
 
 # fzfで履歴を検索する関数
