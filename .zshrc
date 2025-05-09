@@ -38,12 +38,14 @@ zstyle ':vcs_info:git:*' stagedstr " ✨"         # コミットしていない
 zstyle ':vcs_info:git:*' unstagedstr " 🫧"       # addしていない
 
 git_info_push() {
-  if git remote >/dev/null 2>&1; then
-    local head="$(git rev-parse HEAD)"
-    for remote in $(git rev-parse --remotes); do
-      if [ "$head" = "$remote" ]; then return 0; fi
-    done
-    echo "📡"
+  if git rev-parse --git-dir >/dev/null 2>&1; then
+    if git rev-parse HEAD >/dev/null 2>&1; then
+      local head="$(git rev-parse HEAD)"
+      for remote in $(git rev-parse --remotes); do
+        if [ "$head" = "$remote" ]; then return 0; fi
+      done
+      echo "📡"
+    fi
   fi
 }
 
@@ -220,9 +222,9 @@ zle -N zi
 bindkey -e
 bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
 bindkey '^R' fzf-history-widget
-bindkey "^B" fzf-git-branch-widget
+bindkey "^G" fzf-git-branch-widget
 bindkey '^T' fzf-cd-widget
-bindkey '^F' zi
+bindkey '^S' zi
 if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
