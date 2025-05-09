@@ -164,19 +164,64 @@ add-zsh-hook precmd set_ver_info
 add-zsh-hook precmd add_line
 add-zsh-hook precmd set_rprompt
 
+# fzfで履歴を検索する関数
 fzf-history-widget() {
   local selected
   # fc -l 1 で全履歴を取得し、fzf --tac で逆順に
-  selected=$(fc -l 1 | fzf --tac --height 40% --reverse --query="$LBUFFER")
+  selected=$(
+    fc -l 1 |
+      fzf --tac --height 40% --reverse --query="$LBUFFER"
+  )
   if [[ -n $selected ]]; then
     BUFFER=${selected##*  } # 行番号とスペースを削る
     CURSOR=${#BUFFER}       # カーソルを行末へ
   fi
+  for precmd_fn in $precmd_functions; do $precmd_fn; done
   zle reset-prompt
 }
 
-# 履歴から補完
+# fzfでgitブランチを選択する関数
+fzf-git-branch-widget() {
+  local selected
+  # git for-each-ref でブランチを取得し、fzfで選択
+  selected=$(
+    git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads |
+      perl -pne 's{^refs/heads/}{}' |
+      fzf --height 40% --reverse --query "$LBUFFER"
+  )
+  if [ -n $selected ]; then
+    BUFFER="git checkout $selected"
+    zle accept-line
+  fi
+  for precmd_fn in $precmd_functions; do $precmd_fn; done
+  zle reset-prompt
+}
+
+# カレントディレクトリ以下のディレクトリを fzf で絞り込み、選択した先へ cd
+fzf-cd-widget() {
+  local selected
+  # ① 隠しディレクトリは除外しつつ再帰検索
+  # ② fzf でインタラクティブに絞り込み（初期クエリには今のバッファ内容を）
+  selected=$(
+    find . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print 2>/dev/null |
+      # 浅い階層を先に表示する
+      awk -F/ '{ print (NF-1) "\t" $0 }' |
+      sort -t$'\t' -k1,1n -k2,2 |
+      cut -f2 |
+      fzf --height 40% --reverse --query="$LBUFFER"
+  )
+  if [[ -n $selected ]]; then
+    BUFFER="z $selected"
+    zle accept-line
+  fi
+  for precmd_fn in $precmd_functions; do $precmd_fn; done
+  zle reset-prompt
+}
+
 zle -N fzf-history-widget
+zle -N fzf-git-branch-widget
+zle -N fzf-cd-widget
+zle -N zi
 
 # キーバインド man zshzle https://news.mynavi.jp/techplus/article/techp5581/
 # showkey -a で確認できる
@@ -184,6 +229,9 @@ zle -N fzf-history-widget
 bindkey -e
 bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("\e[Z"でも動作する)
 bindkey '^R' fzf-history-widget
+bindkey "^B" fzf-git-branch-widget
+bindkey '^T' fzf-cd-widget
+bindkey '^F' zi
 if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key

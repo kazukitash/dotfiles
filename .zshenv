@@ -113,6 +113,11 @@ if has kibana; then
   # brew services start elastic/tap/kibana-full で起動できる
 fi
 
+if has zoxide; then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+fi
+
 # エイリアスの設定
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 alias ga="git add ."
