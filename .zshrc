@@ -195,9 +195,9 @@ fzf-cd-widget() {
   local selected
   # ① 隠しディレクトリは除外しつつ再帰検索
   # ② fzf でインタラクティブに絞り込み（初期クエリには今のバッファ内容を）
+  # 浅い階層を先に表示する
   selected=$(
     find . -type d \( -name .git -o -name node_modules \) -prune -o -type d -print 2>/dev/null |
-      # 浅い階層を先に表示する
       awk -F/ '{ print (NF-1) "\t" $0 }' |
       sort -t$'\t' -k1,1n -k2,2 |
       cut -f2 |
