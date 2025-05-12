@@ -224,7 +224,7 @@ bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("
 bindkey '^R' fzf-history-widget
 bindkey "^G" fzf-git-branch-widget
 bindkey '^T' fzf-cd-widget
-bindkey '^S' zi
+bindkey '^Z' zi
 if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
