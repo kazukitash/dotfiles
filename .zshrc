@@ -173,17 +173,28 @@ fzf-history-widget() {
   zle reset-prompt
 }
 
-# fzfでgitブランチを選択する関数
+# fzfでgitブランチ（ローカルとリモート）を選択する関数
 fzf-git-branch-widget() {
   local selected
-  # git for-each-ref でブランチを取得し、fzfで選択
+  # git for-each-ref でローカルとリモートのブランチを取得し、fzfで選択
+  # ローカルブランチは緑色、リモートブランチは青色で表示
   selected=$(
-    git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads |
-      perl -pne 's{^refs/heads/}{}' |
-      fzf --height 40% --reverse --query "$LBUFFER"
+    (
+      git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads |
+        perl -pne 's{^refs/heads/}{}' |
+        awk '{print "\033[32m" $0 "\033[0m"}'
+
+      git for-each-ref --format='%(refname)' --sort=-committerdate refs/remotes |
+        perl -pne 's{^refs/remotes/([^/]+)/(.+)}{$2 (\1)}' |
+        grep -v HEAD |
+        awk '{print "\033[36m" $0 "\033[0m"}'
+    ) |
+      fzf --height 40% --reverse --ansi --query "$LBUFFER"
   )
-  if [ -n $selected ]; then
-    BUFFER="git checkout $selected"
+  if [ -n "$selected" ]; then
+    # リモートブランチの場合、括弧内のリモート名を取り除く
+    local branch=$(echo "$selected" | sed -E 's/ \([^)]+\)$//')
+    BUFFER="git checkout $branch"
     zle accept-line
   fi
   for precmd_fn in $precmd_functions; do $precmd_fn; done
