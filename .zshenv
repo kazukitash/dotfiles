@@ -97,6 +97,7 @@ if [ -f gcspath ]; then
 fi
 
 # ryeの設定
+export PATH="$HOME/.rye/shims:$PATH"
 if has rye; then
   source "$HOME/.rye/env"
 fi
