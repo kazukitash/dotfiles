@@ -166,8 +166,8 @@ fzf-history-widget() {
       fzf --tac --height 40% --reverse --query="$LBUFFER"
   )
   if [[ -n $selected ]]; then
-    BUFFER=${selected##*  } # 行番号とスペースを削る
-    CURSOR=${#BUFFER}       # カーソルを行末へ
+    BUFFER=${selected##*[[:space:]]} # 行番号（*付きを含む）とスペースを削る
+    CURSOR=${#BUFFER}                # カーソルを行末へ
   fi
   for precmd_fn in $precmd_functions; do $precmd_fn; done
   zle reset-prompt
