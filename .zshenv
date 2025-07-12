@@ -72,6 +72,9 @@ else
   eval "$(/home/.linuxbrew/bin/brew shellenv)"
 fi
 
+# Rubyの設定
+export GEMRC="$HOME/.config/gem/config"
+
 # anyenvの設定
 export ANYENV_ROOT=~/.anyenv
 export PATH=$ANYENV_ROOT/bin:$ANYENV_ROOT/envs/pyenv/shims:$PATH
