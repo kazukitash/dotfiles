@@ -28,27 +28,33 @@ isArch() {
   fi
 }
 
+# コマンドの存在チェック
 has() {
   type "$1" >/dev/null 2>&1
   return $?
 }
 
+# ヘッダー出力
 e_header() {
   printf "\n\e[33;4m%s\e[0m \e[33;1m%s\e[0m\n" "$1" "$2"
 }
 
+# ログ出力
 e_log() {
   printf "\e[37;4m%s\e[0m \e[37m%s\e[0m\n" "$1" "$2"
 }
 
+# 成功の出力
 e_done() {
   printf "\e[32;4m%s\e[0m \e[32m%s - ✔  OK\e[0m\n" "$1" "$2"
 }
 
+# エラーの出力
 e_error() {
   printf "\e[31;4m%s\e[0m \e[31m%s - ✖  Failed\e[0m\n" "$1" "$2" 1>&2
 }
 
+# 結果のチェック
 check_result() {
   if [ $1 -eq 0 ]; then
     e_done "$2" "$3 completed"
@@ -58,13 +64,16 @@ check_result() {
   fi
 }
 
+# XCode CLI toolsのインストール
 install_xcodecli_if_macos() {
   if isArch macOS; then
     e_header "XCode CLI tools" "Install"
 
+    # XCode CLI toolsの存在チェック
     e_log "XCode CLI tools" "Checking existance..."
     xcode-select -p &>/dev/null
     if [ $? -ne 0 ]; then
+      # XCode CLI toolsがインストールされていない場合、インストールを実行
       e_log "XCode CLI tools" "Installing..."
       touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
       PROD=$(softwareupdate -l |
@@ -79,6 +88,7 @@ install_xcodecli_if_macos() {
   fi
 }
 
+# Homebrewのインストール
 install_homebrew() {
   e_header "Homebrew" "Install"
 
@@ -86,38 +96,14 @@ install_homebrew() {
   if has brew; then
     e_done "Homebrew" "Already installed"
   else
-    if isArch ArmLinux; then
-      e_log "Homebrew" "Linux arm architecture is not supported. use apt-get instead"
-      sudo apt-get update
-      check_result $? "apt-get" "Update"
-      sudo apt-get install -y build-essential curl file
-      check_result $? "apt-get" "Install essential packages"
-    else
-      e_log "Homebrew" "Installing..."
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      check_result $? "Homebrew" "Install"
-      if isArch Linux; then
-        export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-      elif isArch AppleSilicon; then
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      fi
+    e_log "Homebrew" "Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    check_result $? "Homebrew" "Install"
+    if isArch Linux; then
+      export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+    elif isArch AppleSilicon; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
-  fi
-}
-
-install_make() {
-  e_header "Make" "Install"
-
-  if has make; then
-    e_done "Make" "Already installed"
-  else
-    e_log "Make" "Installing..."
-    if isArch ArmLinux; then
-      sudo apt-get install -y make
-    else
-      brew install make
-    fi
-    check_result $? "Make" "Install"
   fi
 }
 
@@ -128,11 +114,7 @@ install_git() {
     e_done "Git" "Already installed"
   else
     e_log "Git" "Installing..."
-    if isArch ArmLinux; then
-      sudo apt-get install -y git
-    else
-      brew install git
-    fi
+    brew install git
     check_result $? "Git" "Install"
   fi
 }
@@ -144,11 +126,7 @@ install_vim() {
     e_done "Vim" "Already installed"
   else
     e_log "Vim" "Installing..."
-    if isArch ArmLinux; then
-      sudo apt-get install -y vim
-    else
-      brew install vim
-    fi
+    brew install vim
     check_result $? "Vim" "Install"
   fi
 }
@@ -191,27 +169,24 @@ deploy_dotfiles() {
   cd "$DOTPATH"
 
   e_log "Dotfiles" "Updating..."
-  make update
+  ./scripts/update.sh
   check_result $? "Dotfiles" "Update"
 
   e_log "Dotfiles" "Deploying..."
-  make deploy
+  ./scripts/deploy.sh
   check_result $? "Dotfiles" "Deploy"
 }
 
 install_formulas() {
   e_header "Homebrew" "Install formulas"
-
-  if ! ([ "$(uname)" = "Linux" ] && [ "$(arch)" = "aarch64" ]); then
-    brew bundle --global
-    check_result $? "Homebrew" "Install formulas"
-  fi
+  brew bundle --global
+  check_result $? "Homebrew" "Install formulas"
 }
 
 setup_zsh_completion() {
   if isArch macOS; then
     chmod -R go-w /opt/homebrew/share
-  elif isArch IntelLinux; then
+  else
     chmod 755 /home/linuxbrew/.linuxbrew/share
   fi
 }
@@ -235,7 +210,6 @@ check_os
 echo "$dotfiles_logo"
 install_xcodecli_if_macos
 install_homebrew
-install_make
 install_git
 install_vim
 download_dotfiles

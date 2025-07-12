@@ -7,10 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ui_font_weight": 300.0,
+  "buffer_font_weight": 300.0,
+  "ui_font_features": {
+    "calt": 1
+  },
+  "buffer_font_features": {
+    "calt": 1
+  },
+  "buffer_font_family": "Rounded-L Mgen+ 1mn",
   "features": {
     "edit_prediction_provider": "copilot"
   },
-  "icon_theme": "Catppuccin Mocha",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
+  },
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
@@ -26,13 +39,27 @@
   "agent_font_size": 14,
   "ui_font_size": 14,
   "buffer_font_size": 12,
-  "ui_font_family": "Rounded-L Mgen+ 1mn",
+  "ui_font_family": "Rounded-L Mgen+ 2cp",
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Light",
     "dark": "Catppuccin Mocha (blue)"
   },
   "collaboration_panel": {
     "button": false
+  },
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+  "languages": {
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": ["--filename", "{buffer_path}", "--indent", "2"]
+        }
+      }
+    }
   }
 }
