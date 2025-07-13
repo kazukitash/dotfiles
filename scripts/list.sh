@@ -11,7 +11,7 @@ cd "$DOTPATH"
 CANDIDATES=($(find . -maxdepth 1 -name ".*" -not -name "." | sort))
 
 # 除外するファイル・ディレクトリ
-EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".devcontainer.json" ".Brewfile" "scripts")
+EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".devcontainer.json" "scripts")
 
 # 除外リストに含まれていないかチェックする関数
 is_excluded() {
