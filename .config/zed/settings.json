@@ -60,6 +60,9 @@
           "arguments": ["--filename", "{buffer_path}", "--indent", "2"]
         }
       }
+    },
+    "Markdown": {
+      "format_on_save": "on"
     }
   }
 }
