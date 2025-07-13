@@ -179,10 +179,6 @@ deploy_dotfiles() {
 
 install_formulas() {
   e_header "Homebrew" "Install formulas"
-
-  e_log "Dotfiles" "Changing directory..."
-  cd "$DOTPATH"
-
   brew bundle --global
   check_result $? "Homebrew" "Install formulas"
 }
