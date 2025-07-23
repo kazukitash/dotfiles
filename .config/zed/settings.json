@@ -7,6 +7,20 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    "mcp-server-github": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "github_personal_access_token": "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"
+      }
+    },
+    "mcp-server-linear": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+    }
+  },
   "ui_font_weight": 300.0,
   "buffer_font_weight": 300.0,
   "ui_font_features": {
@@ -62,6 +76,7 @@
       }
     },
     "Markdown": {
+      "enable_language_server": true,
       "format_on_save": "on"
     }
   }
