@@ -5,8 +5,7 @@
   ignorecase = false
   autocrlf = input
   quotepath = false
-  excludesfile = ~/.gitignore-global
-	editor = vim
+	editor = nvim
 [init]
   defaultBranch = main
 [pull]
