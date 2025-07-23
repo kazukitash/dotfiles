@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "auto_update": true,
   "context_servers": {
     "mcp-server-github": {
       "source": "extension",
@@ -35,7 +36,7 @@
   },
   "icon_theme": {
     "mode": "dark",
-    "light": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha"
   },
   "agent": {
@@ -56,7 +57,7 @@
   "ui_font_family": "Rounded-L Mgen+ 2cp",
   "theme": {
     "mode": "dark",
-    "light": "One Light",
+    "light": "Catppuccin Latte",
     "dark": "Catppuccin Espresso (Blur)"
   },
   "collaboration_panel": {
