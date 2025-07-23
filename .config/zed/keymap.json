@@ -1,0 +1,50 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    // cmd+enterで定義へジャンプ
+    "context": "Editor && !GitCommit > Editor",
+    "bindings": {
+      "cmd-enter ": "editor::GoToDefinition"
+    }
+  },
+  {
+    // alt+cmd+enterで型定義へジャンプ
+    "context": "Editor && !GitCommit > Editor",
+    "bindings": {
+      "alt-cmd-enter": "editor::GoToTypeDefinition"
+    }
+  },
+  {
+    // ctrl+fで選択中のエントリを展開
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-f": "project_panel::ExpandSelectedEntry"
+    }
+  },
+  {
+    // ctrl+bで選択中のエントリを折りたたむ
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-b": "project_panel::CollapseSelectedEntry"
+    }
+  },
+  {
+    // ctrl+aで行の先頭へ移動（インデントを無視する）
+    "context": "Editor",
+    "bindings": {
+      "ctrl-a": [
+        "editor::MoveToBeginningOfLine",
+        {
+          "stop_at_soft_wraps": false,
+          "stop_at_indent": false
+        }
+      ]
+    }
+  }
+]
