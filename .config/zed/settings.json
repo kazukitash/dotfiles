@@ -58,7 +58,7 @@
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Espresso (Blur)"
+    "dark": "Catppuccin Mocha (blue)"
   },
   "collaboration_panel": {
     "button": false
