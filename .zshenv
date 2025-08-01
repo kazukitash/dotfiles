@@ -136,7 +136,7 @@ alias grsh="git reset --soft HEAD^"
 alias gpr="git stash && git pull --rebase origin main && git stash pop"
 alias l="ls -lahp"
 alias ls="ls -Gp"
-alias dcd="docker compose down"
+alias dcd="docker compose down -v"
 alias pn="pnpm"
 if ! (has code) && has code-insiders; then
   alias code="code-insiders"
