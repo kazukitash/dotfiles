@@ -145,6 +145,7 @@ alias iris-check="pn -F iris fix && pn -F iris check"
 alias wandh-check="poetry run openapi && poetry run format && poetry run lint && poetry run typecheck"
 alias dev="WKLR_ES_PORT=9200 docker compose up -d nginx iris labs-wandh wklr-jobs wklr-es"
 alias dev-wklr="WKLR_ES_PORT=9200 docker compose up -d nginx wklr wklr-backend-api wklr-mysql wklr-es"
+alias zed="zed -a"
 
 # dcln (Docker CLeaN)
 # 1) docker ps -q | xargs -r docker kill
