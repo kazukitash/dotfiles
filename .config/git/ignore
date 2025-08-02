@@ -2,3 +2,4 @@
 *.code-workspace
 **/.claude/settings.local.json
 **/.serena
+agent-reports/
