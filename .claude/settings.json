@@ -1,4 +1,5 @@
 {
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(./scripts/list.sh:*)",
@@ -22,8 +23,7 @@
     ],
     "deny": []
   },
-  "includeCoAuthoredBy": false,
   "feedbackSurveyState": {
-    "lastShownTime": 1754099437767
+    "lastShownTime": 1754103869431
   }
 }
