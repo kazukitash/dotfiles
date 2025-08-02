@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/list.sh:*)",
+      "Bash(find:*)",
+      "Bash(git checkout:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "mcp__github-server__get_issue_comments",
+      "mcp__github-server__get_pull_request",
+      "mcp__github-server__get_pull_request_comments",
+      "mcp__github-server__get_pull_request_files",
+      "mcp__github-server__get_pull_request_reviews",
+      "mcp__github-server__list_pull_requests",
+      "mcp__serena__find_file",
+      "mcp__serena__find_symbol",
+      "mcp__serena__list_dir",
+      "mcp__serena__write_memory"
+    ],
+    "deny": []
+  },
+  "includeCoAuthoredBy": false,
+  "feedbackSurveyState": {
+    "lastShownTime": 1754099437767
+  }
+}
