@@ -63,3 +63,13 @@ brew bundle --global
 - Supports macOS (Intel and Apple Silicon)
 - Supports Linux (x86_64, ARM, and WSL)
 - Platform detection is handled by the `isArch()` function in `install.sh`
+
+## Git Commit Guidelines
+
+### Claude Settings File
+
+When committing changes, be aware that `.claude/settings.json` contains a `lastShownTime` field that automatically updates. To avoid committing this timestamp change:
+
+1. Review changes carefully before committing: `git diff .claude/settings.json`
+2. If only the `lastShownTime` has changed, skip committing this file
+3. If other important changes exist in the file, consider using `git add -p` to selectively stage changes, excluding the `lastShownTime` line
