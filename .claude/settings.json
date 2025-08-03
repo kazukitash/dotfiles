@@ -34,7 +34,12 @@
       "mcp__serena__find_file",
       "mcp__serena__find_symbol",
       "mcp__serena__list_dir",
-      "mcp__serena__write_memory"
+      "mcp__serena__write_memory",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:linear.app)",
+      "WebFetch(domain:notion.com)",
+      "WebFetch(domain:unity.com)",
+      "WebFetch(domain:zed.dev)"
     ],
     "deny": []
   },
