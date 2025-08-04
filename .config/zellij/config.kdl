@@ -1,0 +1,12 @@
+// zellij設定ファイル
+simplified_ui true
+pane_frames false
+
+keybinds {
+    normal {
+        // プレフィックスキーをCtrl+Cmd+Zに変更
+        bind "Ctrl+Cmd+z" { SwitchToMode "pane"; }
+        // 元のCtrl+Pを無効化
+        unbind "Ctrl p"
+    }
+}
