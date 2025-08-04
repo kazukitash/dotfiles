@@ -46,11 +46,12 @@
       "WebFetch(domain:notion.com)",
       "WebFetch(domain:unity.com)",
       "WebFetch(domain:www.notion.so)",
-      "WebFetch(domain:zed.dev)"
+      "WebFetch(domain:zed.dev)",
+      "mcp__notion__search"
     ],
     "deny": []
   },
   "feedbackSurveyState": {
-    "lastShownTime": 1754283265662
+    "lastShownTime": 1754304846111
   }
 }
