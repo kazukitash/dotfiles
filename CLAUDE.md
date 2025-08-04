@@ -47,6 +47,8 @@ brew bundle --global
 - The `scripts/list.sh` defines which files get deployed (excludes `.git`, `.DS_Store`, etc.)
 - Files in `.config/` are deployed recursively maintaining their directory structure
 - Existing files are backed up with timestamp before creating symlinks
+- **All dotfiles are symlinked to this repository**, so when editing any configuration file (`.zshrc`, `.config/`, `.claude/`, etc.), you should edit the actual files in `~/.dotfiles/` instead of the symlinked files in the home directory
+- Use `./scripts/list.sh` to see the complete list of files that are symlinked
 
 ### CI/CD
 
