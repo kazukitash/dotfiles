@@ -75,3 +75,7 @@ When committing changes, be aware that `.claude/settings.json` contains a `lastS
 1. Review changes carefully before committing: `git diff .claude/settings.json`
 2. If only the `lastShownTime` has changed, skip committing this file
 3. If other important changes exist in the file, consider using `git add -p` to selectively stage changes, excluding the `lastShownTime` line
+
+## Configuration File Handling
+
+When configuration file errors are reported (e.g., `~/.config/zellij/config.kdl`), always check the corresponding source file in this repository first (e.g., `.config/zellij/config.kdl`) since all dotfiles are symlinked from `~/.dotfiles/`. The actual files to edit are in this repository, not in the home directory symlinks.
