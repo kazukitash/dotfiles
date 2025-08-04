@@ -26,7 +26,7 @@
 	process = git-lfs filter-process
 	required = true
 [credential]
-	helper = osxkeychain
+	helper = store
 [alias]
 current-branch-name = ! git branch | grep -e '^\\* ' | sed -e 's/^\\* //g'
 force-pull = !git fetch && git reset --hard origin/$(git current-branch-name)
