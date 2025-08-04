@@ -200,7 +200,6 @@ fzf-cd-widget() {
 zle -N fzf-history-widget
 zle -N fzf-git-branch-widget
 zle -N fzf-cd-widget
-zle -N zi
 
 # キーバインド man zshzle https://news.mynavi.jp/techplus/article/techp5581/
 # showkey -a で確認できる
@@ -210,7 +209,6 @@ bindkey "^[[Z" reverse-menu-complete # Shift-Tabで補完候補を逆順する("
 bindkey '^R' fzf-history-widget
 bindkey "^G" fzf-git-branch-widget
 bindkey '^T' fzf-cd-widget
-bindkey '^Z' zi
 if isArch WSL; then
   bindkey "^[[H" beginning-of-line # Home key
   bindkey "^[[F" end-of-line       # End key
