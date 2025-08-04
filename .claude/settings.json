@@ -24,16 +24,20 @@
       "Bash(npm run build:*)",
       "Bash(pnpm run check:*)",
       "Bash(pnpm test:*)",
+      "Bash(npm run test:*)",
       "mcp__github-server__get_issue_comments",
       "mcp__github-server__get_pull_request",
       "mcp__github-server__get_pull_request_comments",
+      "mcp__github-server__get_pull_request_diff",
       "mcp__github-server__get_pull_request_files",
       "mcp__github-server__get_pull_request_reviews",
       "mcp__github-server__list_pull_requests",
       "mcp__linear-server__get_issue",
+      "mcp__linear-server__list_comments",
       "mcp__serena__find_file",
       "mcp__serena__find_symbol",
       "mcp__serena__list_dir",
+      "mcp__serena__search_for_pattern",
       "mcp__serena__write_memory",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:linear.app)",
@@ -44,6 +48,6 @@
     "deny": []
   },
   "feedbackSurveyState": {
-    "lastShownTime": 1754124531207
+    "lastShownTime": 1754283265662
   }
 }
