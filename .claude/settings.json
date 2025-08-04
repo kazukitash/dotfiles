@@ -23,6 +23,8 @@
       "Bash(mkdir:*)",
       "Bash(npm run build:*)",
       "Bash(pnpm run check:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm storybook:*)",
       "Bash(pnpm test:*)",
       "Bash(npm run test:*)",
       "mcp__github-server__get_issue_comments",
@@ -43,6 +45,7 @@
       "WebFetch(domain:linear.app)",
       "WebFetch(domain:notion.com)",
       "WebFetch(domain:unity.com)",
+      "WebFetch(domain:www.notion.so)",
       "WebFetch(domain:zed.dev)"
     ],
     "deny": []
