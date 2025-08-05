@@ -1,10 +1,15 @@
 {
   "includeCoAuthoredBy": false,
   "permissions": {
+    "additionalDirectories": [
+      "/Users/kazukitash/.dotfiles",
+      "/Users/kazukitash/repo/kazukitash/diary"
+    ],
     "allow": [
       "Bash(./scripts/list.sh:*)",
       "Bash(cat:*)",
       "Bash(docker compose exec:*)",
+      "Bash(docker compose up:*)",
       "Bash(docker run:*)",
       "Bash(find:*)",
       "Bash(gh pr checkout:*)",
@@ -22,11 +27,12 @@
       "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(npm run build:*)",
+      "Bash(npm run test:*)",
       "Bash(pnpm run check:*)",
       "Bash(pnpm run test:*)",
       "Bash(pnpm storybook:*)",
       "Bash(pnpm test:*)",
-      "Bash(npm run test:*)",
+      "Bash(tree:*)",
       "mcp__github-server__get_issue_comments",
       "mcp__github-server__get_pull_request",
       "mcp__github-server__get_pull_request_comments",
