@@ -1,10 +1,7 @@
 {
   "includeCoAuthoredBy": false,
   "permissions": {
-    "additionalDirectories": [
-      "/Users/kazukitash/.dotfiles",
-      "/Users/kazukitash/repo/kazukitash/diary"
-    ],
+    "additionalDirectories": ["/Users/kazukitash/repo/kazukitash/diary"],
     "allow": [
       "Bash(./scripts/list.sh:*)",
       "Bash(cat:*)",
