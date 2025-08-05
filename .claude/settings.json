@@ -1,7 +1,6 @@
 {
   "includeCoAuthoredBy": false,
   "permissions": {
-    "additionalDirectories": ["/Users/kazukitash/repo/kazukitash/diary"],
     "allow": [
       "Bash(./scripts/list.sh:*)",
       "Bash(cat:*)",
@@ -30,31 +29,23 @@
       "Bash(pnpm storybook:*)",
       "Bash(pnpm test:*)",
       "Bash(tree:*)",
-      "mcp__github-server__get_issue_comments",
-      "mcp__github-server__get_pull_request",
-      "mcp__github-server__get_pull_request_comments",
-      "mcp__github-server__get_pull_request_diff",
-      "mcp__github-server__get_pull_request_files",
-      "mcp__github-server__get_pull_request_reviews",
-      "mcp__github-server__list_pull_requests",
-      "mcp__linear-server__get_issue",
-      "mcp__linear-server__list_comments",
-      "mcp__serena__find_file",
-      "mcp__serena__find_symbol",
-      "mcp__serena__list_dir",
-      "mcp__serena__search_for_pattern",
-      "mcp__serena__write_memory",
+      "mcp__github-server__get_*",
+      "mcp__github-server__list_*",
+      "mcp__linear-server__get_*",
+      "mcp__linear-server__list_*",
+      "mcp__notion__search",
+      "mcp__serena__*",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:linear.app)",
       "WebFetch(domain:notion.com)",
       "WebFetch(domain:unity.com)",
-      "WebFetch(domain:www.notion.so)",
-      "WebFetch(domain:zed.dev)",
-      "mcp__notion__search"
+      "WebFetch(domain:notion.so)",
+      "WebFetch(domain:zed.dev)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": ["/Users/kazukitash/repo/kazukitash/diary"]
   },
   "feedbackSurveyState": {
-    "lastShownTime": 1754304846111
+    "lastShownTime": 1754357382683
   }
 }
