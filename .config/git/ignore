@@ -3,4 +3,3 @@
 **/.claude/settings.local.json
 **/.serena/*
 !**/.serena/serena_config.yml
-agent-reports/
