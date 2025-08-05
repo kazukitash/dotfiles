@@ -11,7 +11,7 @@ color: blue
 
 ### 1. 初期化・レポートファイル作成
 
-- `/Users/kazukitash/repo/kazukitash/diary/agent-reports/` フォルダが存在しない場合は作成
+- `~/diary/agent-reports/` フォルダが存在しない場合は作成
 - レビューレポートファイル `{YYYY-MM-DD-HHMMSS}-pr-{PR番号}-review.md` を作成
 - 基本テンプレートを出力し、以降のフェーズで逐次更新
 

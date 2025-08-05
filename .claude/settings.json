@@ -43,7 +43,7 @@
       "WebFetch(domain:zed.dev)"
     ],
     "deny": [],
-    "additionalDirectories": ["/Users/kazukitash/repo/kazukitash/diary"]
+    "additionalDirectories": ["~/diary"]
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754357382683
