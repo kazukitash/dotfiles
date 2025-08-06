@@ -17,14 +17,17 @@ color: blue
 
 - `~/diary/agent-reports/` フォルダが存在しない場合は作成
 - レビューレポートファイル名を生成：
+
   ```bash
   # ディレクトリ作成
   mkdir -p ~/diary/agent-reports/
-  
+
   # ファイル名生成（必ずdateコマンドを使用すること）
-  REPORT_FILE="~/diary/agent-reports/$(date +%Y-%m-%d-%H%M%S)-pr-${PR番号}-review.md"
+  REPORT_FILE="~/diary/agent-reports/$(date +%Y-%m-%d-%H%M%S)-pr-${PR番号}-review.md" && $REPORT_FILE
   ```
+
   - 例: `2024-01-15-143052-pr-123-review.md`
+
 - 基本テンプレートを出力し、以降のフェーズで逐次更新
 
 ### 2. 情報収集フェーズ（随時レポート更新）
@@ -32,6 +35,7 @@ color: blue
 #### PR基本情報の取得・記録
 
 - `gh pr view <PR番号>` でPRの詳細情報を表示
+
 - GitHub MCPを使用してPR description、コメント、レビュー履歴を詳細に取得
 - **即座にレポート更新**: 「基本情報」「GitHub PR」セクションを更新
 
