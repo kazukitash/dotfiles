@@ -76,5 +76,11 @@
       "cmd-8": ["pane::ActivateItem", 7],
       "cmd-9": ["pane::ActivateItem", 8]
     }
+  },
+  {
+    "context": "ProjectPanel",
+      "bindings": {
+      "ctrl-a": "project_panel::CollapseAllEntries"
+    }
   }
 ]
