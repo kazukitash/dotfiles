@@ -7,11 +7,32 @@ on:
     branches: [main]
 
 jobs:
-  linux-test:
+  linux-test-default:
     runs-on: ubuntu-latest
+    name: Linux - Default (dotfiles only)
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run install.sh
+      - name: Run install.sh (default - no options)
         run: ./install.sh
+
+  linux-test-build:
+    runs-on: ubuntu-latest
+    name: Linux - Build mode
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run install.sh with --build option
+        run: ./install.sh --build
+
+  linux-test-combined:
+    runs-on: ubuntu-latest
+    name: Linux - Build and Work mode
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run install.sh with -bw options
+        run: ./install.sh -bw

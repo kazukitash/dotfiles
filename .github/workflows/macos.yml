@@ -7,8 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  macos-test:
+  macos-test-default:
     runs-on: macos-latest
+    name: macOS - Default (dotfiles only)
 
     steps:
       - uses: actions/checkout@v2
@@ -16,5 +17,31 @@ jobs:
       - name: Uninstall default Homebrew
         run: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
 
-      - name: Run install.sh
+      - name: Run install.sh (default - no options)
         run: ./install.sh
+
+  macos-test-build:
+    runs-on: macos-latest
+    name: macOS - Build mode
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Uninstall default Homebrew
+        run: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
+      - name: Run install.sh with --build option
+        run: ./install.sh --build
+
+  macos-test-combined:
+    runs-on: macos-latest
+    name: macOS - Build and Work mode
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Uninstall default Homebrew
+        run: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
+      - name: Run install.sh with -bw options
+        run: ./install.sh -bw
