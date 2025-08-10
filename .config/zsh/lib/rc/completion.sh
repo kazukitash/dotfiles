@@ -2,7 +2,7 @@
 # 補完とシンタックスハイライトの設定
 
 # has関数が未定義の場合はutil.shを読み込む
-if ! command -v has >/dev/null 2>&1; then
+if ! command -v has > /dev/null 2>&1; then
   source "${ZDOTDIR:-$HOME/.config/zsh}/lib/util.sh"
 fi
 
@@ -12,7 +12,7 @@ autoload -Uz colors && colors
 # brewの有無をチェック
 if has brew; then
   # zsh-completionsの設定
-  if brew list zsh-completions >/dev/null 2>&1; then
+  if brew list zsh-completions > /dev/null 2>&1; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
     autoload -Uz compinit && compinit
@@ -27,7 +27,7 @@ if has brew; then
   fi
 
   # zsh-syntax-highlightingの設定
-  if brew list zsh-syntax-highlighting >/dev/null 2>&1; then
+  if brew list zsh-syntax-highlighting > /dev/null 2>&1; then
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
     source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   else

@@ -12,8 +12,8 @@ zstyle ':vcs_info:git:*' stagedstr " ✨"         # コミットしていない
 zstyle ':vcs_info:git:*' unstagedstr " 🫧"       # addしていない
 
 git_info_push() {
-  if git rev-parse --git-dir >/dev/null 2>&1; then
-    if git rev-parse HEAD >/dev/null 2>&1; then
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    if git rev-parse HEAD > /dev/null 2>&1; then
       local head="$(git rev-parse HEAD)"
       for remote in $(git rev-parse --remotes); do
         if [ "$head" = "$remote" ]; then return 0; fi

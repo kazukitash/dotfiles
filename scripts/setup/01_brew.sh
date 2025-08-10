@@ -22,7 +22,7 @@ install_formulas() {
       # Install common macOS packages
       brew bundle --file "$DOTPATH"/.config/brew/macos.Brewfile
       check_result $? "Install formulas" "Install common packages"
-      
+
       # Install work/personal packages based on WORK_MODE
       if [ "${WORK_MODE:-false}" = "true" ]; then
         e_log "Install formulas" "Installing work packages..."

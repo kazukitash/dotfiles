@@ -37,7 +37,7 @@ install_fonts() {
       local skip_count=0
 
       # .ttfと.otfファイルをインストール
-      for font_file in "$font_source_dir"/*.{ttf,otf} 2>/dev/null; do
+      for font_file in "$font_source_dir"/*.ttf "$font_source_dir"/*.otf; do
         # ファイルが存在しない場合はスキップ（globがマッチしない場合）
         [ -f "$font_file" ] || continue
 
@@ -78,7 +78,7 @@ install_fonts() {
         # macOSではフォントキャッシュは自動的に更新されるが、
         # 明示的にリセットすることも可能
         if has atsutil; then
-          atsutil databases -remove 2>/dev/null || true
+          atsutil databases -remove 2> /dev/null || true
         fi
         e_done "Install Fonts" "Font installation completed"
       fi

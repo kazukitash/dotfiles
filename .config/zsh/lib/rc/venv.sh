@@ -2,7 +2,7 @@
 # Python仮想環境の自動活性化
 
 # util.shを読み込む（ログ関数のため）
-if ! command -v e_log >/dev/null 2>&1; then
+if ! command -v has > /dev/null 2>&1; then
   source "${ZDOTDIR:-$HOME/.config/zsh}/lib/util.sh"
 fi
 
@@ -14,7 +14,7 @@ _autovenv_find_root() {
       echo "$d"
       return 0
     fi
-    d="${d:h}"  # 親へ
+    d="${d:h}" # 親へ
   done
   return 1
 }
@@ -31,7 +31,7 @@ _autovenv_chpwd() {
     # すでに別の venv が有効なら切り替えのために解除
     if [[ -n "$current" && "$current" != "$desired_venv" ]]; then
       # deactivate が定義されているときのみ実行
-      whence -w deactivate >/dev/null 2>&1 && deactivate
+      whence -w deactivate > /dev/null 2>&1 && deactivate
       unset AUTO_VENV_HOME
     fi
 
@@ -44,7 +44,7 @@ _autovenv_chpwd() {
   else
     # 該当 venv が見つからないディレクトリに出たら解除
     if [[ -n "$VIRTUAL_ENV" && -n "$AUTO_VENV_HOME" ]]; then
-      if whence -w deactivate >/dev/null 2>&1; then
+      if whence -w deactivate > /dev/null 2>&1; then
         deactivate
         e_log "auto-venv" "Deactivated"
       fi
@@ -54,7 +54,7 @@ _autovenv_chpwd() {
 }
 
 # フック登録（zsh組み込み）
-if whence -w add-zsh-hook >/dev/null 2>&1; then
+if whence -w add-zsh-hook > /dev/null 2>&1; then
   add-zsh-hook chpwd _autovenv_chpwd
 else
   # 古いzsh向けフォールバック

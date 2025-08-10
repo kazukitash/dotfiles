@@ -2,17 +2,17 @@
 # PATH関連の設定
 
 # has関数が未定義の場合はutil.shを読み込む
-if ! command -v has >/dev/null 2>&1; then
+if ! command -v has > /dev/null 2>&1; then
   source "${ZDOTDIR:-$HOME/.config/zsh}/lib/util.sh"
 fi
 
 # PATHの設定
 case "$(arch)" in
-macOS)
-  if [ -x /usr/libexec/path_helper ]; then
-    eval $(/usr/libexec/path_helper -s)
-  fi
-  ;;
+  macOS)
+    if [ -x /usr/libexec/path_helper ]; then
+      eval $(/usr/libexec/path_helper -s)
+    fi
+    ;;
 esac
 
 # 個人用のPATH
@@ -20,12 +20,12 @@ export PATH=~/.local/bin:$PATH
 
 # homebrewの設定
 case "$(arch)" in
-macOS)
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  ;;
-Linux)
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  ;;
+  macOS)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    ;;
+  Linux)
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
 esac
 
 # miseの設定
@@ -36,10 +36,10 @@ fi
 
 # openjdkの設定
 case "$(arch)" in
-macOS)
-  export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-  export PATH=/usr/local/opt/openjdk/bin:$PATH
-  ;;
+  macOS)
+    export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+    export PATH=/usr/local/opt/openjdk/bin:$PATH
+    ;;
 esac
 
 # GCPの設定

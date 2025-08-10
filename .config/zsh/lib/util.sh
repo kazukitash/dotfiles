@@ -22,7 +22,7 @@ unsupported() {
 # macOSとLinuxのみ実行
 support_check() {
   case "$(arch)" in
-    macOS|Linux)
+    macOS | Linux)
       e_log "Dotfiles" "Start installation for $(arch)"
       ;;
     *)
@@ -33,7 +33,7 @@ support_check() {
 
 # コマンドの存在チェック
 has() {
-  type "$1" >/dev/null 2>&1
+  type "$1" > /dev/null 2>&1
   return $?
 }
 
