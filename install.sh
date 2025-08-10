@@ -255,7 +255,7 @@ if $BUILD_MODE; then
   # setup.shを実行（scripts/setup/内のスクリプトを順次実行）
   e_log "Build Environment" "Running setup script..."
   export DOTPATH="$DOTPATH"
-  
+  export WORK_MODE="$WORK_MODE"  
   /bin/bash "$DOTPATH/scripts/setup.sh"
   check_result $? "Build Environment" "Setup"
 fi
