@@ -8,11 +8,11 @@ fi
 
 # PATHの設定
 case "$(arch)" in
-  macOS)
-    if [ -x /usr/libexec/path_helper ]; then
-      eval $(/usr/libexec/path_helper -s)
-    fi
-    ;;
+macOS)
+  if [ -x /usr/libexec/path_helper ]; then
+    eval $(/usr/libexec/path_helper -s)
+  fi
+  ;;
 esac
 
 # 個人用のPATH
@@ -20,26 +20,26 @@ export PATH=~/.local/bin:$PATH
 
 # homebrewの設定
 case "$(arch)" in
-  macOS)
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    ;;
-  Linux)
-    export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    ;;
+macOS)
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  ;;
+Linux)
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  ;;
 esac
 
 # miseの設定
 if has mise; then
   eval "$(mise activate zsh)"
+  export MISE_DISABLE_TOOLS="node python"
 fi
 
 # openjdkの設定
 case "$(arch)" in
-  macOS)
-    export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-    export PATH=/usr/local/opt/openjdk/bin:$PATH
-    ;;
+macOS)
+  export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+  export PATH=/usr/local/opt/openjdk/bin:$PATH
+  ;;
 esac
 
 # GCPの設定
