@@ -1,27 +1,17 @@
-tap "homebrew/bundle"
-tap "homebrew/services"
-
-# Programing
-brew "anyenv"
-brew "gh"
-cask "github"
-brew "uv"
-
-# Browser
-cask "google-chrome"
-
-# Image & Video
 brew "ffmpeg"
+brew "gh"
 brew "imagemagick"
-
-# IME
-cask "visual-studio-code"
-
-# Cleaner
+brew "jq"
+brew "mise"
+brew "pkg-config"
+brew "uv"
 cask "appcleaner"
-
-# Docker
+cask "claude"
 cask "docker"
-
-#  Communication
+cask "github"
+cask "google-chrome"
+cask "google-cloud-sdk"
+cask "linear-linear"
+cask "notion"
 cask "slack"
+cask "zed"

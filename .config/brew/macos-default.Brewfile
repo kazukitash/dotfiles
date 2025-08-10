@@ -1,5 +1,5 @@
 cask "blender"
+cask "cocoapods"
+cask "openemu"
 cask "sidequest"
 cask "unity-hub"
-cask "openemu"
-cask "cocoapods"

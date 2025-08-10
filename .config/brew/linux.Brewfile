@@ -1,12 +1,8 @@
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/services"
+tap "homebrew/services" # Linuxでサービス管理を使う場合は必要
 
-# Programing
-brew "anyenv"
 
-# Image & Video
 brew "ffmpeg"
-
-# zsh
+brew "jq"
+brew "mise"
+brew "pkg-config"
 brew "zsh"
