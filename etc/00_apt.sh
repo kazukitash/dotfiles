@@ -7,7 +7,7 @@ fi
 
 . "$DOTPATH"/.config/zsh/lib/util.sh
 
-prepare() {
+install_apt() {
   case "$(arch)" in
     Linux)
     e_header "Prepare" "Install dependencies for Linux"
@@ -58,4 +58,4 @@ prepare() {
   esac
 }
 
-prepare
+install_apt

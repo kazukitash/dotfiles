@@ -252,16 +252,6 @@ setup_git
 if $BUILD_MODE; then
   e_header "Build Environment" "Setup development environment"
   
-  # Linuxの場合はprepare.shを実行
-  case "$(arch)" in
-    Linux)
-      e_log "Build Environment" "Running prepare script for Linux..."
-      export DOTPATH="$DOTPATH"
-      /bin/bash "$DOTPATH/scripts/prepare.sh"
-      check_result $? "Build Environment" "Prepare"
-      ;;
-  esac
-  
   # setup.shを実行（etc/内のスクリプトを順次実行）
   e_log "Build Environment" "Running setup script..."
   export DOTPATH="$DOTPATH"
