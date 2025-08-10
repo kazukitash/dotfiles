@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# 動画を1280x720にリサイズして画質を落とし軽量化するスクリプト
+# 使い方: リサイズしたい動画ファイルを引数にして実行する
+#         -i オプションで入力ファイル名を指定する
+# ffmpeg_reduce -i input.mov output.mp4
+
+# コマンドから-iオプションを取得する
+while getopts i: OPT; do
+  case $OPT in
+  i) input=$OPTARG ;;
+  esac
+done
+
+# コマンドから出力ファイル名を取得する
+shift $((OPTIND - 1))
+output=$1
+
+# もしinputが空文字列ならば、エラーを出力して終了する
+if [ -z "$input" ]; then
+  echo "Error: 入力ファイル名を指定してください"
+  exit 1
+fi
+
+# もしoutputが空文字列ならば、エラーを出力して終了する
+if [ -z "$output" ]; then
+  echo "Error: 出力ファイル名を指定してください"
+  exit 1
+fi
+
+ffmpeg -i $input -crf 32 -vf scale=-1:720 $output

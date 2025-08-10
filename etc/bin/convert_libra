@@ -1,0 +1,106 @@
+#!/bin/sh
+
+# 自炊本をPDFに変換するスクリプト
+# スキャンした連番のPNG画像をPDFに変換する
+# 自炊本ディレクトリには、PNG画像ファイルが連番で入っている前提
+# 使い方: 自炊本の親ディレクトリに移動して、自炊本のディレクトリ名を引数にして実行する
+#         -fオプションでフォーマットを指定する
+# 例: 自炊本のディレクトリ名が「PNG画像のディレクトリ」の場合
+# $ cd 自炊本の親ディレクトリ
+# $ convert_libra -f b6 PNG画像のディレクトリ
+
+IFS=$'\n'
+
+# コマンドから-fオプションを取得する
+# フォーマットを指定しない場合は、NONEを設定する
+# 大文字小文字は区別しない
+format="NONE"
+while getopts f: OPT; do
+  case $OPT in
+  f) format=$(echo "$OPTARG" | awk '{print toupper($0)}') ;;
+  esac
+done
+
+# コマンドから自炊本のディレクトリ名を取得する
+shift $((OPTIND - 1))
+dir=$1
+
+# もしdirが空文字列ならば、エラーを出力して終了する
+if [ -z "$dir" ]; then
+  echo "Error: 自炊本のディレクトリ名を指定してください"
+  exit 1
+fi
+
+# tmp_自炊本ディレクトリがなければ作成する
+if [ ! -d "tmp_$dir" ]; then
+  mkdir "tmp_$dir"
+fi
+
+# もし$dir/$dir.pngがあったら、$dir/$dir 000.pngにリネームする
+if [ -f "$dir/$dir.png" ]; then
+  mv "$dir/$dir.png" "$dir/$dir 000.png"
+fi
+
+# フォーマットはMANGAとB6とNONEがある。
+# フォーマットの文字列は大文字小文字を区別しない。
+# それ以外のフォーマットはエラーを出力して終了する
+# フォーマットごとに処理を分ける
+pages=$(find $dir -name "$dir*.png")
+for page in $pages; do
+  # 拡張子を取得する
+  extension="${page##*.}"
+
+  # ファイル名から数字の部分を取得する
+  number="${page%.*}"
+  number="${number##* }"
+
+  # 数字が1桁の場合は00Nに変換する
+  if [[ "$number" =~ ^[0-9]$ ]]; then
+    newnumber="00$number"
+  # 数字が2桁の場合は0NNに変換する
+  elif [[ "$number" =~ ^[0-9]{2}$ ]]; then
+    newnumber="0$number"
+  # それ以外の場合は変換しない
+  else
+    newnumber=$number
+  fi
+
+  # 新しいファイル名を組み立てる
+  newpage="${page% *} $newnumber.$extension"
+
+  mv "$page" "$newpage"
+
+  # フォーマットに合わせて、画像をトリミングする
+  case $format in
+  MANGA)
+    convert "$newpage" -gravity north -crop 1280x2070+0+0 tmp_$newpage
+    ;;
+  B6)
+    convert "$newpage" -gravity north -crop 1480x2140+0+0 tmp_$newpage
+    ;;
+  *)
+    cp "$newpage" "tmp_$newpage"
+    ;;
+  esac
+done
+
+# 表紙をコピーする
+# 表紙が存在する場合は、表紙をコピーする
+covers=$(find $dir -name "0_表紙*.png")
+for cover in $covers; do
+  if [ -n "$cover" ]; then
+    cp "$cover" "tmp_$cover"
+  fi
+done
+
+# 1ページの大きさにリサイズする
+mogrify +repage tmp_$dir/*.png
+
+# JPGに変換する
+mogrify -format jpg -quality 90 tmp_$dir/*.png
+
+# PDFに変換する
+convert tmp_$dir/*.jpg $dir.pdf
+
+# tmp_自炊本ディレクトリを削除する
+rm -rf tmp_$dir

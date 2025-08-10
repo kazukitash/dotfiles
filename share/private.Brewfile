@@ -1,0 +1,5 @@
+cask "blender"
+cask "sidequest"
+cask "unity-hub"
+cask "openemu"
+cask "cocoapods"

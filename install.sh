@@ -41,6 +41,12 @@ fi
 #    - 目的: リモートから直接取得した信頼できるコードのみでの実行を保証するため
 #    - 影響: 削除すると、ローカル改変ファイルでも実行可能になり、意図しない動作のリスク
 check_secure_execution() {
+  # GitHub Actions環境の検出（CI環境では直接実行を許可）
+  if [ -n "${GITHUB_ACTIONS:-}" ] || [ -n "${CI:-}" ]; then
+    e_done "Check execution" "CI environment detected - continuing"
+    return 0
+  fi
+
   # 1. インタラクティブシェルチェック
   if echo "$-" | grep -q "i"; then
     e_error "Check execution" "Can not continue with interactive shell. Abort the process"
