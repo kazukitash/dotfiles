@@ -10,8 +10,8 @@ DOTPATH="$(dirname "$SCRIPT_DIR")"
 cd "$DOTPATH"
 CANDIDATES=($(find . -maxdepth 1 -name ".*" -not -name "." | sort))
 
-# 除外するファイル・ディレクトリ
-EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".devcontainer.json" ".luarc.json" "scripts" "share" "CLAUDE.md")
+# 除外する.で始まるファイル・ディレクトリ
+EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".luarc.json")
 
 # 特定のディレクトリ内で除外するファイルパターン
 # 形式: "ディレクトリ:除外パターン"
