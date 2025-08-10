@@ -26,6 +26,40 @@ else
   eval "$(curl -fsSL "$UTIL_URL")"
 fi
 
+# セキュリティチェック統合関数
+# リモートからの直接実行のみを許可し、ローカル改変による予期しない動作を防ぐ
+#
+# 1. check_interactive_shell: インタラクティブシェルでの実行を防ぐ
+#    - 目的: 対話式環境では予期しない入力待機や環境変数の影響を受ける可能性があるため
+#    - 影響: 削除すると、ターミナルで直接実行した際にプロンプト待機で停止するリスク
+#
+# 2. check_execution_by_file: ファイル経由実行（bash install.sh）を検出し、ライブラリ読み込みのみに制限
+#    - 目的: ローカルファイルが改変されている可能性を排除するため
+#    - 影響: 削除すると、改変されたローカルファイルでも本格実行してしまう
+#
+# 3. check_execution_by_string: 文字列経由実行（bash -c "$(curl...)"またはパイプ）のみを許可
+#    - 目的: リモートから直接取得した信頼できるコードのみでの実行を保証するため
+#    - 影響: 削除すると、ローカル改変ファイルでも実行可能になり、意図しない動作のリスク
+check_secure_execution() {
+  # 1. インタラクティブシェルチェック
+  if echo "$-" | grep -q "i"; then
+    e_error "Check execution" "Can not continue with interactive shell. Abort the process"
+    exit 1
+  fi
+
+  # 2. ファイル実行チェック（ライブラリとして読み込まれた場合はここで終了）
+  if [ "$0" = "${BASH_SOURCE:-}" ] || [ "${DOTPATH}/install.sh" = "${BASH_SOURCE:-}" ]; then
+    e_done "Check execution" "Libraries are load"
+    exit 0
+  fi
+
+  # 3. 文字列/パイプ実行チェック
+  if !([ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]); then
+    e_error "Check execution" "Can not continue with the execution type. Abort the process"
+    exit 1
+  fi
+}
+
 # XCode CLI toolsのインストール
 install_xcodecli_if_macos() {
   case "$(arch)" in
@@ -156,7 +190,47 @@ setup_git() {
   esac
 }
 
+# オプション解析
+BUILD_MODE=false
+WORK_MODE=false
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -b|--build)
+      BUILD_MODE=true
+      shift
+      ;;
+    -w|--work)
+      WORK_MODE=true
+      shift
+      ;;
+    -bw|-wb)
+      BUILD_MODE=true
+      WORK_MODE=true
+      shift
+      ;;
+    -h|--help)
+      echo "Usage: $0 [OPTION]..."
+      echo ""
+      echo "Options:"
+      echo "  -b, --build    Install & build tools"
+      echo "  -w, --work     Setup work environment"
+      echo "  -h, --help     Show this help message"
+      echo ""
+      echo "Default behavior (no options): Deploy dotfiles only"
+      echo "Options can be combined: -b -w, -bw, -wb, or --build --work"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Use -h or --help for usage information"
+      exit 1
+      ;;
+  esac
+done
+
 # main
+check_secure_execution
 support_check
 echo "$DOTFILES_LOGO"
 install_xcodecli_if_macos
@@ -168,3 +242,23 @@ deploy_dotfiles
 install_formulas
 setup_zsh_completion
 setup_git
+
+if $BUILD_MODE; then
+  e_header "Build Environment" "Setup development environment"
+  
+  # Linuxの場合はprepare.shを実行
+  case "$(arch)" in
+    Linux)
+      e_log "Build Environment" "Running prepare script for Linux..."
+      export DOTPATH="$DOTPATH"
+      /bin/bash "$DOTPATH/scripts/prepare.sh"
+      check_result $? "Build Environment" "Prepare"
+      ;;
+  esac
+  
+  # setup.shを実行（etc/内のスクリプトを順次実行）
+  e_log "Build Environment" "Running setup script..."
+  export DOTPATH="$DOTPATH"
+  /bin/bash "$DOTPATH/scripts/setup.sh"
+  check_result $? "Build Environment" "Setup"
+fi
