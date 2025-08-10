@@ -252,9 +252,10 @@ setup_git
 if $BUILD_MODE; then
   e_header "Build Environment" "Setup development environment"
   
-  # setup.shを実行（etc/内のスクリプトを順次実行）
+  # setup.shを実行（scripts/setup/内のスクリプトを順次実行）
   e_log "Build Environment" "Running setup script..."
   export DOTPATH="$DOTPATH"
+  
   /bin/bash "$DOTPATH/scripts/setup.sh"
   check_result $? "Build Environment" "Setup"
 fi

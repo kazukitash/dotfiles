@@ -6,8 +6,8 @@ if [ -z "${DOTPATH:-}" ]; then
 fi
 
 setup() {
-  for i in $(ls "$DOTPATH"/etc | grep .sh$ | grep -v setup); do
-    /bin/bash ${DOTPATH}/etc/$i
+  for i in $(ls "$DOTPATH"/scripts/setup | grep .sh$); do
+    /bin/bash ${DOTPATH}/scripts/setup/$i
   done
 }
 
