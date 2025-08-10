@@ -11,7 +11,7 @@ cd "$DOTPATH"
 CANDIDATES=($(find . -maxdepth 1 -name ".*" -not -name "." | sort))
 
 # 除外するファイル・ディレクトリ
-EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".devcontainer.json" "scripts" "CLAUDE.md")
+EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".devcontainer.json" "scripts" "share" "CLAUDE.md")
 
 # 特定のディレクトリ内で除外するファイルパターン
 # 形式: "ディレクトリ:除外パターン"
@@ -34,16 +34,16 @@ is_excluded() {
 get_dir_exclusions() {
   local dir="$1"
   local patterns=()
-  
+
   for exclusion in "${DIR_EXCLUSIONS[@]}"; do
     local exc_dir="${exclusion%%:*}"
     local exc_pattern="${exclusion#*:}"
-    
+
     if [[ "$dir" == "$exc_dir" ]]; then
       patterns+=("$exc_pattern")
     fi
   done
-  
+
   if [[ ${#patterns[@]} -gt 0 ]]; then
     echo "${patterns[@]}"
   fi
@@ -59,7 +59,7 @@ for candidate in "${CANDIDATES[@]}"; do
     if [[ -d "$candidate_clean" ]]; then
       # このディレクトリの除外パターンを取得
       dir_exclusions=($(get_dir_exclusions "$candidate_clean"))
-      
+
       if [[ ${#dir_exclusions[@]} -gt 0 ]]; then
         # 除外パターンがある場合
         grep_patterns=""
