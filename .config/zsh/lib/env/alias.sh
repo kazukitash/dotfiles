@@ -30,6 +30,10 @@ alias ls="ls -Gp"
 # Homebrew関連
 alias bubu="brew update && brew outdated && brew upgrade && brew cleanup"
 
+# Python関連
+alias python="python3"
+alias pip="pip3"
+
 # Docker関連
 alias dcd="docker compose down -v"
 
@@ -56,11 +60,6 @@ alias dcln="\
 alias pn="pnpm"
 alias zed="zed -a"
 alias vim="nvim"
-
-# VSCode関連
-if ! (has code) && has code-insiders; then
-  alias code="code-insiders"
-fi
 
 # プロジェクト固有のエイリアス
 alias iris-check="pn -F iris fix && pn -F iris check"
