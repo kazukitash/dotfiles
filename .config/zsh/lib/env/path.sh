@@ -29,14 +29,9 @@ case "$(arch)" in
     ;;
 esac
 
-# Rubyの設定
-export GEMRC="$HOME/.config/gem/config"
-
-# anyenvの設定
-export ANYENV_ROOT=~/.anyenv
-export PATH=$ANYENV_ROOT/bin:$ANYENV_ROOT/envs/pyenv/shims:$PATH
-if has anyenv; then
-  eval "$(anyenv init -)"
+# miseの設定
+if has mise; then
+  eval "$(mise activate zsh)"
 fi
 
 # openjdkの設定
@@ -56,12 +51,6 @@ gcspath="/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 if [ -f gcspath ]; then
   source "${gcspath}/path.zsh.inc"
   source "${gcspath}/completion.zsh.inc"
-fi
-
-# ryeの設定
-export PATH="$HOME/.rye/shims:$PATH"
-if has rye; then
-  source "$HOME/.rye/env"
 fi
 
 # uvの設定
