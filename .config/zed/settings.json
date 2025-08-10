@@ -72,7 +72,7 @@
       "formatter": {
         "external": {
           "command": "shfmt",
-          "arguments": ["--filename", "{buffer_path}", "--indent", "2"]
+          "arguments": ["--filename", "{buffer_path}", "-i", "2", "-ci", "-sr", "-bn"]
         }
       }
     },
