@@ -49,9 +49,6 @@ setup_terminal() {
       e_done "Setup Terminal.app" "Terminal.app configured successfully"
       e_log "Setup Terminal.app" "Please restart Terminal.app to apply changes"
       ;;
-    *)
-      e_done "Setup Terminal.app" "Skipped (not macOS)"
-      ;;
   esac
 }
 
