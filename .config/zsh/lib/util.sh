@@ -22,7 +22,7 @@ unsupported() {
 # macOSとLinuxのみ実行
 support_check() {
   case "$(arch)" in
-    macOS|armLinux|x86Linux)
+    macOS|Linux)
       e_log "Dotfiles" "Start installation for $(arch)"
       ;;
     *)
