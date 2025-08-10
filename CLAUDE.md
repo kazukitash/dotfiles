@@ -64,7 +64,7 @@ brew bundle --global
 
 - Supports macOS (Intel and Apple Silicon)
 - Supports Linux (x86_64, ARM, and WSL)
-- Platform detection is handled by the `isArch()` function in `install.sh`
+- Platform detection is handled by the `arch()` function in `.config/zsh/lib/util.sh`
 
 ## Git Commit Guidelines
 

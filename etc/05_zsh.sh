@@ -5,10 +5,11 @@ if [ -z "${DOTPATH:-}" ]; then
   exit 1
 fi
 
-. "$DOTPATH"/install.sh
+. "$DOTPATH"/.config/zsh/lib/util.sh
 
 setup_zsh() {
-  if isArch Linux; then
+  case "$(arch)" in
+    Linux)
     e_header "Setup zsh" "Start setup"
     ZSH_PATH=$(which zsh)
 
@@ -28,7 +29,8 @@ setup_zsh() {
     chsh -s $ZSH_PATH      # user
     sudo chsh -s $ZSH_PATH # root
     check_result $? "Setup zsh" "Change default shell"
-  fi
+    ;;
+  esac
 }
 
 setup_zsh
