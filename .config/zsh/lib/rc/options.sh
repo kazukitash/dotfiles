@@ -12,7 +12,6 @@ setopt brace_ccl            # 範囲指定できるようにする。例 : mkdir
 setopt nolistbeep           # zshは鳴かない
 setopt auto_pushd           # 移動dirを一覧表示
 setopt list_packed          # 補完候補を詰めて表示
-setopt no_global_rcs        # macOSの/etc/zprofileに余計なことが書いてあるので読まない
 setopt menu_complete        # 補完の絞り込み
 setopt share_history        # 履歴のプロセス間共有
 setopt print_eight_bit      # 日本語ファイル名を表示可能にする
