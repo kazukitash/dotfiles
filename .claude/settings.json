@@ -24,6 +24,7 @@
       "Bash(git worktree:*)",
       "Bash(grep:*)",
       "Bash(ls:*)",
+      "Bash(echo:*)",
       "Bash(make test:*)",
       "Bash(mkdir:*)",
       "Bash(npm install)",
@@ -72,11 +73,9 @@
       "WebFetch(domain:zed.dev)"
     ],
     "deny": [],
-    "additionalDirectories": [
-      "~/agent_reports"
-    ]
+    "additionalDirectories": ["~/agent_reports"]
   },
   "feedbackSurveyState": {
-    "lastShownTime": 1754840449938
+    "lastShownTime": 1754842024592
   }
 }
