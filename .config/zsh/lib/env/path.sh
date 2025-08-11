@@ -7,6 +7,8 @@ if ! command -v has > /dev/null 2>&1; then
 fi
 
 # PATHの設定
+# macOSの/etc/zprofileにpath_helperのevalがありPATHを上書きしてしまうのでzprofileの読み込みを無効化
+setopt no_global_rcs
 case "$(arch)" in
   macOS)
     if [ -x /usr/libexec/path_helper ]; then
@@ -14,9 +16,6 @@ case "$(arch)" in
     fi
     ;;
 esac
-
-# 個人用のPATH
-export PATH=~/.local/bin:$PATH
 
 # homebrewの設定
 case "$(arch)" in
@@ -38,7 +37,7 @@ fi
 case "$(arch)" in
   macOS)
     export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-    export PATH=/usr/local/opt/openjdk/bin:$PATH
+    path=(/usr/local/opt/openjdk/bin $path)
     ;;
 esac
 
@@ -73,5 +72,10 @@ fi
 # pnpm の設定
 if has pnpm; then
   export PNPM_HOME="$HOME/.local/share/pnpm"
-  export PATH="$PNPM_HOME:$PATH"
+  path=($PNPM_HOME $path)
 fi
+
+# 個人用のPATH
+path=(~/.local/bin $path)
+
+export PATH
