@@ -6,11 +6,6 @@ if ! command -v has > /dev/null 2>&1; then
   source "${ZDOTDIR:-$HOME/.config/zsh}/lib/util.sh"
 fi
 
-# zoxideのcdエイリアス
-if has zoxide; then
-  alias cd="z"
-fi
-
 # Git関連のエイリアス
 alias ga="git add ."
 alias gs="git stash -u"

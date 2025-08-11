@@ -67,6 +67,7 @@ fi
 # zoxideの設定
 if has zoxide; then
   eval "$(zoxide init zsh)"
+  alias cd="z"
 fi
 
 # pnpm の設定
