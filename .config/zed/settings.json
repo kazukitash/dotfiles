@@ -72,13 +72,24 @@
       "formatter": {
         "external": {
           "command": "shfmt",
-          "arguments": ["--filename", "{buffer_path}", "-i", "2", "-ci", "-sr", "-bn"]
+          "arguments": [
+            "--filename",
+            "{buffer_path}",
+            "-i",
+            "2",
+            "-ci",
+            "-sr",
+            "-bn"
+          ]
         }
       }
     },
     "Markdown": {
       "enable_language_server": true,
       "format_on_save": "on"
+    },
+    "Python": {
+      "tab_size": 4
     }
   }
 }
