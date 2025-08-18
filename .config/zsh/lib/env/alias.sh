@@ -30,7 +30,9 @@ alias python="python3"
 alias pip="pip3"
 
 # Docker関連
-alias dcd="docker compose down -v"
+alias dcd="docker compose down"
+alias dcdv="docker compose down -v"
+alias dc="docker compose"
 
 # dcln (Docker CLeaN)
 # 1) docker ps -q | xargs -r docker kill
