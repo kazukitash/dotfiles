@@ -7,6 +7,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+	"indent_guides": {
+		"coloring": "indent_aware"
+	},
+	"minimap": {
+		"show": "always"
+	},
+	"terminal": {
+		"dock": "right",
+		"max_scroll_history_lines": 100000
+	},
 	"auto_update": true,
 	"context_servers": {
 		"mcp-server-github": {
@@ -45,7 +55,8 @@
 			"model": "claude-sonnet-4"
 		},
 		"play_sound_when_agent_done": true,
-		"always_allow_tool_actions": true
+		"always_allow_tool_actions": true,
+		"dock": "bottom"
 	},
 	"file_types": {
 		"Dockerfile": ["Dockerfile.*"],
