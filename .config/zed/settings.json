@@ -90,8 +90,8 @@
 		}
 	},
 	"formatter": [
-		{ "language_server": { "name": "prettier" } },
-		{ "language_server": { "name": "biome" } }
+		{ "language_server": { "name": "prettier" } }
+		// { "language_server": { "name": "biome"  } }
 	],
 	"languages": {
 		"Shell Script": {
@@ -115,7 +115,13 @@
 			"format_on_save": "on"
 		},
 		"Python": {
-			"tab_size": 4
+			"tab_size": 4,
+			"formatter": [
+      { "code_actions": {
+          "source.organizeImports.ruff": true,
+          "source.fixAll.ruff": true
+      }}
+    ]
 		}
 	}
 }
