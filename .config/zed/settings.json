@@ -7,119 +7,121 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-	"indent_guides": {
-		"coloring": "indent_aware"
-	},
-	"minimap": {
-		"show": "always"
-	},
-	"terminal": {
-		"max_scroll_history_lines": 100000
-	},
-	"auto_update": true,
-	"context_servers": {
-		"mcp-server-github": {
-			"source": "extension",
-			"enabled": true,
-			"settings": {
-				"github_personal_access_token": "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"
-			}
-		},
-		"mcp-server-linear": {
-			"source": "custom",
-			"command": "npx",
-			"args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
-		}
-	},
-	"ui_font_weight": 300.0,
-	"buffer_font_weight": 300.0,
-	"ui_font_features": {
-		"calt": 1
-	},
-	"buffer_font_features": {
-		"calt": 1
-	},
-	"buffer_font_family": "Rounded-L Mgen+ 1mn",
-	"features": {
-		"edit_prediction_provider": "copilot"
-	},
-	"icon_theme": {
-		"mode": "dark",
-		"light": "Catppuccin Latte",
-		"dark": "Catppuccin Mocha"
-	},
-	"agent": {
-		"default_model": {
-			"provider": "copilot_chat",
-			"model": "gpt-5"
-		},
-		"play_sound_when_agent_done": true,
-		"always_allow_tool_actions": true
-	},
-	"file_types": {
-		"Dockerfile": ["Dockerfile.*"],
-		"Plain Text": ["bun.lock"]
-	},
-	"telemetry": {
-		"metrics": false,
-		"diagnostics": false
-	},
-	"agent_font_size": 14,
-	"ui_font_size": 14,
-	"buffer_font_size": 12,
-	"ui_font_family": "Rounded-L Mgen+ 2cp",
-	"theme": {
-		"mode": "dark",
-		"light": "Catppuccin Latte (blue)",
-		"dark": "Catppuccin Mocha (blue)"
-	},
-	"collaboration_panel": {
-		"button": false
-	},
-	"tab_size": 2,
-	"hard_tabs": false,
-	"format_on_save": "on",
-	"autosave": "on_focus_change",
-	"lsp": {
-		"biome": {
-			"settings": {
-				"require_config_file": true
-			}
-		}
-	},
-	"formatter": [
-		{ "language_server": { "name": "prettier" } }
-		// { "language_server": { "name": "biome"  } }
-	],
-	"languages": {
-		"Shell Script": {
-			"formatter": {
-				"external": {
-					"command": "shfmt",
-					"arguments": [
-						"--filename",
-						"{buffer_path}",
-						"-i",
-						"2",
-						"-ci",
-						"-sr",
-						"-bn"
-					]
-				}
-			}
-		},
-		"Markdown": {
-			"enable_language_server": true,
-			"format_on_save": "on"
-		},
-		"Python": {
-			"tab_size": 4,
-			"formatter": [
-      { "code_actions": {
-          "source.organizeImports.ruff": true,
-          "source.fixAll.ruff": true
-      }}
-    ]
-		}
-	}
+  "indent_guides": {
+    "coloring": "indent_aware"
+  },
+  "minimap": {
+    "show": "always"
+  },
+  "terminal": {
+    "max_scroll_history_lines": 100000
+  },
+  "auto_update": true,
+  "context_servers": {
+    "mcp-server-github": {
+      "source": "extension",
+      "enabled": true,
+      "settings": {
+        "github_personal_access_token": "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"
+      }
+    },
+    "mcp-server-linear": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+    }
+  },
+  "ui_font_weight": 300.0,
+  "buffer_font_weight": 300.0,
+  "ui_font_features": {
+    "calt": 1
+  },
+  "buffer_font_features": {
+    "calt": 1
+  },
+  "buffer_font_family": "Rounded-L Mgen+ 1mn",
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5"
+    },
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": true
+  },
+  "file_types": {
+    "Dockerfile": ["Dockerfile.*"],
+    "Plain Text": ["bun.lock"]
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "agent_font_size": 14,
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "ui_font_family": "Rounded-L Mgen+ 2cp",
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte (blue)",
+    "dark": "Catppuccin Mocha (blue)"
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "formatter": [
+    { "language_server": { "name": "prettier" } }
+    // { "language_server": { "name": "biome"  } }
+  ],
+  "languages": {
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": [
+            "--filename",
+            "{buffer_path}",
+            "-i",
+            "2",
+            "-ci",
+            "-sr",
+            "-bn"
+          ]
+        }
+      }
+    },
+    "Markdown": {
+      "enable_language_server": true,
+      "format_on_save": "on"
+    },
+    "Python": {
+      "tab_size": 4,
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        }
+      ]
+    }
+  }
 }
