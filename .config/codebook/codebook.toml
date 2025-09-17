@@ -1,0 +1,14 @@
+words = [
+    "eastus",
+    "llm",
+    "millis",
+    "openai",
+    "pinecone",
+    "pydantic",
+    "pyright",
+    "reranker",
+    "saas",
+    "uvicorn",
+    "wandh",
+]
+ignore_patterns = ['[\u3040-\u30FF\u4E00-\u9FFF]+']
