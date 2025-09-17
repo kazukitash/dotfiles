@@ -79,19 +79,15 @@
   "tab_size": 2,
   "hard_tabs": false,
   "format_on_save": "on",
-  "autosave": "on_focus_change",
-  "lsp": {
-    "biome": {
-      "settings": {
-        "require_config_file": true
-      }
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
     }
   },
-  "formatter": [
-    { "language_server": { "name": "prettier" } }
-    // { "language_server": { "name": "biome"  } }
-  ],
   "languages": {
+    "CSS": {
+      "formatter": "prettier"
+    },
     "Shell Script": {
       "formatter": {
         "external": {
