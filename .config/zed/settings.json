@@ -79,6 +79,7 @@
   "tab_size": 2,
   "hard_tabs": false,
   "format_on_save": "on",
+  "show_whitespaces": "all",
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
