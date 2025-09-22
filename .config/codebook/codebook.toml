@@ -1,7 +1,10 @@
 words = [
+    "asctime",
     "eastus",
+    "levelname",
     "llm",
     "millis",
+    "noqa",
     "openai",
     "pinecone",
     "pydantic",
