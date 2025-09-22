@@ -1,1 +1,4 @@
 .DS_Store
+
+# 端末ごとに異なる設定ファイル
+.config/finicky/finicky.js
