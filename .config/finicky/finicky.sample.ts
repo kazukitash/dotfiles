@@ -1,14 +1,20 @@
 import type { FinickyConfig } from "/Applications/Finicky.app/Contents/Resources/finicky.d.ts";
 
+const apps = [
+  "com.figma.Desktop", // Figma
+  "com.linear", // Linear
+  "notion.id", // Notion
+  "com.tinyspeck.slackmacgap", // Slack
+];
+
 export default {
-  defaultBrowser: "Google Chrome",
+  defaultBrowser: "Safari",
 
   handlers: [
     {
-      match: [/^https?:\/\/localhost:.*$/],
+      match: /youtube\.com/,
       browser: {
-        name: "Google Chrome Beta",
-        profile: "Default",
+        name: "Safari",
       },
     },
     {
@@ -24,11 +30,27 @@ export default {
       browser: "Linear",
     },
     {
-      match: (_, options) => {
-        return options?.opener?.bundleId === "";
-      },
+      match: /meet\.google\.com/,
+      browser: (url) => ({
+        name: "Google Chrome", // Google Chrome 経由で Goog Meet を開くことで正しく URL が連携される
+        args: [
+          "--app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan", // chrome://web-app-internals/ から確認可能
+          `--app-launch-url-for-shortcuts-menu-item=${url}`,
+        ],
+        profile: "Default",
+      }),
+    },
+    {
+      match: [/^https?:\/\/localhost:.*$/],
       browser: {
         name: "Google Chrome Beta",
+        profile: "Default",
+      },
+    },
+    {
+      match: (_, options) => apps.includes(options?.opener?.bundleId ?? ""),
+      browser: {
+        name: "Google Chrome",
         profile: "Default",
       },
     },
