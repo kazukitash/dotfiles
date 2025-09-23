@@ -1,6 +1,6 @@
 words = [
-    "asctime",
     "aiter",
+    "asctime",
     "asyncio",
     "clsx",
     "eastus",
@@ -17,6 +17,8 @@ words = [
     "reranked",
     "reranker",
     "saas",
+    "slackmacgap",
+    "tinyspeck",
     "traceparent",
     "uvicorn",
     "wandh",
