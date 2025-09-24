@@ -21,6 +21,7 @@ words = [
     "tinyspeck",
     "traceparent",
     "uvicorn",
+    "videooff",
     "wandh",
 ]
 ignore_patterns = ['[\u3040-\u30FF\u4E00-\u9FFF]+']
