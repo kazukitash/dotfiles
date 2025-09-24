@@ -31,19 +31,14 @@ export default {
     },
     {
       match: /meet\.google\.com/,
-      browser: (url) => {
-        const meetUrl = new URL(url);
-        meetUrl.searchParams.set("mute", "1");
-        meetUrl.searchParams.set("videooff", "1");
-        return {
-          name: "Google Chrome", // Google Chrome 経由で Goog Meet を開くことで正しく URL が連携される
-          args: [
-            "--app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan", // chrome://web-app-internals/ から確認可能
-            `--app-launch-url-for-shortcuts-menu-item=${meetUrl.toString()}`,
-          ],
-          profile: "work",
-        };
-      },
+      browser: (url) => ({
+        name: "Google Chrome", // Google Chrome 経由で Goog Meet を開くことで正しく URL が連携される
+        args: [
+          "--app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan", // chrome://web-app-internals/ から確認可能
+          `--app-launch-url-for-shortcuts-menu-item=${url}`,
+        ],
+        profile: "work",
+      }),
     },
     {
       match: [/^https?:\/\/localhost:.*$/],
