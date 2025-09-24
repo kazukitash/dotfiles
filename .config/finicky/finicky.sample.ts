@@ -41,7 +41,7 @@ export default {
             "--app-id=kjgfgldnnfoeklkmfkjfagphfepbbdan", // chrome://web-app-internals/ から確認可能
             `--app-launch-url-for-shortcuts-menu-item=${meetUrl.toString()}`,
           ],
-          profile: "Default",
+          profile: "work",
         };
       },
     },
@@ -49,14 +49,14 @@ export default {
       match: [/^https?:\/\/localhost:.*$/],
       browser: {
         name: "Google Chrome Beta",
-        profile: "Default",
+        profile: "work",
       },
     },
     {
       match: (_, options) => apps.includes(options?.opener?.bundleId ?? ""),
       browser: {
         name: "Google Chrome",
-        profile: "Default",
+        profile: "work",
       },
     },
   ],
