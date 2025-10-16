@@ -73,9 +73,7 @@
       "WebFetch(domain:zed.dev)"
     ],
     "deny": [],
-    "additionalDirectories": [
-      "~/agent_reports"
-    ]
+    "additionalDirectories": ["~/agent_reports"]
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
