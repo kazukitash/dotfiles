@@ -26,6 +26,12 @@ export default {
       browser: "Figma",
     },
     {
+      match: /https:\/\/mcp\.linear\.app\/authorize/,
+      browser: {
+        name: "Safari",
+      },
+    },
+    {
       match: /linear\.app/,
       browser: "Linear",
     },
