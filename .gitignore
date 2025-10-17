@@ -2,3 +2,8 @@
 
 # 端末ごとに異なる設定ファイル
 .config/finicky/finicky.ts
+
+# Codex CLIはファイルのシムリンクに対応していないためフォルダごとシムリンクする
+.codex/*
+!.codex/config.toml
+!.codex/prompts
