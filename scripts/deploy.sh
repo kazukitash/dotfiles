@@ -9,6 +9,14 @@ DOTPATH="$(dirname "$SCRIPT_DIR")"
 # list.shのパスを取得
 LIST_SCRIPT="$SCRIPT_DIR/list.sh"
 
+get_file_id() {
+  local path="$1"
+  case "${OSTYPE-}" in
+    darwin*) stat -f '%d:%i' "$path" ;;
+    *) stat -c '%d:%i' "$path" ;;
+  esac
+}
+
 # list.shが存在するかチェック
 if [[ ! -f "$LIST_SCRIPT" ]]; then
   echo "Error: list.sh not found at $LIST_SCRIPT"
@@ -54,23 +62,35 @@ echo "----------------------------------------"
       # 既存のシンボリックリンクの場合
       existing_link="$(readlink "$target_path")"
       if [[ "$existing_link" == "$source_path" ]]; then
-        echo "Already linked: $target_path -> $source_path"
+        echo "Already soft linked: $target_path -> $source_path"
         continue
       else
         echo "Removing existing link: $target_path -> $existing_link"
         rm "$target_path"
       fi
+    elif [[ -f "$target_path" ]]; then
+      # 既存のハードリンクの場合
+      if source_id="$(get_file_id "$source_path")" && target_id="$(get_file_id "$target_path")"; then
+        if [[ "$source_id" == "$target_id" ]]; then
+          echo "Already hard linked: $target_path == $source_path"
+          continue
+        fi
+      fi
+      backup_path="${target_path}.backup.$(date +%Y%m%d_%H%M%S)"
+      echo "Backing up existing $target_path to $backup_path"
+      mv "$target_path" "$backup_path"
     else
-      # 既存のファイル/ディレクトリの場合
+      # 既存のその他（ディレクトリなど）の場合
       backup_path="${target_path}.backup.$(date +%Y%m%d_%H%M%S)"
       echo "Backing up existing $target_path to $backup_path"
       mv "$target_path" "$backup_path"
     fi
   fi
 
-  # シンボリックリンクを作成
+  # リンクを作成
+  # Codex CLIのpromptsがシンボリックリンクをサポートしていないため、-sオプションは使用しない
   echo "Creating link: $target_path -> $source_path"
-  ln -sf "$source_path" "$target_path"
+  ln -f "$source_path" "$target_path"
 done
 
 # 元のディレクトリに戻る

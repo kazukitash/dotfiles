@@ -1,0 +1,31 @@
+model = "gpt-5"
+model_reasoning_effort = "high"
+network_access = true
+experimental_use_rmcp_client = true
+notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
+[tools]
+web_search = true
+
+[mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.github]
+command = "bash"
+# security add-generic-password -a "$USER" -s codex-github-pat -w 'ghp_xxx'
+args = ["-lc", "mcp-proxy --transport streamablehttp --header Authorization \"Bearer $(security find-generic-password -a $USER -s codex-github-pat -w)\" https://api.githubcopilot.com/mcp/"]
+
+[projects."/Users/kazukitash/repo/kazukitash/yukima"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/kazukitash/diary"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/wklr-mono"]
+trust_level = "trusted"
