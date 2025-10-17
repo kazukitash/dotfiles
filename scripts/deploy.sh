@@ -88,9 +88,8 @@ echo "----------------------------------------"
   fi
 
   # リンクを作成
-  # Codex CLIのpromptsがシンボリックリンクをサポートしていないため、-sオプションは使用しない
   echo "Creating link: $target_path -> $source_path"
-  ln -f "$source_path" "$target_path"
+  ln -sf "$source_path" "$target_path"
 done
 
 # 元のディレクトリに戻る
