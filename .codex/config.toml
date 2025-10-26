@@ -29,3 +29,9 @@ trust_level = "trusted"
 
 [projects."/Users/kazukitash/repo/legalscape/wklr-mono"]
 trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/wklr-terraform"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/wklr-migration"]
+trust_level = "trusted"
