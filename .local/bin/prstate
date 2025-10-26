@@ -1,0 +1,124 @@
+#!/bin/zsh
+
+gh api graphql -f query='
+query($q:String!) {
+  search(query:$q, type: ISSUE, first: 50) {
+    nodes {
+      ... on PullRequest {
+        number
+        title
+        url
+        repository { name }
+
+        # 現在の未消化レビュー依頼
+        reviewRequests(first: 100) {
+          nodes {
+            requestedReviewer {
+              __typename
+              ... on User { login }
+              ... on Team { slug }
+            }
+          }
+        }
+
+        # 履歴の依頼/解除イベント（上限 250）
+        timelineItems(last: 250, itemTypes: [REVIEW_REQUESTED_EVENT, REVIEW_REQUEST_REMOVED_EVENT]) {
+          nodes {
+            __typename
+            ... on ReviewRequestedEvent {
+              requestedReviewer {
+                __typename
+                ... on User { login }
+                ... on Team { slug }
+              }
+            }
+            ... on ReviewRequestRemovedEvent {
+              requestedReviewer {
+                __typename
+                ... on User { login }
+                ... on Team { slug }
+              }
+            }
+          }
+        }
+
+        # 承認者
+        reviews(first: 100) {
+          nodes {
+            state
+            author {
+              __typename
+              ... on User { login }
+            }
+          }
+        }
+
+        # CI 集約（最新コミット）
+        commits(last: 1) {
+          nodes {
+            commit {
+              statusCheckRollup { state }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+' -f q='org:legalscape is:pr is:open assignee:@me -draft:true -archived:true' \
+  | jq -r '
+  # User/Team を表示用に正規化
+  def norm:
+    if . == null then empty
+    elif .__typename=="User" then .login
+    elif .__typename=="Team" then "team:" + .slug
+    else empty end;
+
+  .data.search.nodes[] as $pr
+
+  # 現在の依頼
+  | (($pr.reviewRequests.nodes // [])
+      | map(.requestedReviewer) | map(norm) | unique) as $req_now
+
+  # 履歴: 追加/解除
+  | (($pr.timelineItems.nodes // [])
+      | map(select(.__typename=="ReviewRequestedEvent") | .requestedReviewer)
+      | map(norm) | unique) as $req_added
+  | (($pr.timelineItems.nodes // [])
+      | map(select(.__typename=="ReviewRequestRemovedEvent") | .requestedReviewer)
+      | map(norm) | unique) as $req_removed
+
+  # 現在が空なら（追加 − 解除）を採用 → 文字列化
+  | (if ($req_now | length) > 0
+     then $req_now
+     else ($req_added - ($req_removed // []))
+     end | unique | join(",")
+    ) as $requested_col
+
+  # APPROVED ユーザー（ユニーク）→ 文字列化
+  | (($pr.reviews.nodes // [])
+      | map(select(.state=="APPROVED" and .author.__typename=="User") | .author.login)
+      | unique | join(",")
+    ) as $approvers_col
+
+  # CI 状態（集約）
+  | ($pr.commits.nodes[0].commit.statusCheckRollup.state // "NO_CHECKS") as $ci_state
+
+  # タイトルのタブ/改行はスペースに置換
+  | ($pr.title | gsub("\t";" ") | gsub("\r?\n";" ")) as $title_safe
+
+  # 空を "-" に
+  | ($requested_col | if .=="" then "-" else . end) as $req_out
+  | ($approvers_col | if .=="" then "-" else . end) as $apr_out
+
+  | [
+      ($pr.repository.name),
+      ($pr.number|tostring),
+      $title_safe,
+      $ci_state,
+      $req_out,
+      $apr_out,
+      $pr.url
+    ] | @tsv
+' \
+  | column -s $'\t' -t
