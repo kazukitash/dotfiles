@@ -50,12 +50,14 @@
   },
   "agent": {
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5"
+      "provider": "codex",
+      "model": "gpt-5-codex"
     },
     "play_sound_when_agent_done": true,
-    "always_allow_tool_actions": true
+    "always_allow_tool_actions": true,
+    "notify_when_agent_waiting": "all_screens"
   },
+
   "file_types": {
     "Dockerfile": ["Dockerfile.*"],
     "Plain Text": ["bun.lock"]
@@ -64,7 +66,6 @@
     "metrics": false,
     "diagnostics": false
   },
-  "agent_font_size": 14,
   "ui_font_size": 14,
   "buffer_font_size": 12,
   "ui_font_family": "Rounded-L Mgen+ 2cp",
@@ -110,15 +111,11 @@
       "format_on_save": "on"
     },
     "Python": {
-      "tab_size": 4,
-      "formatter": [
-        {
-          "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
-          }
-        }
-      ]
+      "code_actions_on_format": {
+        "source.fixAll.ruff": true,
+        "source.organizeImports.ruff": true
+      },
+      "tab_size": 4
     }
   }
 }
