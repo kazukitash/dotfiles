@@ -1,0 +1,115 @@
+#!/bin/zsh
+
+gh api graphql -f query='
+query($q:String!) {
+  viewer { login }
+  search(query:$q, type: ISSUE, first: 50) {
+    nodes {
+      ... on PullRequest {
+        number
+        title
+        url
+        additions
+        deletions
+        repository { name }              # owner なし
+        labels(first: 50) { nodes { name } }
+
+        # 依頼/解除の履歴（since計算用）
+        timelineItems(last: 250, itemTypes: [REVIEW_REQUESTED_EVENT, REVIEW_REQUEST_REMOVED_EVENT]) {
+          nodes {
+            __typename
+            ... on ReviewRequestedEvent {
+              createdAt
+              requestedReviewer {
+                __typename
+                ... on User { login }
+                ... on Team { slug }
+              }
+            }
+            ... on ReviewRequestRemovedEvent {
+              createdAt
+              requestedReviewer {
+                __typename
+                ... on User { login }
+                ... on Team { slug }
+              }
+            }
+          }
+        }
+
+        # CI（最新コミットの集約）
+        commits(last: 1) { nodes { commit { statusCheckRollup { state } } } }
+      }
+    }
+  }
+}
+' -f q='org:legalscape is:pr is:open review-requested:@me -assignee:@me -draft:true -archived:true' \
+  | jq -r '
+  . as $root
+  | ($root.data.viewer.login) as $me
+  | ($root.data.search.nodes // [])
+  | map(
+      . as $pr
+      |
+      # CI
+      ($pr.commits.nodes[0].commit.statusCheckRollup.state // "NO_CHECKS") as $ci_state
+      |
+      # 変更量
+      ($pr.additions // 0) as $adds
+      | ($pr.deletions // 0) as $dels
+      |
+      # Priority（ラベルに P0/P1/P2 があれば最優先を採用。無ければ P1 のまま）
+      (($pr.labels.nodes // [])
+        | map(.name | ascii_upcase)
+        | map(select(test("^P[0-2]$")))) as $prio_list
+      |
+      (if ($prio_list|length)>0
+        then ($prio_list
+                | map({name:., rank:(if .=="P0" then 0 elif .=="P1" then 1 else 2 end)})
+                | sort_by(.rank)[0].name)
+        else "P1" end) as $priority
+      |
+      # あなた(@me)への直近のレビュー依頼からの経過時間（h）
+      (($pr.timelineItems.nodes // [])
+        | map(select(.__typename=="ReviewRequestedEvent"
+                     and .requestedReviewer.__typename=="User"
+                     and .requestedReviewer.login==$me)
+              | .createdAt)
+        | map(fromdateiso8601)) as $me_req_times
+      |
+      (if ($me_req_times|length)>0 then ($me_req_times|max) else null end) as $me_req_ts
+      |
+      (if $me_req_ts then ((now - $me_req_ts)/3600) else null end) as $age_h
+      |
+      (if $age_h then (( $age_h | floor | tostring) + "h") else "-" end) as $since_h
+      |
+      # タイトル整形
+      ($pr.title | gsub("\t";" ") | gsub("\r?\n";" ")) as $title_safe
+      |
+      {
+        repo: $pr.repository.name,           # ← owner 省略
+        number: $pr.number,
+        title: $title_safe,
+        ci: $ci_state,
+        plus: ("+" + ($adds|tostring)),
+        minus: ("-" + ($dels|tostring)),
+        priority: $priority,
+        since_h: $since_h,
+        url: $pr.url,
+        age_h: ($age_h // -1)               # ソート用（nullは-1で末尾）
+      }
+    )
+  | sort_by(-.age_h)                         # 古い順（経過時間が大きい順）
+  | .[]
+  | [
+      .repo,
+      (.number|tostring),
+      .title,
+      .ci,
+      .plus,
+      .minus,
+      .priority,
+      .since_h,
+      .url
+    ] | @tsv
+' | column -s $'\t' -t
