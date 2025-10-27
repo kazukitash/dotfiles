@@ -112,4 +112,18 @@ query($q:String!) {
       .since_h,
       .url
     ] | @tsv
-' | column -s $'\t' -t
+' |
+  while IFS=$'\t' read -r repo number title ci plus minus priority since_h url; do
+    report_dir="$HOME/agent_reports"
+    review_date="-"
+    if [ -n "$number" ] && [ -d "$report_dir" ]; then
+      latest_report=$(find -L "$report_dir" -maxdepth 1 -type f -name "*-pr-${number}-review.md" 2>/dev/null | sort -r | head -n 1)
+      if [ -n "$latest_report" ]; then
+        base=$(basename "$latest_report")
+        review_date=$(printf "%s" "$base" | cut -d- -f1-3)
+      fi
+    fi
+    printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+      "$repo" "$number" "$title" "$ci" "$plus" "$minus" "$priority" "$since_h" "$url" "$review_date"
+  done |
+  column -s $'\t' -t
