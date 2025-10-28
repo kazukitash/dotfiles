@@ -8,6 +8,7 @@ query($q:String!) {
         number
         title
         url
+        headRefName
         repository { name }
 
         # 現在の未消化レビュー依頼
@@ -102,7 +103,7 @@ query($q:String!) {
     ) as $approvers_col
 
   # CI 状態（集約）
-  | ($pr.commits.nodes[0].commit.statusCheckRollup.state // "NO_CHECKS") as $ci_state
+  | ($pr.commits.nodes[0].commit.statusCheckRollup.state // "-") as $ci_state
 
   # タイトルのタブ/改行はスペースに置換
   | ($pr.title | gsub("\t";" ") | gsub("\r?\n";" ")) as $title_safe
@@ -111,9 +112,11 @@ query($q:String!) {
   | ($requested_col | if .=="" then "-" else . end) as $req_out
   | ($approvers_col | if .=="" then "-" else . end) as $apr_out
 
+  | ($pr.headRefName // ("pr-" + ($pr.number|tostring))) as $branch_name
+
   | [
       ($pr.repository.name),
-      ($pr.number|tostring),
+      $branch_name,
       $title_safe,
       $ci_state,
       $req_out,
