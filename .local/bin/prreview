@@ -11,6 +11,7 @@ query($q:String!) {
         url
         additions
         deletions
+        headRefName
         repository { name }              # owner なし
         labels(first: 50) { nodes { name } }
 
@@ -52,7 +53,7 @@ query($q:String!) {
       . as $pr
       |
       # CI
-      ($pr.commits.nodes[0].commit.statusCheckRollup.state // "NO_CHECKS") as $ci_state
+      ($pr.commits.nodes[0].commit.statusCheckRollup.state // "-") as $ci_state
       |
       # 変更量
       ($pr.additions // 0) as $adds
@@ -86,8 +87,11 @@ query($q:String!) {
       # タイトル整形
       ($pr.title | gsub("\t";" ") | gsub("\r?\n";" ")) as $title_safe
       |
+      ($pr.headRefName // ("pr-" + ($pr.number|tostring))) as $branch_name
+      |
       {
         repo: $pr.repository.name,           # ← owner 省略
+        branch: $branch_name,
         number: $pr.number,
         title: $title_safe,
         ci: $ci_state,
@@ -97,13 +101,13 @@ query($q:String!) {
         since_h: $since_h,
         url: $pr.url,
         age_h: ($age_h // -1)               # ソート用（nullは-1で末尾）
-      }
+  }
     )
   | sort_by(-.age_h)                         # 古い順（経過時間が大きい順）
   | .[]
   | [
       .repo,
-      (.number|tostring),
+      .branch,
       .title,
       .ci,
       .plus,
@@ -112,18 +116,30 @@ query($q:String!) {
       .since_h,
       .url
     ] | @tsv
-' |
-  while IFS=$'\t' read -r repo number title ci plus minus priority since_h url; do
+' \
+  | while IFS=$'\t' read -r repo branch title ci plus minus priority since_h url; do
     report_dir="$HOME/agent_reports"
-    review_date="-"
-    if [ -n "$number" ] && [ -d "$report_dir" ]; then
-      latest_report=$(find -L "$report_dir" -maxdepth 1 -type f -name "*-pr-${number}-review.md" 2>/dev/null | sort -r | head -n 1)
+    review_age="-"
+    pr_number="${url##*/}"
+    if [ -n "$pr_number" ] && [ -d "$report_dir" ]; then
+      latest_report=$(find -L "$report_dir" -maxdepth 1 -type f -name "*-pr-${pr_number}-review.md" 2> /dev/null | sort -r | head -n 1)
       if [ -n "$latest_report" ]; then
         base=$(basename "$latest_report")
-        review_date=$(printf "%s" "$base" | cut -d- -f1-3)
+        review_day=$(printf "%s" "$base" | cut -d- -f1-3)
+        epoch_review=""
+        epoch_review=$(date -j -f "%Y-%m-%d %H:%M:%S" "$review_day 00:00:00" "+%s" 2> /dev/null || true)
+        if [ -n "$epoch_review" ]; then
+          epoch_now=$(date +%s)
+          if [ "$epoch_now" -ge "$epoch_review" ] 2> /dev/null; then
+            hours=$(((epoch_now - epoch_review) / 3600))
+          else
+            hours=0
+          fi
+          review_age="${hours}h"
+        fi
       fi
     fi
     printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
-      "$repo" "$number" "$title" "$ci" "$plus" "$minus" "$priority" "$since_h" "$url" "$review_date"
-  done |
-  column -s $'\t' -t
+      "$repo" "$branch" "$title" "$ci" "$plus" "$minus" "$priority" "$since_h" "$review_age" "$url"
+  done \
+  | column -s $'\t' -t
