@@ -31,3 +31,5 @@
 current-branch-name = ! git branch | grep -e '^\\* ' | sed -e 's/^\\* //g'
 force-pull = !git fetch && git reset --hard origin/$(git current-branch-name)
 tig = !tig main HEAD
+[diff-so-fancy]
+	stripLeadingSymbols = false
