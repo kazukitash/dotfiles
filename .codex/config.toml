@@ -1,4 +1,4 @@
-model = "gpt-5"
+model = "gpt-5-codex"
 model_reasoning_effort = "high"
 network_access = true
 experimental_use_rmcp_client = true
@@ -34,4 +34,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/kazukitash/repo/legalscape/wklr-migration"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/ls-gist"]
 trust_level = "trusted"
