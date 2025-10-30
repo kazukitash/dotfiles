@@ -10,15 +10,15 @@
 
 ### 1. 初期化・レポートファイル作成
 
-- `~/agent_reports/` フォルダが存在しない場合は作成
+- `./agent_reports/` フォルダが存在しない場合は作成
 - レビューレポートファイル名を生成：
 
   ```bash
   # ディレクトリ作成
-  mkdir -p ~/agent_reports/
+  mkdir -p ./agent_reports/
 
   # ファイル名生成（必ずdateコマンドを使用すること）
-  REPORT_FILE="~/agent_reports/$(date +%Y-%m-%d-%H%M%S)-pr-${PR}-review.md"
+  REPORT_FILE="./agent_reports/$(date +%Y-%m-%d-%H%M%S)-pr-${PR}-review.md"
   ```
 
   - 例: `2024-01-15-143052-pr-123-review.md`
