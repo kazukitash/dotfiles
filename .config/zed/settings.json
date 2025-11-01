@@ -19,11 +19,10 @@
   "auto_update": true,
   "context_servers": {
     "mcp-server-github": {
-      "source": "extension",
-      "enabled": true,
-      "settings": {
-        "github_personal_access_token": "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"
-      }
+      "source": "custom",
+      "command": "/bin/bash",
+      "args": ["-c", "$HOME/.config/zed/scripts/github-mcp.sh"],
+      "enabled": true
     },
     "mcp-server-linear": {
       "source": "custom",
@@ -84,6 +83,15 @@
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
+    }
+  },
+  "lsp": {
+    "omnisharp": {
+      "binary": {
+        // 事前に otnet tool install -g csharp-ls
+        "path": "/Users/kazukitash/.dotnet/tools/csharp-ls",
+        "arguments": []
+      }
     }
   },
   "languages": {
