@@ -7,3 +7,4 @@
 .codex/*
 !.codex/config.toml
 !.codex/prompts
+!.codex/AGENTS.md
