@@ -76,6 +76,10 @@ if has pnpm; then
   path=($PNPM_HOME $path)
 fi
 
+if has dotnet; then
+  export PATH="$PATH:/Users/kazukitash/.dotnet/tools"
+fi
+
 # 個人用のPATH
 path=(~/.local/bin $path)
 
