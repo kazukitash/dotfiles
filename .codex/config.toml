@@ -1,11 +1,9 @@
 model = "gpt-5-codex"
 model_reasoning_effort = "high"
 network_access = true
-experimental_use_rmcp_client = true
+rmcp_client = true
+web_search_request = true
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
-
-[tools]
-web_search = true
 
 [mcp_servers.linear]
 url = "https://mcp.linear.app/mcp"
@@ -37,4 +35,10 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/kazukitash/repo/legalscape/ls-gist"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/kazukitash/Cloud Repositories/CrazyJump"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/Unity/MokeMoke/EscapeGame"]
 trust_level = "trusted"
