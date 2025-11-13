@@ -19,21 +19,27 @@ export default {
     },
     {
       match: /notion\.so/,
-      browser: "Notion",
+      browser: {
+        name: "ChatGPT Atlas",
+      },
     },
     {
       match: /figma\.com\/(file|design)/,
-      browser: "Figma",
+      browser: {
+        name: "ChatGPT Atlas",
+      },
     },
     {
       match: /https:\/\/mcp\.linear\.app\/authorize/,
       browser: {
-        name: "Safari",
+        name: "ChatGPT Atlas",
       },
     },
     {
       match: /linear\.app/,
-      browser: "Linear",
+      browser: {
+        name: "ChatGPT Atlas",
+      },
     },
     {
       match: /meet\.google\.com/,
@@ -49,15 +55,14 @@ export default {
     {
       match: [/^https?:\/\/localhost:.*$/],
       browser: {
-        name: "Google Chrome Beta",
+        name: "Google Chrome",
         profile: "work",
       },
     },
     {
       match: (_, options) => apps.includes(options?.opener?.bundleId ?? ""),
       browser: {
-        name: "Google Chrome",
-        profile: "work",
+        name: "ChatGPT Atlas",
       },
     },
   ],
