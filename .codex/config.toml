@@ -1,9 +1,11 @@
-model = "gpt-5-codex"
+model = "gpt-5.1"
 model_reasoning_effort = "high"
 network_access = true
-rmcp_client = true
 web_search_request = true
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
+[features]
+rmcp_client = true
 
 [mcp_servers.linear]
 url = "https://mcp.linear.app/mcp"
@@ -14,7 +16,10 @@ url = "https://mcp.notion.com/mcp"
 [mcp_servers.github]
 command = "bash"
 # security add-generic-password -a "$USER" -s codex-github-pat -w 'ghp_xxx'
-args = ["-lc", "mcp-proxy --transport streamablehttp --header Authorization \"Bearer $(security find-generic-password -a $USER -s codex-github-pat -w)\" https://api.githubcopilot.com/mcp/"]
+args = [
+  "-lc",
+  "mcp-proxy --transport streamablehttp --header Authorization \"Bearer $(security find-generic-password -a $USER -s codex-github-pat -w)\" https://api.githubcopilot.com/mcp/",
+]
 
 [projects."/Users/kazukitash/repo/kazukitash/yukima"]
 trust_level = "trusted"
@@ -39,3 +44,16 @@ trust_level = "trusted"
 
 [projects."/Users/kazukitash/Unity/MokeMoke/EscapeGame"]
 trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/wklr-billings-cli"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/wklr-docker/wklr-migration"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape"]
+trust_level = "trusted"
+
+[notice]
+hide_gpt5_1_migration_prompt = true
+"hide_gpt-5.1-codex-max_migration_prompt" = true
