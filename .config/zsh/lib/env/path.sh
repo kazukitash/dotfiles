@@ -77,7 +77,8 @@ if has pnpm; then
 fi
 
 if has dotnet; then
-  export PATH="$PATH:/Users/kazukitash/.dotnet/tools"
+  export PATH="$PATH:$HOMEBREW_PREFIX/opt/dotnet/bin:$HOME/.dotnet/tools"
+  export DOTNET_ROOT="$HOMEBREW_PREFIX/opt/dotnet/libexec"
 fi
 
 # 個人用のPATH
