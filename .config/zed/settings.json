@@ -19,13 +19,11 @@
   "auto_update": true,
   "context_servers": {
     "mcp-server-github": {
-      "source": "custom",
       "command": "/bin/bash",
       "args": ["-c", "$HOME/.config/zed/scripts/github-mcp.sh"],
       "enabled": true
     },
     "mcp-server-linear": {
-      "source": "custom",
       "command": "npx",
       "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
     }
@@ -48,6 +46,10 @@
     "dark": "Catppuccin Mocha"
   },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.1-codex"
+    },
     "default_model": {
       "provider": "codex",
       "model": "gpt-5-codex"
@@ -85,15 +87,6 @@
       "milliseconds": 1000
     }
   },
-  "lsp": {
-    "omnisharp": {
-      "binary": {
-        // 事前に otnet tool install -g csharp-ls
-        "path": "/Users/kazukitash/.dotnet/tools/csharp-ls",
-        "arguments": []
-      }
-    }
-  },
   "languages": {
     "CSS": {
       "formatter": "prettier"
@@ -124,6 +117,13 @@
         "source.organizeImports.ruff": true
       },
       "tab_size": 4
+    },
+    "CSharp": {
+      "enable_language_server": true,
+      "formatter": "language_server"
+    },
+    "Rainbow TSV (⭲)": {
+      "hard_tabs": true
     }
   }
 }
