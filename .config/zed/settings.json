@@ -59,7 +59,7 @@
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5.1-codex"
+      "model": "gpt-5.1-codex-max"
     },
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
