@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ssh_connections": [
+    {
+      "host": "ktmm",
+      "args": [],
+      "projects": []
+    }
+  ],
   "indent_guides": {
     "coloring": "indent_aware"
   },
@@ -51,8 +58,8 @@
       "model": "gpt-5.1-codex"
     },
     "default_model": {
-      "provider": "codex",
-      "model": "gpt-5-codex"
+      "provider": "copilot_chat",
+      "model": "gpt-5.1-codex"
     },
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
