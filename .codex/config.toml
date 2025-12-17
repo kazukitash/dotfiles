@@ -1,4 +1,4 @@
-model = "gpt-5.1"
+model = "gpt-5.1-codex-max"
 model_reasoning_effort = "high"
 network_access = true
 web_search_request = true
@@ -52,6 +52,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/kazukitash/repo/legalscape"]
+trust_level = "trusted"
+
+[projects."/Users/kazukitash/repo/legalscape/labs-wandh"]
 trust_level = "trusted"
 
 [notice]
