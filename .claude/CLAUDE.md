@@ -93,3 +93,32 @@ Zed Editor の Prettier フォーマッターに準拠した Markdown を生成�
 - コードブロックの前後に空行を挿入する
 - リンクと画像は参照形式より直接形式を優先する
 - 強調記号（**bold**、_italic_）の前後にスペースを入れる
+
+## Webデザイン実装規範
+
+DOM構造やCSS設定を説明する際は視覚的に分かりやすい形式を使う：
+
+- DOM構造はtree形式で表示する
+
+```
+.container
+├── .header
+│   ├── .title
+│   └── .icon
+└── .content
+    ├── .item
+    └── .item
+```
+
+- CSS設定やタイポグラフィはtable形式で表示する
+
+| 要素 | タイポグラフィ | 色 |
+|------|---------------|-----|
+| 見出し | bodySmMedium | primary |
+| 本文 | bodyXsRegular | secondary |
+
+- 修正前後の差分もtable形式で比較する
+
+| 項目 | 修正前 | 修正後 |
+|------|--------|--------|
+| padding | 8px | 4px |
