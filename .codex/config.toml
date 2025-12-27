@@ -1,4 +1,4 @@
-model = "gpt-5.1-codex-max"
+model = "gpt-5.2-codex"
 model_reasoning_effort = "high"
 network_access = true
 web_search_request = true
@@ -57,6 +57,12 @@ trust_level = "trusted"
 [projects."/Users/kazukitash/repo/legalscape/labs-wandh"]
 trust_level = "trusted"
 
+[projects."/Users/kazukitash/repo/kazukitash/sharel"]
+trust_level = "trusted"
+
 [notice]
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
+
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
