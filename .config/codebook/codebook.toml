@@ -1,4 +1,5 @@
 words = [
+    "adr",
     "aiohttp",
     "aiter",
     "anext",
@@ -44,6 +45,7 @@ words = [
     "starlette",
     "streamlit",
     "tinyspeck",
+    "topk",
     "traceparent",
     "tsutatsu",
     "unfocus",
