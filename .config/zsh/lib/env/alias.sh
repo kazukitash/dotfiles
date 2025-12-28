@@ -62,5 +62,5 @@ alias c="claude"
 # プロジェクト固有のエイリアス
 alias iris-check="pn -F iris fix && pn -F iris type && pn -F iris test"
 alias wandh-check="uv run doit && uv run doit test"
-alias dev="pn dlx google-artifactregistry-auth && WKLR_ES_PORT=9200 docker compose up -d nginx iris labs-wandh wklr-jobs wklr-es"
-alias dev-wklr="pn dlx google-artifactregistry-auth && WKLR_ES_PORT=9200 docker compose up -d nginx wklr wklr-backend-api wklr-mysql wklr-es"
+alias dev="pn dlx google-artifactregistry-auth && WKLR_ES_PORT=9299 docker compose up -d nginx iris labs-wandh wklr-jobs wklr-es"
+alias dev-wklr="pn dlx google-artifactregistry-auth && WKLR_ES_PORT=9299 docker compose up -d nginx wklr wklr-backend-api wklr-mysql wklr-es"
