@@ -36,8 +36,7 @@ fi
 # openjdkの設定
 case "$(arch)" in
   macOS)
-    export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-    path=(/usr/local/opt/openjdk/bin $path)
+    path=(/opt/homebrew/opt/openjdk/bin $path)
     ;;
 esac
 
