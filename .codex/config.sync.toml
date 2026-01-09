@@ -1,0 +1,22 @@
+model = "gpt-5.2-codex"
+model_reasoning_effort = "high"
+network_access = true
+web_search_request = true
+notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+
+[features]
+rmcp_client = true
+
+[mcp_servers.linear]
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.github]
+command = "bash"
+# security add-generic-password -a "$USER" -s codex-github-pat -w 'ghp_xxx'
+args = [
+  "-lc",
+  "mcp-proxy --transport streamablehttp --header Authorization \"Bearer $(security find-generic-password -a $USER -s codex-github-pat -w)\" https://api.githubcopilot.com/mcp/",
+]

@@ -5,6 +5,6 @@
 
 # Codex CLIはファイルのシムリンクに対応していないためフォルダごとシムリンクする
 .codex/*
-!.codex/config.toml
+!.codex/config.sync.toml
 !.codex/prompts
 !.codex/AGENTS.md
