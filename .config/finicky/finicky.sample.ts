@@ -12,6 +12,13 @@ export default {
 
   handlers: [
     {
+      match: /accounts\.google\.com/,
+      browser: {
+        name: "Google Chrome",
+        profile: "work",
+      },
+    },
+    {
       match: /youtube\.com/,
       browser: {
         name: "Safari",
