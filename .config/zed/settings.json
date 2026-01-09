@@ -7,10 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "session": {
+    "trust_all_worktrees": true,
+  },
   "agent_servers": {
-    "codex": {
-      
-    }
+    "codex": {},
   },
   "ssh_connections": [
     {
@@ -122,7 +123,6 @@
     "Markdown": {
       "enable_language_server": true,
       "format_on_save": "on",
-      
     },
     "Python": {
       "code_actions_on_format": {
