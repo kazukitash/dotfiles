@@ -72,8 +72,7 @@
       "WebFetch(domain:unity.com)",
       "WebFetch(domain:zed.dev)"
     ],
-    "deny": [],
-    "additionalDirectories": ["~/agent_reports"]
+    "deny": []
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592

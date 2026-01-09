@@ -152,7 +152,7 @@ Deep Research のフロント対応を行い、Holmes/Watson に Plan/Report を
 - ブランチがリモートにない場合は `git push -u origin <branch>` でプッシュ
 - `gh pr create --draft --base <base> --head <branch> --title "$TITLE" --body "$BODY" --assignee kazukitash` を実行
 - 既存 PR がある場合は `gh pr view` で確認し、必要なら `gh pr edit` でタイトル/本文を更新
-- 既存 PR に assignee が設定されていない場合は `gh pr edit --add-assignee kazukitash` で設定
+- PR に assignee が設定されているか確認する。設定されていない場合は `gh pr edit --add-assignee kazukitash` で設定
 
 6. **出力**
 
