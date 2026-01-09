@@ -2,4 +2,5 @@
 idiomatic_version_file_enable_tools = ["node", "python"]
 
 [tools]
+node = "22"
 ruby = "latest"
