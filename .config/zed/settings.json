@@ -8,77 +8,79 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "session": {
-    "trust_all_worktrees": true,
+    "trust_all_worktrees": true
   },
   "agent_servers": {
-    "codex": {},
+    "codex": {
+      "default_model": "gpt-5.1-codex-max/high"
+    }
   },
   "ssh_connections": [
     {
       "host": "ktmm",
       "args": [],
-      "projects": [],
-    },
+      "projects": []
+    }
   ],
   "indent_guides": {
-    "coloring": "indent_aware",
+    "coloring": "indent_aware"
   },
   "minimap": {
-    "show": "always",
+    "show": "always"
   },
   "terminal": {
-    "max_scroll_history_lines": 100000,
+    "max_scroll_history_lines": 100000
   },
   "auto_update": true,
   "context_servers": {
     "mcp-server-github": {
       "command": "/bin/bash",
       "args": ["-c", "$HOME/.config/zed/scripts/github-mcp.sh"],
-      "enabled": true,
+      "enabled": true
     },
     "mcp-server-linear": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
-    },
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+    }
   },
   "ui_font_weight": 300.0,
   "buffer_font_weight": 300.0,
   "ui_font_features": {
-    "calt": 1,
+    "calt": 1
   },
   "buffer_font_features": {
-    "calt": 1,
+    "calt": 1
   },
   "buffer_font_family": "Rounded-L Mgen+ 1mn",
   "features": {
-    "edit_prediction_provider": "copilot",
+    "edit_prediction_provider": "copilot"
   },
   "icon_theme": {
     "mode": "dark",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
   },
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5.1-codex",
+      "model": "gpt-5.1-codex"
     },
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5.1-codex-max",
+      "model": "gpt-5.1-codex-max"
     },
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
-    "notify_when_agent_waiting": "all_screens",
+    "notify_when_agent_waiting": "all_screens"
   },
 
   "file_types": {
     "Dockerfile": ["Dockerfile.*"],
-    "Plain Text": ["bun.lock"],
+    "Plain Text": ["bun.lock"]
   },
   "telemetry": {
     "metrics": false,
-    "diagnostics": false,
+    "diagnostics": false
   },
   "ui_font_size": 14,
   "buffer_font_size": 12,
@@ -86,10 +88,10 @@
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Latte (blue)",
-    "dark": "Catppuccin Mocha (blue)",
+    "dark": "Catppuccin Mocha (blue)"
   },
   "collaboration_panel": {
-    "button": false,
+    "button": false
   },
   "tab_size": 2,
   "hard_tabs": false,
@@ -97,12 +99,12 @@
   "show_whitespaces": "all",
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000,
-    },
+      "milliseconds": 1000
+    }
   },
   "languages": {
     "CSS": {
-      "formatter": "prettier",
+      "formatter": "prettier"
     },
     "Shell Script": {
       "formatter": {
@@ -115,28 +117,28 @@
             "2",
             "-ci",
             "-sr",
-            "-bn",
-          ],
-        },
-      },
+            "-bn"
+          ]
+        }
+      }
     },
     "Markdown": {
       "enable_language_server": true,
-      "format_on_save": "on",
+      "format_on_save": "on"
     },
     "Python": {
       "code_actions_on_format": {
         "source.fixAll.ruff": true,
-        "source.organizeImports.ruff": true,
+        "source.organizeImports.ruff": true
       },
-      "tab_size": 4,
+      "tab_size": 4
     },
     "CSharp": {
       "enable_language_server": true,
-      "formatter": "language_server",
+      "formatter": "language_server"
     },
     "Rainbow TSV (⭲)": {
-      "hard_tabs": true,
-    },
-  },
+      "hard_tabs": true
+    }
+  }
 }
