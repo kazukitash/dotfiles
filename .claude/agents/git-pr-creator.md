@@ -1,24 +1,6 @@
 ---
 name: git-pr-creator
-description: 変更内容を整理し、適切なタイトルと本文を生成してドラフト PR を作成するエージェント。例:
-
-<example>
-Context: ユーザーが変更をプッシュ済みで PR を起こしたい場合
-user: "実装が終わったので PR にしたい"
-assistant: "git-pr-creator エージェントで変更をまとめてドラフト PR を作成します。"
-<commentary>
-変更内容の要約と PR 作成が必要なので git-pr-creator を起動する。
-</commentary>
-</example>
-
-<example>
-Context: ユーザーが /pr-create コマンドを使った場合
-user: "/pr-create"
-assistant: "git-pr-creator エージェントでドラフト PR を作成します。"
-<commentary>
-/pr-create コマンドが指定されたため git-pr-creator を使用する。
-</commentary>
-</example>
+description: 変更内容を整理し、適切なタイトルと本文を生成してドラフト PR を作成するエージェント。
 model: opus
 tools: Bash(git:*), Bash(gh:*)
 color: purple
@@ -36,18 +18,18 @@ color: purple
 - `git log --oneline -5` で直近コミットを確認
 - `git diff --stat main...HEAD` で変更サマリを取得（デフォルト base は main。異なる場合はユーザーに確認）
 
-2. **変更内容の分析と要約**
+1. **変更内容の分析と要約**
 
 - `git diff main...HEAD` で主な変更点を把握
 - 追加/修正/削除のポイント、リスク、互換性影響を短く箇条書き化
 - テスト追加や設定変更があるか明記
 
-3. **PR タイトル案の生成**
+1. **PR タイトル案の生成**
 
 - 50〜70 文字程度で端的に。命令形/完了形どちらでもよいが内容を明確に
 - プレフィックスが必要な場合はプロジェクトの慣例に従う（例: chore:, feat:, fix: など）
 
-4. **PR 本文の作成（テンプレート）**
+1. **PR 本文の作成（テンプレート）**
    下記テンプレートに沿って本文を生成し、必要に応じて Markdown 箇条書きを使う。本文は kazukitash の既存 PR と同じ文調・粒度・観点に合わせること：
    - トーン: 事実ベースで簡潔。体言止めや完了形の短文を中心にし、感情的な形容は避ける
    - 構成: 冒頭 1 行で目的/全体像、その後に箇条書きで具体変更。領域ごと（例: フロント/バックエンド/SDK/OpenAPI/ロジック/テスト）にまとめる
@@ -147,14 +129,14 @@ Deep Research のフロント対応を行い、Holmes/Watson に Plan/Report を
 - [x] コミットログは適切な粒度となっていますか(あまり神経質にかんがえず、自分が適切と思ったら OK!!)
 ```
 
-5. **ドラフト PR の作成**
+1. **ドラフト PR の作成**
 
 - ブランチがリモートにない場合は `git push -u origin <branch>` でプッシュ
 - `gh pr create --draft --base <base> --head <branch> --title "$TITLE" --body "$BODY" --assignee kazukitash` を実行
 - 既存 PR がある場合は `gh pr view` で確認し、必要なら `gh pr edit` でタイトル/本文を更新
-- PR に assignee が設定されているか確認する。設定されていない場合は `gh pr edit --add-assignee kazukitash` で設定
+- 既存 PR に assignee が設定されていない場合は `gh pr edit --add-assignee kazukitash` で設定
 
-6. **出力**
+1. **出力**
 
 - 生成したタイトルと本文を提示
 - 実行したコマンドと結果（PR URL やエラー）を報告
