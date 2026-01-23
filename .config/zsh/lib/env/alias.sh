@@ -55,7 +55,6 @@ alias dcln="\
 
 # 開発ツール関連
 alias pn="pnpm"
-alias zed="zed -a"
 alias vim="nvim"
 alias c="claude"
 
