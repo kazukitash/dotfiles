@@ -6,6 +6,8 @@ tools: Bash(git:*), Bash(gh:*)
 color: purple
 ---
 
+# Git PR Creator
+
 あなたは変更内容を分析し、PR タイトル・本文を日本語で生成し、`gh pr create --draft` を使ってドラフト PR を作成する専門家です。
 
 ## 実行プロセス
