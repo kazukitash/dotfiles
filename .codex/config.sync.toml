@@ -2,10 +2,10 @@ model = "gpt-5.2-codex"
 model_reasoning_effort = "high"
 network_access = true
 notify = ["bash", "-lc", "afplay /System/Library/Sounds/Ping.aiff"]
+web_search = "live"
 
 [features]
 rmcp_client = true
-web_search_request = true
 
 [mcp_servers.linear]
 url = "https://mcp.linear.app/mcp"
