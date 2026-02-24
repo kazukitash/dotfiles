@@ -74,8 +74,12 @@
     ],
     "deny": []
   },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  },
-  "alwaysThinkingEnabled": true
+  }
 }
