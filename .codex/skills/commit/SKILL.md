@@ -33,6 +33,13 @@ git status && git diff && git diff --cached && git log --oneline -5
 
 計画に基づき、各コミットの `git add` と `git commit` を**途中で確認を挟まず連続実行**する。
 
+権限昇格が必要な環境では、確認ダイアログを減らすために以下を徹底する:
+
+- `git add` と `git commit` は **2 つのコマンドに分離**して実行する（`&&` で連結しない）
+- `git add` 実行時は `prefix_rule: ["git", "add"]` を指定して昇格要求する
+- `git commit` 実行時は `prefix_rule: ["git", "commit"]` を指定して昇格要求する
+- コミット本文は `-m` を複数回使って渡し、`\n` を文字列として埋め込まない
+
 ステージング方法:
 
 - **ファイル全体**: `git add <file>` - ファイル全体が一つの論理的変更の場合
@@ -41,9 +48,8 @@ git status && git diff && git diff --cached && git log --oneline -5
 コミットの実行形式（`$()` コマンド置換を使わない）:
 
 ```bash
-git add <files> && git commit -m "<type>(scope): 説明
-
-本文（必要な場合のみ）"
+git add <files>
+git commit -m "<type>(scope): 説明" -m "本文（必要な場合のみ）"
 ```
 
 複数コミットがある場合も、計画どおり順番に `add` → `commit` を繰り返す。
