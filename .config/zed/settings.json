@@ -73,7 +73,6 @@
       "model": "gpt-5.1-codex-max",
     },
     "play_sound_when_agent_done": true,
-    "always_allow_tool_actions": true,
     "notify_when_agent_waiting": "all_screens",
   },
   "file_types": {
