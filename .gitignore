@@ -7,4 +7,5 @@
 .codex/*
 !.codex/config.sync.toml
 !.codex/prompts
+!.codex/skills
 !.codex/AGENTS.md
