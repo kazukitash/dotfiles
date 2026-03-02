@@ -143,6 +143,41 @@ Deep Research のフロント対応を行い、Holmes/Watson に Plan/Report を
 - 生成したタイトルと本文を提示
 - 実行したコマンドと結果（PR URL やエラー）を報告
 
+## ラベル付与ルール
+
+PR 作成時に `--label` オプションで適切なラベルを付与する。
+
+### 優先度ラベル（必須）
+
+指定がなければ `P1` をデフォルトで付与する。ユーザーが明示的に優先度を指定した場合はそれに従う（`P0`, `P1`, `P2`）。
+
+### デプロイラベル（変更内容に応じて付与）
+
+変更内容を `git diff` で分析し、以下の条件に該当するラベルを**すべて**付与する。条件は累積的に適用する。
+
+| 条件 | 付与するラベル |
+| --- | --- |
+| iris に関わる修正 | `deploy-dev-iris`, `deploy-dev-wklr-backend-api` |
+| 上記 + wandh にも関わる修正 | 上記 + `deploy-dev-wandh` |
+| deep research に関わる修正 | `deploy-dev-wandh-deep-research` |
+| wandh-li に関わる修正 | `deploy-dev-wandh-li` |
+
+### 判定基準
+
+- 変更ファイルのパスやディレクトリ名、コミットメッセージ、ブランチ名から対象領域を判定する
+- 複数領域にまたがる場合は該当するラベルをすべて付与する
+- 判定に迷う場合はユーザーに確認する
+
+### `gh pr create` でのラベル指定例
+
+```bash
+# iris + wandh の修正例
+gh pr create --draft --label "P1" --label "deploy-dev-iris" --label "deploy-dev-wklr-backend-api" --label "deploy-dev-wandh" ...
+
+# deep research の修正例
+gh pr create --draft --label "P1" --label "deploy-dev-wandh-deep-research" ...
+```
+
 ## 注意事項
 
 - タイトル/本文は簡潔かつ日本語で作成
