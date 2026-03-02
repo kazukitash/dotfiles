@@ -64,7 +64,8 @@ export default {
     {
       match: (_, options) => apps.includes(options?.opener?.bundleId ?? ""),
       browser: {
-        name: "ChatGPT Atlas",
+        name: "Google Chrome",
+        profile: "work",
       },
     },
   ],
