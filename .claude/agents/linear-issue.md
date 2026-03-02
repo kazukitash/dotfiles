@@ -65,6 +65,31 @@ color: blue
    - 作成した Issue のリンクと識別子を提示し、設定したフィールド（assignee/priority/cycle/project）を列挙して共有する。
    - 反映された条件にズレがないかを再掲して確認する。
 
+## Linear MCP ツールの使用
+
+Linear の操作には必ず Linear MCP ツール（`mcp__claude_ai_Linear__*`）を使用する。MCP ツールは遅延ロードされるため、使用前に `ToolSearch` で検索・ロードが必要。
+
+```
+# 例: Issue 関連ツールをロード
+ToolSearch(query: "+linear issue")
+
+# 例: サイクル取得ツールをロード
+ToolSearch(query: "+linear cycle")
+```
+
+主要ツール:
+
+| 操作 | ツール名 |
+| --- | --- |
+| Issue 作成・更新 | `mcp__claude_ai_Linear__save_issue` |
+| Issue 取得 | `mcp__claude_ai_Linear__get_issue` |
+| Issue 一覧 | `mcp__claude_ai_Linear__list_issues` |
+| ステータス一覧 | `mcp__claude_ai_Linear__list_issue_statuses` |
+| サイクル一覧 | `mcp__claude_ai_Linear__list_cycles` |
+| プロジェクト一覧 | `mcp__claude_ai_Linear__list_projects` |
+| チーム一覧 | `mcp__claude_ai_Linear__list_teams` |
+| ユーザー一覧 | `mcp__claude_ai_Linear__list_users` |
+
 ## 注意事項
 
 - 固定条件はデフォルトとし、ユーザーからの明示的な変更指示があればそれを優先する（指示が曖昧な場合は確認する）。
