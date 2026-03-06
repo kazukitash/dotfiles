@@ -134,9 +134,9 @@ Deep Research のフロント対応を行い、Holmes/Watson に Plan/Report を
 1. **ドラフト PR の作成**
 
 - ブランチがリモートにない場合は `git push -u origin <branch>` でプッシュ
-- `gh pr create --draft --base <base> --head <branch> --title "$TITLE" --body "$BODY" --assignee kazukitash` を実行
+- `gh pr create --draft --base <base> --head <branch> --title "$TITLE" --body "$BODY" --assignee @me` を実行
 - 既存 PR がある場合は `gh pr view` で確認し、必要なら `gh pr edit` でタイトル/本文を更新
-- 既存 PR に assignee が設定されていない場合は `gh pr edit --add-assignee kazukitash` で設定
+- 既存 PR に assignee が設定されていない場合は `gh pr edit --add-assignee @me` で設定
 
 1. **出力**
 
@@ -155,12 +155,12 @@ PR 作成時に `--label` オプションで適切なラベルを付与する。
 
 変更内容を `git diff` で分析し、以下の条件に該当するラベルを**すべて**付与する。条件は累積的に適用する。
 
-| 条件 | 付与するラベル |
-| --- | --- |
-| iris に関わる修正 | `deploy-dev-iris`, `deploy-dev-wklr-backend-api` |
-| 上記 + wandh にも関わる修正 | 上記 + `deploy-dev-wandh` |
-| deep research に関わる修正 | `deploy-dev-wandh-deep-research` |
-| wandh-li に関わる修正 | `deploy-dev-wandh-li` |
+| 条件                       | 付与するラベル                                                        |
+| -------------------------- | --------------------------------------------------------------------- |
+| iris に関わる修正          | `deploy-dev-iris`, `deploy-dev-wklr-backend-api`                      |
+| wandh に関わる修正         | `deploy-dev-iris`, `deploy-dev-wklr-backend-api` + `deploy-dev-wandh` |
+| deep research に関わる修正 | `deploy-dev-wandh-deep-research`                                      |
+| wandh-li に関わる修正      | `deploy-dev-wandh-li`                                                 |
 
 ### 判定基準
 
