@@ -118,5 +118,6 @@
   "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  }
+  },
+  "effortLevel": "high"
 }
