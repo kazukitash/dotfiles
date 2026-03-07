@@ -3,14 +3,7 @@
   "$docs": "https://code.claude.com/docs/en/keybindings",
   "bindings": [
     {
-      "context": "Input",
-      "bindings": {
-        "ctrl+b": null,
-        "ctrl+shift+b": "task:background"
-      }
-    },
-    {
-      "context": "Task",
+      "context": "Global",
       "bindings": {
         "ctrl+b": null,
         "ctrl+shift+b": "task:background"
