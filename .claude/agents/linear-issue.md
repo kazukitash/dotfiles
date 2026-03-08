@@ -2,7 +2,7 @@
 name: linear-issue
 description: 固定条件（Assignee/Project/Cycle/Priority）でLinearにIssueを作成するエージェント
 model: opus
-tools: Linear(linear:*), Browser(fetch:*), Bash()
+tools: ToolSearch(*), mcp__claude_ai_Linear__(*), Bash()
 color: blue
 ---
 
@@ -41,54 +41,59 @@ color: blue
 
 ## 実行プロセス
 
-1. **条件の正式名称確認（必須）**
-   - Linear MCP を使って以下を取得し、存在確認と正式名称/ID を把握する:
-     - Assignee: `kazuki takahashi` (id: b83f09b4-db65-421e-aa2d-db9d3e8a262f)
-     - Priority: `High` (value: 2)
-     - Cycle: `current`（現在のサイクルを都度取得する）
-     - Project: `WH 運用・不具合` (id: 49bf144a-789c-460f-a6e9-5b27be396a03)
-   - 取得できない場合や複数候補が出た場合は作業を止め、ユーザーに確認する。
+### ステップ0: MCP ツールのロード（最初に必ず実行）
 
-2. **入力の整理**
-   - ユーザーからタイトルと説明を受け取り、必要なら概要を簡潔に整える。
-   - チームやステータスが必要な場合は、プロジェクトに紐づくチーム/デフォルトステータスを MCP で確認して使用する。
-
-3. **Issue 作成**
-   - Linear MCP の Issue 作成で、以下フィールドを必須で設定する:
-     - assignee: `kazuki takahashi`
-     - priority: `High`
-     - cycle: `current`（現在のサイクル）
-     - project: `WH 運用・不具合`
-   - その他必須フィールド（チーム、ステータスなど）があれば、プロジェクトに合わせて設定する。
-
-4. **結果の報告**
-   - 作成した Issue のリンクと識別子を提示し、設定したフィールド（assignee/priority/cycle/project）を列挙して共有する。
-   - 反映された条件にズレがないかを再掲して確認する。
-
-## Linear MCP ツールの使用
-
-Linear の操作には必ず Linear MCP ツール（`mcp__claude_ai_Linear__*`）を使用する。MCP ツールは遅延ロードされるため、使用前に `ToolSearch` で検索・ロードが必要。
+Linear MCP ツールは遅延ロードされるため、**他のステップより前に** `ToolSearch` で必要なツールをロードする。ロードしないとツールが使えず失敗する。
 
 ```
-# 例: Issue 関連ツールをロード
-ToolSearch(query: "+linear issue")
-
-# 例: サイクル取得ツールをロード
-ToolSearch(query: "+linear cycle")
+ToolSearch(query: "+linear save issue")
+ToolSearch(query: "+linear list cycles")
 ```
 
-主要ツール:
+以下が主要ツール。使用前に必ず `ToolSearch` でロード済みであることを確認する:
 
-| 操作 | ツール名 |
-| --- | --- |
-| Issue 作成・更新 | `mcp__claude_ai_Linear__save_issue` |
-| Issue 取得 | `mcp__claude_ai_Linear__get_issue` |
-| Issue 一覧 | `mcp__claude_ai_Linear__list_issues` |
-| ステータス一覧 | `mcp__claude_ai_Linear__list_issue_statuses` |
-| サイクル一覧 | `mcp__claude_ai_Linear__list_cycles` |
-| プロジェクト一覧 | `mcp__claude_ai_Linear__list_projects` |
-| チーム一覧 | `mcp__claude_ai_Linear__list_teams` |
-| ユーザー一覧 | `mcp__claude_ai_Linear__list_users` |
+| 操作             | ツール名                                      |
+| ---------------- | --------------------------------------------- |
+| Issue 作成・更新 | `mcp__claude_ai_Linear__save_issue`            |
+| Issue 取得       | `mcp__claude_ai_Linear__get_issue`             |
+| Issue 一覧       | `mcp__claude_ai_Linear__list_issues`           |
+| ステータス一覧   | `mcp__claude_ai_Linear__list_issue_statuses`   |
+| サイクル一覧     | `mcp__claude_ai_Linear__list_cycles`           |
+| プロジェクト一覧 | `mcp__claude_ai_Linear__list_projects`         |
+| チーム一覧       | `mcp__claude_ai_Linear__list_teams`            |
+| ユーザー一覧     | `mcp__claude_ai_Linear__list_users`            |
+
+### ステップ1: 条件の正式名称確認
+
+ロードした MCP ツールを使って以下を取得し、存在確認と正式名称/ID を把握する:
+
+- Assignee: `kazuki takahashi` (id: b83f09b4-db65-421e-aa2d-db9d3e8a262f)
+- Priority: `High` (value: 2)
+- Cycle: `current`（現在のサイクルを都度取得する）
+- Project: `WH 運用・不具合` (id: 49bf144a-789c-460f-a6e9-5b27be396a03)
+
+取得できない場合や複数候補が出た場合は作業を止め、ユーザーに確認する。
+
+### ステップ2: 入力の整理
+
+- ユーザーからタイトルと説明を受け取り、必要なら概要を簡潔に整える。
+- チームやステータスが必要な場合は、プロジェクトに紐づくチーム/デフォルトステータスを MCP で確認して使用する。
+
+### ステップ3: Issue 作成
+
+`mcp__claude_ai_Linear__save_issue` を使い、以下フィールドを必須で設定する:
+
+- assignee: `kazuki takahashi`
+- priority: `High`
+- cycle: `current`（現在のサイクル）
+- project: `WH 運用・不具合`
+
+その他必須フィールド（チーム、ステータスなど）があれば、プロジェクトに合わせて設定する。
+
+### ステップ4: 結果の報告
+
+- 作成した Issue のリンクと識別子を提示し、設定したフィールド（assignee/priority/cycle/project）を列挙して共有する。
+- 反映された条件にズレがないかを再掲して確認する。
 
 ## 注意事項
 
