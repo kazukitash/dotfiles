@@ -155,12 +155,12 @@ PR 作成時に `--label` オプションで適切なラベルを付与する。
 
 変更内容を `git diff` で分析し、以下の条件に該当するラベルを**すべて**付与する。条件は累積的に適用する。
 
-| 条件                       | 付与するラベル                                                        |
-| -------------------------- | --------------------------------------------------------------------- |
-| iris に関わる修正          | `deploy-dev-iris`, `deploy-dev-wklr-backend-api`                      |
-| wandh に関わる修正         | `deploy-dev-iris`, `deploy-dev-wklr-backend-api` + `deploy-dev-wandh` |
-| deep research に関わる修正 | `deploy-dev-wandh-deep-research`                                      |
-| wandh-li に関わる修正      | `deploy-dev-wandh-li`                                                 |
+| 条件                       | 付与するラベル                                                       |
+| -------------------------- | -------------------------------------------------------------------- |
+| iris に関わる修正          | `deploy-dev-iris`, `deploy-dev-wklr-backend-api`                     |
+| wandh に関わる修正         | `deploy-dev-iris`, `deploy-dev-wklr-backend-api`, `deploy-dev-wandh` |
+| deep research に関わる修正 | `deploy-dev-wandh-deep-research`                                     |
+| wandh-li に関わる修正      | `deploy-dev-wandh-li`                                                |
 
 ### 判定基準
 
