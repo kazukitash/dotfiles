@@ -20,6 +20,15 @@ color: yellow
 git status && git diff && git diff --cached && git log --oneline -5
 ```
 
+**重要: 変更の有無は `git status` の出力で判断する。** 以下のいずれかに該当すれば変更あり:
+
+- `Changes not staged for commit` — 未ステージの変更あり
+- `Changes to be committed` — ステージ済みの変更あり
+- `Untracked files` — 未追跡ファイルあり
+
+`git diff` や `git diff --cached` が空でも、`git status` が上記を示していればコミット対象がある。
+`nothing to commit, working tree clean` と表示された場合のみ「変更なし」と判断する。
+
 ### 2. コミットを計画
 
 変更を論理的にグループ化して順序を決定:
