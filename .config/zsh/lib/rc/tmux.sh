@@ -4,23 +4,10 @@ if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ -n "$TERM_PROGRAM" || -
   tmux attach-session 2>/dev/null || tmux new-session
 fi
 
-# tmux ウィンドウタイトルに Git ルートディレクトリ名とブランチ名を表示
+# tmux ウィンドウタイトルに Git ルートディレクトリ名と Linear Issue ID を表示
 if [[ -n "$TMUX" ]]; then
   _tmux_update_window_title() {
-    local git_root branch title issue_id
-    git_root=$(git rev-parse --show-toplevel 2>/dev/null)
-    if [[ -n "$git_root" ]]; then
-      title="${git_root:t}"
-      branch=$(git branch --show-current 2>/dev/null)
-      # ブランチ名から Linear Issue ID を抽出（例: sv-1234, ENG-56）
-      if [[ "$branch" =~ ([a-zA-Z]+-[0-9]+) ]]; then
-        issue_id="${match[1]:u}"
-        title="${title}:${issue_id}"
-      fi
-    else
-      title="${PWD:t}"
-    fi
-    tmux rename-window "$title"
+    "$HOME/.config/tmux/update-window-title.sh" "$PWD" "$(tmux display-message -p '#{window_id}')"
   }
   add-zsh-hook precmd _tmux_update_window_title
 fi
