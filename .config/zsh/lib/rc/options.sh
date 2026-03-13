@@ -2,7 +2,6 @@
 # zshの拡張設定（インタラクティブシェル用）
 
 # オプション設定
-unsetopt PROMPT_SP
 setopt auto_cd              # cdなしで移動
 setopt correct              # 間違いを指摘
 setopt globdots             # 明確なドットの指定なしで.から始まるファイルをマッチ
