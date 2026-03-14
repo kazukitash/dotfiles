@@ -27,7 +27,6 @@
       "Bash(git switch:*)",
       "Bash(git worktree:*)",
       "Bash(grep:*)",
-      "Bash(ls:*)",
       "Bash(echo:*)",
       "Bash(make test:*)",
       "Bash(mkdir:*)",
@@ -110,17 +109,42 @@
       "WebFetch(domain:notion.com)",
       "WebFetch(domain:notion.so)",
       "WebFetch(domain:unity.com)",
-      "WebFetch(domain:zed.dev)"
+      "WebFetch(domain:zed.dev)",
+      "mcp__serena__check_onboarding_performed",
+      "mcp__serena__activate_project",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(brew search:*)",
+      "Bash(cargo search:*)",
+      "WebFetch(domain:zellij.dev)",
+      "Bash(bindkey)",
+      "Bash(zellij setup:*)",
+      "WebFetch(domain:docs.brew.sh)",
+      "Bash(gh run list:*)",
+      "Bash(git mv:*)",
+      "WebFetch(domain:mise.jdx.dev)",
+      "Bash(git -C /Users/kazukitash/.dotfiles status)",
+      "Bash(git -C /Users/kazukitash/.dotfiles diff .config/zed/settings.json)",
+      "Bash(git -C /Users/kazukitash/.dotfiles log --oneline -5)",
+      "Bash(git -C /Users/kazukitash/.dotfiles add:*)",
+      "Bash(git -C /Users/kazukitash/.dotfiles commit -m \"$\\(cat <<''EOF''\nfeat\\(zed\\): session の trust_all_worktrees を有効化し JSON を整形\nEOF\n\\)\")",
+      "WebSearch",
+      "Bash(tmux -V)",
+      "Bash(tmux list-hooks:*)",
+      "Bash(tmux show-hooks:*)"
     ],
-    "deny": []
+    "deny": [],
+    "defaultMode": "plan",
+    "additionalDirectories": []
   },
   "enabledPlugins": {
     "pyright-lsp@claude-plugins-official": true,
-    "csharp-lsp@claude-plugins-official": true
+    "csharp-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
+  "language": "Japanese",
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  },
-  "effortLevel": "high"
+  }
 }
