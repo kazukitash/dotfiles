@@ -87,7 +87,7 @@
   "buffer_font_size": 12,
   "ui_font_family": "Rounded-L Mgen+ 2cp",
   "theme": {
-    "mode": "dark",
+    "mode": "light",
     "light": "Catppuccin Latte (blue)",
     "dark": "Catppuccin Mocha (blue)",
   },
