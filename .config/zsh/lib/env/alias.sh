@@ -57,6 +57,7 @@ alias dcln="\
 alias pn="pnpm"
 alias vim="nvim"
 alias c="claude"
+alias zed="zed -r"
 
 # プロジェクト固有のエイリアス
 alias iris-check="pn -F iris fix && pn -F iris type && pn -F iris test"
