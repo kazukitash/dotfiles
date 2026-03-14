@@ -27,6 +27,7 @@ setup_terminal() {
 
       # プロファイルファイルの存在確認
       local profile_file="$DOTPATH/share/Yawaraka.terminal"
+      local light_profile_file="$DOTPATH/share/Yawaraka-Light.terminal"
       if [ ! -f "$profile_file" ]; then
         e_error "Setup Terminal.app" "Profile file not found: $profile_file"
         return 1
@@ -37,6 +38,13 @@ setup_terminal() {
       # プロファイルをインポート
       open "$profile_file"
       check_result $? "Setup Terminal.app" "Import profile"
+
+      # ライトプロファイルをインポート
+      if [ -f "$light_profile_file" ]; then
+        e_log "Setup Terminal.app" "Importing Yawaraka-Light profile..."
+        open "$light_profile_file"
+        check_result $? "Setup Terminal.app" "Import light profile"
+      fi
 
       # デフォルトプロファイルとして設定
       e_log "Setup Terminal.app" "Setting Yawaraka as default profile..."
