@@ -38,7 +38,15 @@ fzf-git-branch-widget() {
   if [ -n "$selected" ]; then
     # リモートブランチの場合、括弧内のリモート名を取り除く
     local branch=$(echo "$selected" | sed -E 's/ \([^)]+\)$//')
-    BUFFER="git checkout $branch"
+    # 選択したブランチが worktree でチェックアウト済みか判定
+    local wt_path=$(git worktree list --porcelain \
+      | awk -v b="refs/heads/$branch" \
+        '/^worktree /{ p=substr($0, 10) } /^branch /{ if ($2 == b) print p }')
+    if [ -n "$wt_path" ]; then
+      BUFFER="cd $wt_path"
+    else
+      BUFFER="git checkout $branch"
+    fi
     zle accept-line
   fi
   for precmd_fn in $precmd_functions; do $precmd_fn; done
