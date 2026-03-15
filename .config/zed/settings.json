@@ -14,9 +14,9 @@
     "trust_all_worktrees": true,
   },
   "agent_servers": {
-    "codex": {
-      "default_model": "gpt-5.1-codex-max/high",
-    },
+    "claude-acp": {
+      "type": "registry"
+    }
   },
   "ssh_connections": [
     {
