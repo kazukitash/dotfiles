@@ -74,6 +74,7 @@
     },
     "play_sound_when_agent_done": true,
     "notify_when_agent_waiting": "all_screens",
+    "show_turn_stats": true,
   },
   "file_types": {
     "Dockerfile": ["Dockerfile.*"],
