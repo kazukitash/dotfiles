@@ -47,11 +47,11 @@ setup_terminal() {
       fi
 
       # デフォルトプロファイルとして設定
-      e_log "Setup Terminal.app" "Setting Yawaraka as default profile..."
-      defaults write com.apple.Terminal "Default Window Settings" -string "Yawaraka"
+      e_log "Setup Terminal.app" "Setting Yawaraka-Light as default profile..."
+      defaults write com.apple.Terminal "Default Window Settings" -string "Yawaraka-Light"
       check_result $? "Setup Terminal.app" "Set default profile"
 
-      defaults write com.apple.Terminal "Startup Window Settings" -string "Yawaraka"
+      defaults write com.apple.Terminal "Startup Window Settings" -string "Yawaraka-Light"
       check_result $? "Setup Terminal.app" "Set startup profile"
 
       e_done "Setup Terminal.app" "Terminal.app configured successfully"
