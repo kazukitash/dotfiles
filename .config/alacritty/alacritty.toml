@@ -1,7 +1,0 @@
-[env]
-TERM_PROGRAM = "Alacritty"
-
-[general]
-import = [
-  "~/.config/alacritty/themes/catppuccin-latte.toml"
-]
