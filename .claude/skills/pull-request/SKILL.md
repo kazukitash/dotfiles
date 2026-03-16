@@ -1,6 +1,8 @@
 ---
 name: pull-request
-description: 変更を意味的に分離してコミットし、責任範囲ごとにマージフローを考慮した PR スタックを作成する。
+description: |
+  現在の変更からコミットと PR を作成する。責任範囲が複数にまたがる場合は PR スタックに分割する。
+  PR 作成・コミット整理・変更のマージ準備時に使用する。
 ---
 
 # Pull Request Create Skill

@@ -1,6 +1,8 @@
 ---
 name: linear
-description: linear-issueエージェントを使用し、デフォルト条件でLinear Issueを作成（ユーザーが明示的に指示した場合は上書き可）
+description: |
+  デフォルト条件で Linear に Issue を作成する。ユーザーが明示的に指示した場合は条件を上書きする。
+  Linear Issue の作成・タスク登録・チケット起票時に使用する。
 context: fork
 agent: linear-issue
 ---

@@ -1,6 +1,8 @@
 ---
 name: review
-description: git-reviewエージェントを使用してPRの包括的なレビューを実行
+description: |
+  PR 番号を指定してプルリクエストを包括的にレビューする。GitHub・Linear・Notion を横断して情報収集しレポートを生成する。
+  PR レビュー・コードレビュー・マージ前の品質確認時に使用する。
 context: fork
 agent: git-review
 ---
