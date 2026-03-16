@@ -1,6 +1,8 @@
 ---
 name: git-review
-description: 指定されたPR番号のプルリクエストを包括的にレビューするエージェント
+description: |
+  PR 番号を指定してプルリクエストを包括的にレビューする。GitHub・Linear・Notion を横断して情報収集しレポートを生成する。
+  PR レビュー・コードレビュー・マージ前の品質確認時に使用する。
 model: opus
 color: blue
 ---

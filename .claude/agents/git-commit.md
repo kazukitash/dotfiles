@@ -1,6 +1,8 @@
 ---
 name: git-commit
-description: コミットをConventional Commitsに準拠した形式で作成するエージェント
+description: |
+  Conventional Commits 準拠で git コミットを作成する。変更を論理単位に分割しコミットメッセージを日本語で生成する。
+  コミット作成・変更のステージング・コミット分割時に使用する。
 model: opus
 tools: Bash(git:*)
 color: yellow

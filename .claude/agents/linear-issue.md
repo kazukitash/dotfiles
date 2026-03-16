@@ -1,6 +1,8 @@
 ---
 name: linear-issue
-description: 固定条件（Assignee/Project/Cycle/Priority）でLinearにIssueを作成するエージェント
+description: |
+  Linear に Issue を作成する。デフォルトで Assignee・Project・Cycle・Priority を固定条件で設定する。
+  Linear Issue の作成・タスク登録・チケット起票時に使用する。
 model: opus
 tools: ToolSearch(*), mcp__claude_ai_Linear__(*), Bash()
 color: blue

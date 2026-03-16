@@ -1,6 +1,8 @@
 ---
 name: git-draft
-description: 変更内容を整理し、適切なタイトルと本文を生成してドラフト PR を作成するエージェント。
+description: |
+  変更内容を分析しタイトルと本文を日本語で生成してドラフト PR を作成する。ラベルの自動付与も行う。
+  ドラフト PR の作成・PR 本文の生成・PR のラベル付与時に使用する。
 model: opus
 tools: Bash(git:*), Bash(gh:*)
 color: purple
