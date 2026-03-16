@@ -1,4 +1,17 @@
 {
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/notify-bell.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  },
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
