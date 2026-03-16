@@ -1,13 +1,13 @@
 ---
 name: draft
-description: git-pull-requestエージェントを使用してドラフトPRを作成
+description: git-draftエージェントを使用してドラフトPRを作成
 context: fork
-agent: git-pull-request
+agent: git-draft
 ---
 
 # Draft PR Create Skill
 
-現在のブランチをgit-pull-requestエージェントを使用してドラフト PR として作成してください
+現在のブランチをgit-draftエージェントを使用してドラフト PR として作成してください
 
 ポイントは以下です。
 
