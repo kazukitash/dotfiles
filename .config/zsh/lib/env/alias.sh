@@ -20,6 +20,7 @@ alias gpr="git stash && git pull --rebase origin main && git stash pop"
 
 # 基本コマンドのエイリアス
 alias l="ls -lahp"
+alias less="less -R --mouse"
 alias ls="ls -Gp"
 
 # Homebrew関連
