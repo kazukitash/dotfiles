@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "git_panel": {
     "tree_view": true,
   },
@@ -22,8 +25,24 @@
     {
       "host": "ktmm",
       "args": [],
-      "projects": [],
-    },
+      "projects": [
+        {
+          "paths": [
+            "/Users/kazukitash"
+          ]
+        },
+        {
+          "paths": [
+            "/Users/kazukitash/repo/wklr"
+          ]
+        },
+        {
+          "paths": [
+            "/Users/kazukitash/repo/wklr/wklr-mono"
+          ]
+        }
+      ]
+    }
   ],
   "indent_guides": {
     "coloring": "indent_aware",
