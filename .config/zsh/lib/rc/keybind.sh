@@ -38,6 +38,8 @@ fzf-git-branch-widget() {
   if [ -n "$selected" ]; then
     # リモートブランチの場合、括弧内のリモート名を取り除く
     local branch=$(echo "$selected" | sed -E 's/ \([^)]+\)$//')
+    # prunable な worktree 参照を事前に除去
+    git worktree prune 2>/dev/null
     # 選択したブランチが worktree でチェックアウト済みか判定
     local wt_path=$(git worktree list --porcelain \
       | awk -v b="refs/heads/$branch" \
