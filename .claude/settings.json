@@ -133,7 +133,7 @@
       "Bash(tmux show-hooks:*)"
     ],
     "deny": [],
-    "defaultMode": "plan",
+    "defaultMode": "auto",
     "additionalDirectories": []
   },
   "enabledPlugins": {
