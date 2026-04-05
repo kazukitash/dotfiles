@@ -144,7 +144,9 @@
   "language": "Japanese",
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  }
+  },
+  "model": "opus[1m]"
 }
