@@ -7,6 +7,3 @@
 for file in ${ZDOTDIR:-$HOME/.config/zsh}/lib/rc/*.sh; do
   [ -r "$file" ] && source "$file"
 done
-
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"

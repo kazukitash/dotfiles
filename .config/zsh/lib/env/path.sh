@@ -85,6 +85,9 @@ if has tenv; then
   export TENV_AUTO_INSTALL=true
 fi
 
+# Vite+ の設定（https://viteplus.dev）
+[ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"
+
 # 個人用のPATH
 path=(~/.local/bin $path)
 

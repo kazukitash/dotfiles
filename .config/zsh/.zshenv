@@ -10,6 +10,3 @@
 for file in $ZDOTDIR/lib/env/*.sh; do
   [ -r "$file" ] && source "$file"
 done
-
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
