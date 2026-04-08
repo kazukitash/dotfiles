@@ -55,6 +55,7 @@ alias dcln="\
 "
 
 # 開発ツール関連
+alias tf="terraform"
 alias pn="pnpm"
 alias vim="nvim"
 alias c="claude"

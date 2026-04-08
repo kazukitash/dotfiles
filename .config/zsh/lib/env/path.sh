@@ -80,6 +80,11 @@ if has dotnet; then
   export DOTNET_ROOT="$HOMEBREW_PREFIX/opt/dotnet/libexec"
 fi
 
+# tenvの設定
+if has tenv; then
+  export TENV_AUTO_INSTALL=true
+fi
+
 # 個人用のPATH
 path=(~/.local/bin $path)
 
