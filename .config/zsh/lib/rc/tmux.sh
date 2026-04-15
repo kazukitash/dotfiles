@@ -1,5 +1,8 @@
-# tmux が存在し、tmux セッション外で、ターミナルアプリまたは SSH からの起動時に自動アタッチ
-if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ -n "$TERM_PROGRAM" || -n "$SSH_CONNECTION" ]]; then
+# tmux が存在し、tmux セッション外で、stdin/stdout が tty に繋がっている対話シェル、かつ
+# ターミナルアプリまたは SSH からの起動時に自動アタッチ
+# tty チェックを入れることで、MCP サーバーや GUI アプリ（Claude Desktop など）が
+# `zsh -ilc` 等で環境変数を継承してサブシェルを起動した際に tmux が起動するのを防ぐ
+if command -v tmux &>/dev/null && [[ -z "$TMUX" ]] && [[ -t 0 && -t 1 ]] && [[ -n "$TERM_PROGRAM" || -n "$SSH_CONNECTION" ]]; then
   # 既存セッションがあればアタッチ、なければ新規作成
   tmux attach-session 2>/dev/null || tmux new-session
 fi
