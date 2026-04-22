@@ -22,6 +22,12 @@ if has brew; then
     zstyle ':completion:*' list-colors 'di=1;36' 'ln=35' 'so=32' 'pi=33' 'ex=31' 'bd=34;46' 'cd=34;43' 'su=0;41' 'sg=0;46' 'tw=0;42' 'ow=0;43'
     zstyle ':completion:*' completer _complete _match _expand _path_files _value _default _assign
     zstyle ':completion:*:assign:*:*:*' tag-order 'parameters-words files'
+
+    # terraform (HashiCorp製ツールはbash style補完のためbashcompinitが必要)
+    if has terraform; then
+      autoload -U +X bashcompinit && bashcompinit
+      complete -o nospace -C "$(command -v terraform)" terraform tf
+    fi
   else
     echo -e "\033[31mZSHRC: [zsh-completions] ✖  Not installed - Failed\033[m" >&2
   fi
