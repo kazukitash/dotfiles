@@ -59,6 +59,7 @@ alias tf="terraform"
 alias pn="pnpm"
 alias vim="nvim"
 alias c="claude"
+alias ph="phantom"
 alias zed="env -u TMUX -u TMUX_PANE zed -r"
 
 # プロジェクト固有のエイリアス

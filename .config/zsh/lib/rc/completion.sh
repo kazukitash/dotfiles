@@ -32,6 +32,10 @@ if has brew; then
     zstyle ':completion:*:messages' format '%F{magenta}-- %d --%f'
     zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
 
+    # エイリアスに補完を引き継ぐ
+    compdef ph=phantom
+    compdef pn=pnpm
+
     # terraform (HashiCorp製ツールはbash style補完のためbashcompinitが必要)
     if has terraform; then
       autoload -U +X bashcompinit && bashcompinit
