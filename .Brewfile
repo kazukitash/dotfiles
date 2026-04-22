@@ -1,5 +1,6 @@
 brew "diff-so-fancy"
 brew "fzf"
+brew "fzf-tab"
 brew "marksman"
 brew "shfmt"
 brew "terraform"
