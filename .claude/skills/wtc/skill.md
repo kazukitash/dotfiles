@@ -1,29 +1,37 @@
 ---
 name: wtc
 description: |
-  Worktree を作成し指定ブランチを checkout する。ブランチ名を引数として受け取る。
+  phantom で worktree を作成し指定ブランチを checkout する。ブランチ名を引数として受け取る。
   worktree の作成・ブランチの隔離作業・新しい feature ブランチでの作業開始時に使用する。
 ---
 
 # Worktree Create Skill
 
-引数で渡されたブランチ名を使って worktree を作成し、そのブランチを checkout する。
+引数のブランチ名で phantom 管理の worktree を作成する。
+
+- **既存ブランチ**（リモート or ローカルに存在）→ `phantom attach <branch>`
+- **新規ブランチ** → `phantom create <branch> --base <base>`（デフォルト base は `main`）
+
+`phantom.config.json` を持つリポジトリ（wklr-mono / wklr-terraform 等）では `postCreate` の hook（copyFiles、setup-worktree-env.sh、./init など）が自動で走る。
 
 ## 実行手順
 
-1. `EnterWorktree` ツールで worktree を作成する（name はブランチ名からプレフィックスを除いた短い名前にする）
-2. `pwd` と `git branch --show-current` で作業ディレクトリが worktree に切り替わったことを確認する
-   - 切り替わっていない場合: `cd <worktree パス>` で移動する（パスは `EnterWorktree` の結果に含まれる）
-3. `git fetch origin <ブランチ名>` でリモートブランチを取得する
-4. リモートに存在する場合: `git checkout <ブランチ名>` で checkout する
-5. リモートに存在しない場合: `git checkout -b <ブランチ名> origin/<ベース>` で新規ブランチを作成する
+1. `git fetch origin <branch>` でリモートの最新を取り込む（失敗しても続行）
+2. 以下いずれかでブランチの存在を判定する
+   - `git rev-parse --verify refs/heads/<branch>` でローカル存在確認
+   - `git ls-remote --exit-code --heads origin <branch>` でリモート存在確認
+3. 存在する場合: `phantom attach <branch>`
+4. 存在しない場合: `phantom create <branch> --base <base>`
+5. `phantom where <branch>` で worktree の絶対パスを取得する
+6. 取得したパスと、作成されたブランチ名をユーザーに報告する
 
 ## 注意事項
 
-- `EnterWorktree` は `worktree-<name>` という一時ブランチを作成する。目的のブランチは手順 4 or 5 で改めて checkout する
-- checkout 後、`git branch --show-current` で目的のブランチになっていることを最終確認する
+- Claude の Bash tool は呼び出しごとに cwd がリセットされる。worktree 内で後続作業する場合は各 Bash コマンドで `cd <worktree-path> && ...` を前置するか、ユーザーに別セッションを開くよう案内する
+- ブランチ名に `/` が含まれる場合（例 `feature/sv-2617`）は phantom の worktree name にそのまま渡って問題ない。内部的に `/` を含むサブディレクトリが生成される
+- `phantom.config.json` が無いリポジトリでは phantom のデフォルト挙動（`.git/phantom/worktrees/` 配下）で作成される
 
 ## 引数
 
-- 第1引数（必須）: checkout するブランチ名（例: `feature/sv-2617`）
-- `--base <branch>`: ベースブランチを指定する（デフォルト: `main`）。新規ブランチ作成時に使用される
+- 第 1 引数（必須）: checkout するブランチ名（例: `feature/sv-2617`）
+- `--base <branch>`: ベースブランチを指定する（デフォルト: `main`）。新規ブランチ作成時のみ使用される
