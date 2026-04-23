@@ -33,6 +33,4 @@ force-pull = !git fetch && git reset --hard origin/$(git current-branch-name)
 tig = !tig main HEAD
 [diff-so-fancy]
 	stripLeadingSymbols = false
-[phantom]
-	worktreesDirectory = ../../worktrees
 
