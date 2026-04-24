@@ -17,6 +17,9 @@
     "trust_all_worktrees": true,
   },
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
     "claude-acp": {
       "type": "registry"
     }
