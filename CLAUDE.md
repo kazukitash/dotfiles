@@ -184,7 +184,6 @@ Multi-layer security prevents local tampering:
 │   ├── git/                      # Git configuration
 │   ├── nvim/                     # Neovim configuration (Lua)
 │   ├── zed/                      # Zed editor settings
-│   ├── zellij/                   # Terminal multiplexer
 │   └── zsh/                      # Modular Zsh configuration
 ├── share/                        # Static assets
 │   ├── fonts/                    # Custom fonts (Rounded L M+)
@@ -260,7 +259,6 @@ When adding platform-specific features:
 - **mise**: Runtime version manager (replaces asdf)
 - **fzf**: Fuzzy finder integration
 - **zoxide**: Smart directory navigation
-- **zellij**: Terminal multiplexer
 
 ### External Services  
 
