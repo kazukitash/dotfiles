@@ -169,11 +169,10 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "theme": "light-daltonized",
-  "skipAutoPermissionPrompt": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  },
-  "skipAutoPermissionPrompt": true
+  }
 }
