@@ -7,10 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
   "edit_predictions": {
-    "provider": "copilot"
+    "provider": "copilot",
   },
   "git_panel": {
+    "dock": "right",
     "tree_view": true,
   },
   "session": {
@@ -18,11 +25,14 @@
   },
   "agent_servers": {
     "codex-acp": {
-      "type": "registry"
+      "type": "registry",
     },
     "claude-acp": {
-      "type": "registry"
-    }
+      "favorite_config_option_values": {
+        "effort": ["xhigh"],
+      },
+      "type": "registry",
+    },
   },
   "ssh_connections": [
     {
@@ -30,22 +40,16 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/Users/kazukitash"
-          ]
+          "paths": ["/Users/kazukitash"],
         },
         {
-          "paths": [
-            "/Users/kazukitash/repo/wklr"
-          ]
+          "paths": ["/Users/kazukitash/repo/wklr"],
         },
         {
-          "paths": [
-            "/Users/kazukitash/repo/wklr/wklr-mono"
-          ]
-        }
-      ]
-    }
+          "paths": ["/Users/kazukitash/repo/wklr/wklr-mono"],
+        },
+      ],
+    },
   ],
   "indent_guides": {
     "coloring": "indent_aware",
@@ -83,6 +87,7 @@
     "dark": "Catppuccin Mocha",
   },
   "agent": {
+    "dock": "left",
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-5.2-codex",
@@ -91,7 +96,7 @@
       "provider": "copilot_chat",
       "model": "gpt-5.2-codex",
     },
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "notify_when_agent_waiting": "all_screens",
     "show_turn_stats": true,
   },
@@ -112,6 +117,7 @@
     "dark": "Catppuccin Mocha (blue)",
   },
   "collaboration_panel": {
+    "dock": "right",
     "button": false,
   },
   "tab_size": 2,
