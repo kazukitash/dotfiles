@@ -3,5 +3,6 @@ idiomatic_version_file_enable_tools = ["node", "python"]
 ruby.compile=false
 
 [tools]
+bun = "latest"
 node = "22"
 ruby = "latest"
