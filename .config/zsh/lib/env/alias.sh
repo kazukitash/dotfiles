@@ -60,7 +60,7 @@ alias pn="pnpm"
 alias vim="nvim"
 alias c="claude"
 alias ph="phantom"
-alias zed="env -u TMUX -u TMUX_PANE zed -r"
+alias zed="env -u TMUX -u TMUX_PANE zed"
 
 # プロジェクト固有のエイリアス
 alias iris-check="pn -F iris fix && pn -F iris type && pn -F iris test"
