@@ -10,6 +10,10 @@ const apps = [
 export default {
   defaultBrowser: "Safari",
 
+  options: {
+    hideIcon: true, // メニューバーから Finicky のアイコンを隠す
+  },
+
   handlers: [
     {
       match: /accounts\.google\.com/,
