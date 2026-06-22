@@ -5,6 +5,7 @@ const apps = [
   "com.linear", // Linear
   "notion.id", // Notion
   "com.tinyspeck.slackmacgap", // Slack
+  "com.anthropic.claudefordesktop", // Claude Desktop
 ];
 
 export default {
