@@ -137,7 +137,6 @@
     "defaultMode": "auto",
     "additionalDirectories": []
   },
-  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
@@ -169,7 +168,6 @@
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
   "theme": "light-daltonized",
-  "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
