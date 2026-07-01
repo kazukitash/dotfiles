@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "cli_default_open_behavior": "existing_window",
   "project_panel": {
     "dock": "right",
   },
@@ -48,16 +49,32 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/Users/kazukitash"],
+          "paths": [
+            "/Users/kazukitash/.dotfiles"
+          ]
         },
         {
-          "paths": ["/Users/kazukitash/repo/wklr"],
+          "paths": [
+            "/Users/kazukitash/repo/kazukitash/diary"
+          ]
         },
         {
-          "paths": ["/Users/kazukitash/repo/wklr/wklr-mono"],
+          "paths": [
+            "/Users/kazukitash/repo/wklr"
+          ]
         },
-      ],
-    },
+        {
+          "paths": [
+            "/Users/kazukitash/repo/wklr/wklr-mono"
+          ]
+        },
+        {
+          "paths": [
+            "/Users/kazukitash/repo/wklr/wklr-terraform"
+          ]
+        }
+      ]
+    }
   ],
   "indent_guides": {
     "coloring": "indent_aware",
