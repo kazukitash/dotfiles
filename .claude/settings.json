@@ -138,6 +138,16 @@
     "additionalDirectories": []
   },
   "hooks": {
+    "WorktreeCreate": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/kazukitash/.claude/hooks/worktree-create-in-parent-worktrees.sh"
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "hooks": [
@@ -172,5 +182,6 @@
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754842024592
-  }
+  },
+  "tui": "fullscreen"
 }

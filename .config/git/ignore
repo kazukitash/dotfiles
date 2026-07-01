@@ -1,5 +1,7 @@
 .DS_Store
 *.code-workspace
 **/.claude/settings.local.json
+**/.claude/worktrees/
+**/.claude/reviews/
 **/.serena/*
 !**/.serena/serena_config.yml
