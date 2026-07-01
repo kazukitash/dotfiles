@@ -9,3 +9,8 @@
 !.codex/prompts
 !.codex/skills
 !.codex/AGENTS.md
+
+# Codex は対話セッションでスキルの symlink を辿らないため .config/skills から実体コピーを生成する（deploy.sh）。
+# 生成物は追跡せず、Codex 組み込みの .system のみ追跡する。
+.codex/skills/*
+!.codex/skills/.system

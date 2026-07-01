@@ -14,7 +14,7 @@ CANDIDATES=($(find . -maxdepth 1 -name ".*" -not -name "." | sort))
 EXCLUSIONS=(".DS_Store" ".git" ".gitignore" ".github" ".luarc.json")
 
 # ディレクトリごとシムリンクする場合のディレクトリ
-DIR_INCLUSIONS=(".codex")
+DIR_INCLUSIONS=(".codex" ".agents")
 
 # 特定のディレクトリ内で除外するファイルパターン
 # 形式: "ディレクトリ:除外パターン"
@@ -85,10 +85,10 @@ for candidate in "${CANDIDATES[@]}"; do
           for pattern in "${dir_exclusions[@]}"; do
             grep_patterns+=" -e $pattern"
           done
-          find "$candidate_clean" -type f | grep -v $grep_patterns | sort
+          find -L "$candidate_clean" -type f | grep -v $grep_patterns | sort
         else
           # 除外パターンがない場合
-          find "$candidate_clean" -type f | sort
+          find -L "$candidate_clean" -type f | sort
         fi
       fi
     else

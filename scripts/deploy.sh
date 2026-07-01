@@ -92,6 +92,21 @@ echo "----------------------------------------"
   ln -sf "$source_path" "$target_path"
 done
 
+# Codex は対話セッションで skills の symlink を辿らないため、.config/skills から実体コピーを生成する
+SKILLS_SRC="$DOTPATH/.config/skills"
+SKILLS_DST="$DOTPATH/.codex/skills"
+if [[ -d "$SKILLS_SRC" ]]; then
+  echo "----------------------------------------"
+  echo "Syncing skills to Codex (real copies): $SKILLS_DST"
+  for skill_dir in "$SKILLS_SRC"/*/; do
+    [[ -d "$skill_dir" ]] || continue
+    name="$(basename "$skill_dir")"
+    rm -rf "${SKILLS_DST:?}/$name"
+    cp -RL "$skill_dir" "$SKILLS_DST/$name"
+    echo "Copied skill: $name"
+  done
+fi
+
 # 元のディレクトリに戻る
 cd "$CURRENT_DIR"
 
