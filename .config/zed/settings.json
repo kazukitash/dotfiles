@@ -25,9 +25,17 @@
   },
   "agent_servers": {
     "codex-acp": {
+      "default_config_options": {
+        "model": "gpt-5.5",
+        "mode": "agent-full-access",
+        "reasoning_effort": "xhigh"
+      },
       "type": "registry",
     },
     "claude-acp": {
+      "default_config_options": {
+        "effort": "xhigh"
+      },
       "favorite_config_option_values": {
         "effort": ["xhigh"],
       },
@@ -61,17 +69,6 @@
     "max_scroll_history_lines": 100000,
   },
   "auto_update": true,
-  "context_servers": {
-    "mcp-server-github": {
-      "command": "/bin/bash",
-      "args": ["-c", "$HOME/.config/zed/scripts/github-mcp.sh"],
-      "enabled": true,
-    },
-    "mcp-server-linear": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
-    },
-  },
   "ui_font_weight": 300.0,
   "buffer_font_weight": 300.0,
   "ui_font_features": {
